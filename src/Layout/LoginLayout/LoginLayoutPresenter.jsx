@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { Header } from '../../Components';
 import '../../Css/main.css';
+import '../../Css/login.css';
 
 const LoginLayoutPresenter = () => {
   /* Router */
@@ -12,7 +13,9 @@ const LoginLayoutPresenter = () => {
   return (
     <div className="mainlayout-container">
       <Header />
-      <div className="mainlayout-body-container">{<Outlet />}</div>
+      <div className="mainlayout-body-container">
+        {<Outlet />}
+      </div>
     </div>
   );
 };
