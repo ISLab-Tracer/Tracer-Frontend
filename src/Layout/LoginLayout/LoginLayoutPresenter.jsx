@@ -1,9 +1,9 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { Header, SideMenu } from '../../Components';
+import { Header } from '../../Components';
 import '../../Css/main.css';
 
-const MainLayoutPresenter = () => {
+const LoginLayoutPresenter = () => {
   /* Router */
   /* State */
   /* Hooks */
@@ -12,12 +12,9 @@ const MainLayoutPresenter = () => {
   return (
     <div className="mainlayout-container">
       <Header />
-      <div className="mainlayout-body-container">
-        <SideMenu />
-        {<Outlet />}
-      </div>
+      <div className="mainlayout-body-container">{<Outlet />}</div>
     </div>
   );
 };
 
-export default MainLayoutPresenter;
+export default LoginLayoutPresenter;

@@ -1,6 +1,5 @@
-import React from "react";
-import { SideMenu } from "../../../Components";
-import "../../../Css/main.css";
+import React from 'react';
+import '../../../Css/main.css';
 
 const MainPresenter = () => {
   /* Router */
@@ -8,12 +7,7 @@ const MainPresenter = () => {
   /* Hooks */
   /* Functions */
   /* Render */
-  return (
-    <>
-      <SideMenu />
-      <div className="main-content-container">MainPresenter</div>
-    </>
-  );
+  return <div className="main-content-container">MainPresenter</div>;
 };
 
 export default MainPresenter;
