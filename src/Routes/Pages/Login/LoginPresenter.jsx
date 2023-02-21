@@ -3,7 +3,7 @@ import React from "react";
 const LoginPresenter = (props) => {
   /* Router */
   /* State */
-  const { userInfor, handleOnSubmit } = props;
+  const { handleOnSubmit } = props;
   /* Hooks */
   /* Functions */
   /* Render */
