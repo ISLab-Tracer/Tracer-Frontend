@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import LoginPresenter from "./LoginPresenter";
-import { useNavigate } from "react-router-dom"
+//import { useNavigate } from "react-router-dom";
 
 const LoginContainer = () => {
   /* Router */
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   
   /* State */
   // 아마 변경 해야 됨
@@ -13,7 +13,7 @@ const LoginContainer = () => {
     login_pw: "",
   };
 
-  const [ userInfo, setUserInfo ] = useState( initialState );
+  //const [ userInfo, setUserInfo ] = useState( initialState );
 
   /* Hooks */
   // *************** 지금 작성 불가능 ***************
@@ -28,10 +28,10 @@ const LoginContainer = () => {
   // }, [] );
   
   /* Functions */
-  const handleUserInfo = ( e ) => {
+  // const handleUserInfo = ( e ) => {
 
-    // UserInfo State 변경 처리
-  }
+  //   // UserInfo State 변경 처리
+  // }
 
   const handleOnSubmit = () => {
 
