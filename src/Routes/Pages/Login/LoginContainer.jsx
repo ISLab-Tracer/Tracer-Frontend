@@ -40,6 +40,7 @@ const LoginContainer = () => {
     return true;
   }
 
+  // **********이거 진짜 State로 바꾸고 싶음**********
   const handleKeyDown = e => {
 
     const inputemail = document.getElementById( "input" );
@@ -50,30 +51,48 @@ const LoginContainer = () => {
     const emailcheck = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 
     // 이메일 유효성 검사
-    if( e.target.value !== '' && emailcheck.test( e.target.value ) === false ) {
+    if( e.target.value === '' ) {
 
-      inputemail.style.border = "2px solid red";
-      inputemail.style.boxShadow = "none";
-      errorment.style.display = "block";
-      inputsubmit.style.cursor = "not-allowed";
-      inputsubmit.style.backgroundColor = "#f1f1f4";
-      inputsubmit.style.color = "#9c9da3";
-
-      if( e.keyCode === 13 || e.keyCode === "Enter" ){
-
-        e.preventDefault();
-      }
-
-    } else {
-      
       inputemail.style.border = "1px solid #cbccd3";
       errorment.style.display = "none";
       inputsubmit.style.cursor = "auto";
-      inputsubmit.style.backgroundColor = "#4f67ff";
-      inputsubmit.style.color = "#fff";
+      inputsubmit.style.backgroundColor = "#f1f1f4";
+      inputsubmit.style.color = "#9c9da3";
+    
+    } else {
 
-      // **이메일 처리 후 메인 이동 처리 해야함
+      if( emailcheck.test( e.target.value ) === false ) {
+      
+        inputemail.style.border = "2px solid red";
+        inputemail.style.boxShadow = "none";
+        errorment.style.display = "block";
+        inputsubmit.style.cursor = "not-allowed";
+        inputsubmit.style.backgroundColor = "#f1f1f4";
+        inputsubmit.style.color = "#9c9da3";
+  
+        if( e.keyCode === 13 || e.keyCode === "Enter" ){
+  
+          e.preventDefault();
+        }
+  
+        console.log( "HERE1" );
+  
+      } else {
+  
+        console.log( "HERE2" );
+  
+        inputemail.style.border = "1px solid #cbccd3";
+        errorment.style.display = "none";
+        inputsubmit.style.cursor = "auto";
+        inputsubmit.style.backgroundColor = "#4f67ff";
+        inputsubmit.style.color = "#fff";
+  
+        // **이메일 처리 후 메인 이동 처리 해야함
+  
+      }
     }
+
+    
 
   }
 
