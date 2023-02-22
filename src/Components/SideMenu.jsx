@@ -39,7 +39,7 @@ const SideMenu = () => {
               location.pathname === '/equipment' || mouse === 'equipment'
                 ? '#edefff'
                 : '',
-            color: location.pathname === '/equipment' ? '#4f67ff' : '',
+            color: location.pathname === '/equipment' ? '#5932ea' : '',
           }}
           onClick={(e) => changeItemColor(e)}
           onMouseOver={onMouseOver}
