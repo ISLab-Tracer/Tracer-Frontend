@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { LoginLayout, MainLayout } from '../Layout';
-import { Equipment, Login, Main, SignUp } from './Pages';
+import { Equipment, Login, Main, Profile, SignUp } from './Pages';
 
 const index = () => {
   return (
@@ -9,6 +9,7 @@ const index = () => {
       <Route element={<MainLayout />}>
         <Route path="/" element={<Main />} />
         <Route path="equipment" element={<Equipment />} />
+        <Route path="profile" element={<Profile />} />
       </Route>
       <Route element={<LoginLayout />}>
         <Route path="/login" element={<Login />} />

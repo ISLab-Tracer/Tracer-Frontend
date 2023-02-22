@@ -8,6 +8,7 @@ const SideMenu = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [mouse, setMouse] = useState('');
+
   /* Hooks */
   /* Functions */
   /**
@@ -17,6 +18,7 @@ const SideMenu = () => {
   const changeItemColor = (e) => {
     navigate(`/${e.target.id}`);
   };
+
   /**
    * 마우스 온/오버 이벤트 핸들러
    * @param {*} e
