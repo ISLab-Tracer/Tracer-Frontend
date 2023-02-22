@@ -23,13 +23,22 @@ const SignUpContainer = () => {
 
   const handleKeyDown = e => {
 
-    // 입력창에서 Enter 누르면 강제 submit 처리 해제
-    // ** 입력값 유효성 검증 추가해야함
-    if( e.keyCode === 13 || e.keyCode === "Enter" ) {
-      e.preventDefault();
+    // eslint-disable-next-line
+    const emailcheck = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+
+    // 이메일 유효성 검사
+    if( emailcheck.test( e.target.value ) === false ) {
+
+      // 이메일이 유효성 검사를 통과못하면 Enter가 먹지 않음
+      if( e.keyCode === 13 || e.keyCode === "Enter" ) {
+        
+        e.preventDefault();
+      }
     } else {
-      console.log( e.keyCode );
+
+      // **이메일 메일 전송 처리추가해야함**
     }
+
   }
   
   /* Render */
