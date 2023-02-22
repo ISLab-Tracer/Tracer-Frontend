@@ -1,10 +1,10 @@
 import React from "react";
 import LoginPresenter from "./LoginPresenter";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const LoginContainer = () => {
   /* Router */
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   
   /* State */
   // 아마 변경 해야 됨
@@ -33,6 +33,13 @@ const LoginContainer = () => {
   //   // UserInfo State 변경 처리
   // }
 
+  const handleOnClick = () => {
+
+    console.log( "MOVE" );
+    navigate("/");
+    return true;
+  }
+
   const handleOnSubmit = () => {
 
     // 로그인 처리
@@ -45,6 +52,7 @@ const LoginContainer = () => {
   return (
     <LoginPresenter 
             handleOnSubmit={ handleOnSubmit }
+            handleOnClick={ handleOnClick }
     />
   );
   
