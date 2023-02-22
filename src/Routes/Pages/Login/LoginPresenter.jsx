@@ -1,4 +1,31 @@
 import React from "react";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { alpha, styled } from '@mui/material/styles';
+import InputBase from '@mui/material/InputBase';
+
+const BootstrapInput = styled(InputBase)(({ theme }) => ({
+  'label + &': {
+    marginTop: theme.spacing(3),
+  },
+  '& .MuiInputBase-input': {
+    borderRadius: 4,
+    position: 'relative',
+    backgroundColor: theme.palette.mode === 'light' ? '#fcfcfb' : '#2b2b2b',
+    border: '1px solid #ced4da',
+    fontSize: 16,
+    width: 'auto',
+    padding: '10px 12px',
+    transition: theme.transitions.create([
+      'border-color',
+      'background-color',
+      'box-shadow',
+    ]),
+    '&:focus': {
+      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
+      borderColor: theme.palette.primary.main,
+    },
+  },
+}));
 
 const LoginPresenter = (props) => {
   /* Router */
@@ -13,7 +40,9 @@ const LoginPresenter = (props) => {
       <div class="login-page-box">
         <div class="login-page-">
           <div class="login-page-backbox">
-            <button>back</button>
+            <ArrowBackIcon 
+              sx={{ color: "#8f91a0" }}
+            />
           </div>
           <div class="login-page-commentbox">
             <label class="login-page-title">이메일로 로그인</label>
@@ -24,11 +53,12 @@ const LoginPresenter = (props) => {
             <label class="login-page-label">이메일 주소</label>
             <div class="flex">
               <div class="flex login-page-inputbox">
-                <input
+                {/* <input
                   type="email"
                   class="login-page-email"
                   placeholder="Enter the Email"
-                />
+                /> */}
+                <BootstrapInput id="bootstrap-input" placeholder="Enter your email"/>
               </div>
             </div>
             <div class="flex">

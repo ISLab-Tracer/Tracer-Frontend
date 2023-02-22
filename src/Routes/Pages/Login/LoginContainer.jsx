@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import LoginPresenter from "./LoginPresenter";
 //import { useNavigate } from "react-router-dom";
 
@@ -8,10 +8,10 @@ const LoginContainer = () => {
   
   /* State */
   // 아마 변경 해야 됨
-  const initialState = {
-    login_id: "",
-    login_pw: "",
-  };
+  // const initialState = {
+  //   login_id: "",
+  //   login_pw: "",
+  // };
 
   //const [ userInfo, setUserInfo ] = useState( initialState );
 
@@ -42,9 +42,12 @@ const LoginContainer = () => {
   }
 
   /* Render */
-  return <LoginPresenter 
+  return (
+    <LoginPresenter 
             handleOnSubmit={ handleOnSubmit }
-          />;
+    />
+  );
+  
 };
 
 export default LoginContainer;

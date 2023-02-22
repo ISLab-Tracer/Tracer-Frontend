@@ -22,6 +22,7 @@
 
 .login-page-backbox {
     height: 40px;
+    color: #8f91a0;
 }
 
 .login-page-commentbox {
@@ -35,11 +36,12 @@
     font-size: 25px;
     text-align: center;
     padding-bottom: 20px;
+    font-weight: bold;
 }
 
 .login-page-ment {
     color: black;
-    font-size: 12px;
+    font-size: 13px;
     padding-top: 10px;
     text-align: center;
 }
