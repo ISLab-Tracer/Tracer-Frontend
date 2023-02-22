@@ -1,0 +1,10 @@
+.profile-title-container {
+  height: 46px;
+  border-bottom: 1px solid #dfdfe5;
+  font-size: 18px;
+}
+
+.profile-title-container h2 {
+  font-size: 22px;
+  font-weight: 500;
+}
