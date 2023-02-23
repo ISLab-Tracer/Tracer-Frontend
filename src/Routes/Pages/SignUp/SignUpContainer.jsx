@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import SignUpPresenter from "./SignUpPresenter";
 
@@ -8,12 +8,59 @@ const SignUpContainer = () => {
   const navigate = useNavigate();
 
   /* State */
+  const [ input, setInput ] = useState("");
+  const [ check, setCheck ] = useState(false);
   
-  
+  const initialState = {
+    email: "admin@naver.com",
+  }
+
   /* Hooks */
   
   
   /* Functions */
+  // ** 깔끔하게 바꿀 예정
+  const handleOnChange = e => {
+
+    const inputemail = document.getElementById( "input" );
+    const errorment = document.getElementById( "errorment" );
+    const inputsubmit = document.getElementById( "submit" );
+
+    setInput( e.target.value );
+
+    // eslint-disable-next-line
+    const emailcheck = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+
+    // 이메일 유효성 검사
+    if( e.target.value === '' ) {
+
+      inputemail.className = "login-page-email"
+      errorment.style.display = "none";
+      inputsubmit.className = "login-page-submit-failed";
+      
+    } else {
+
+      if( emailcheck.test( e.target.value ) === false ) {
+
+        setCheck(false);
+
+        inputemail.className = "login-page-email-failed"
+        errorment.style.display = "block";
+        inputsubmit.className = "login-page-submit-failed";
+  
+      } else {
+    
+        setCheck(true);
+
+        inputemail.className = "login-page-email"
+        errorment.style.display = "none";
+        inputsubmit.className = "login-page-submit";
+        
+        // 자동으로 OnSubmit 해줌
+      }
+    }
+  }
+
   const handleOnClick = () => {
 
     console.log( "MOVE" );
@@ -21,22 +68,23 @@ const SignUpContainer = () => {
     return true;
   }
 
+  // css 말고 class 변경 방법도 있음
   const handleKeyDown = e => {
 
-    // eslint-disable-next-line
-    const emailcheck = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+    if( !check && e.keyCode === 13 ) {
 
-    // 이메일 유효성 검사
-    if( emailcheck.test( e.target.value ) === false ) {
+      e.preventDefault();
+    }
+  }
 
-      // 이메일이 유효성 검사를 통과못하면 Enter가 먹지 않음
-      if( e.keyCode === 13 || e.keyCode === "Enter" ) {
-        
-        e.preventDefault();
-      }
-    } else {
+  const handleOnSubmit = e => {
 
-      // **이메일 메일 전송 처리추가해야함**
+    // 세션 처리
+
+    // 로그인 처리
+    if( input === initialState.email ) {
+      
+      navigate( "/" );
     }
 
   }
@@ -44,8 +92,10 @@ const SignUpContainer = () => {
   /* Render */
   return (
     <SignUpPresenter
-      handleOnClick = { handleOnClick }
-      handleKeyDown = { handleKeyDown }
+    handleOnSubmit={ handleOnSubmit }
+    handleOnChange={ handleOnChange }
+    handleOnClick={ handleOnClick }
+    handleKeyDown={ handleKeyDown }
     />
   );
 };
