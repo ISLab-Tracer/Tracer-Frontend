@@ -9,28 +9,32 @@ const LoginContainer = () => {
   const navigate = useNavigate();
   
   /* State */
+  const initialState = {
+    user_email: "",
+  }
+  // ** 변수명 알아볼수있게 변경
+  const [ userInfo, setUserInfo ] = useState(initialState);
   const [ input, setInput ] = useState("");
   const [ check, setCheck ] = useState(false);
   
-  const initialState = {
-    email: "admin@naver.com",
-  }
 
   /* Hooks */
+  
   
   /* Functions */
 
   // ** 깔끔하게 바꿀 예정
   const handleOnChange = e => {
 
+    // useRef()
     const inputemail = document.getElementById( "input" );
     const errorment = document.getElementById( "errorment" );
     const inputsubmit = document.getElementById( "submit" );
 
-    setInput( e.target.value );
-
     // eslint-disable-next-line
     const emailcheck = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+
+
 
     // 이메일 유효성 검사
     if( e.target.value === '' ) {
@@ -72,10 +76,10 @@ const LoginContainer = () => {
   // css 말고 class 변경 방법도 있음
   const handleKeyDown = e => {
 
-    if( !check && e.keyCode === 13 ) {
+    // if( !check && e.keyCode === 13 ) {
 
-      e.preventDefault();
-    }
+    //   e.preventDefault();
+    // }
   }
 
   const handleOnSubmit = e => {
@@ -90,13 +94,25 @@ const LoginContainer = () => {
 
   }
 
+
+  
+  const handleUserInfo = e => {
+
+    setUserInfo( { ...userInfo, [e.target.name] : e.target.value } )
+
+    // 비동기 처리
+    console.log( userInfo );
+  }
+
+
   /* Render */
   return (
     <LoginPresenter 
             handleOnSubmit={ handleOnSubmit }
-            handleOnChange={ handleOnChange }
+            handleUserInfo={ handleUserInfo }
             handleOnClick={ handleOnClick }
             handleKeyDown={ handleKeyDown }
+            userInfo= {userInfo}
     />
   );
   

@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { Header, SideMenu } from '../../Components';
 import '../../Css/main.css';
+import '../../Css/equipment.css';
 
 const MainLayoutPresenter = () => {
   /* Router */
