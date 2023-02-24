@@ -4,7 +4,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 const LoginPresenter = (props) => {
   /* Router */
   /* State */
-  const { handleOnSubmit, handleOnChange, handleOnClick, handleKeyDown } = props;
+  const { userInfo, handleOnSubmit, handleUserInfo, handleOnClick, handleKeyDown } = props;
   /* Hooks */
   /* Functions */
   /* Render */
@@ -28,10 +28,13 @@ const LoginPresenter = (props) => {
           <div class="flex login-page-inputbox">
             <input
               id="input"
+              // name == db 명
+              name="user_email"
+              value={ userInfo.user_email }
               type="email"
               class="login-page-email"
               placeholder="이메일 주소를 입력해주세요."
-              onChange={ handleOnChange }
+              onChange={ handleUserInfo }
               onKeyDown={ handleKeyDown }
             />
             <p id="errorment" class="login-page-errorment">올바른 형태의 이메일 주소를 입력해주세요.</p>
