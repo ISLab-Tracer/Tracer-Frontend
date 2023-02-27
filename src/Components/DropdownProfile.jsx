@@ -3,7 +3,7 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import { useNavigate } from 'react-router-dom';
 
-const DropdownProfile = ({ info, setInfo }) => {
+const DropdownProfile = ({ info, setInfo, drop }) => {
   /* Router */
   /* State */
   const navigate = useNavigate();
@@ -27,7 +27,11 @@ const DropdownProfile = ({ info, setInfo }) => {
    * @param {*} e
    */
   const clickOutSide = (e) => {
-    if (info && !dropMenuRef.current.contains(e.target)) {
+    if (
+      info &&
+      !dropMenuRef.current.contains(e.target) &&
+      !drop.current.contains(e.target)
+    ) {
       setInfo(false);
     }
   };
@@ -44,6 +48,7 @@ const DropdownProfile = ({ info, setInfo }) => {
   const handlepage = (e) => {
     console.log(e.currentTarget.id);
     if (e.currentTarget.id === 'info') {
+      setInfo(false);
       navigate('/profile');
     } else {
       console.log('로그아웃');
