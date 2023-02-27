@@ -29,6 +29,13 @@ const SignUpContainer = () => {
     navigate("/");
     return true;
   }
+  
+  const handleOnSubmit = e => {
+
+    if( !emailCheck ) {
+      e.preventDefault();
+    }
+  }
 
   const handleLoginAction = async e => {
 
@@ -53,6 +60,7 @@ const SignUpContainer = () => {
   return (
     <SignUpPresenter
     handleLoginActoin = { handleLoginAction }
+    handleOnSubmit = { handleOnSubmit }
     handleOnChange={ handleUserInfo }
     handleOnClick={ handleOnClick }
     emailCheck = { emailCheck }
