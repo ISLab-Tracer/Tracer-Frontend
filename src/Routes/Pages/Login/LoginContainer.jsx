@@ -11,7 +11,7 @@ const LoginContainer = () => {
   const initialState = {
     user_email: 'simon320@naver.com',
   };
-  // ** 변수명 알아볼수있게 변경
+  
   const [userInfo, setUserInfo] = useState(initialState);
   const [emailCheck, setEmailCheck] = useState(false);
 
@@ -22,13 +22,6 @@ const LoginContainer = () => {
     console.log('MOVE');
     navigate('/');
     return true;
-  };
-
-  // css 말고 class 변경 방법도 있음
-  const handleKeyDown = (e) => {
-    // if( !check && e.keyCode === 13 ) {
-    //   e.preventDefault();
-    // }
   };
 
   const handleLoginAction = async (e) => {
@@ -60,7 +53,6 @@ const LoginContainer = () => {
       handleLoginAction={handleLoginAction}
       handleUserInfo={handleUserInfo}
       handleOnClick={handleOnClick}
-      handleKeyDown={handleKeyDown}
       userInfo={userInfo}
       emailCheck={emailCheck}
     />
