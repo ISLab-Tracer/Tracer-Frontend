@@ -15,10 +15,8 @@ const LoginLayoutPresenter = () => {
     <div className="mainlayout-container">
       <Header />
       <div className="mainlayout-body-container">
-        <div class="login-page-container">
-          <div class="login-page-box">
-            {<Outlet />}
-          </div>
+        <div className="login-page-container">
+          <div className="login-page-box">{<Outlet />}</div>
         </div>
       </div>
     </div>
