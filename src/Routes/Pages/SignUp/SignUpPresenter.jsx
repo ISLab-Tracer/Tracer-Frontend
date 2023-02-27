@@ -5,7 +5,7 @@ const SignUpPresenter = (props) => {
   /* Router */
 
   /* State */
-  const { handleOnChange, handleOnClick, emailCheck } = props;
+  const { handleOnChange, handleOnClick, emailCheck, handleOnSubmit } = props;
 
   /* Hooks */
   /* Functions */
@@ -40,6 +40,7 @@ const SignUpPresenter = (props) => {
             className={
               emailCheck ? 'login-page-submit' : 'login-page-submit-failed'
             }
+            onClick = { handleOnSubmit }
           >
             보내기
           </button>

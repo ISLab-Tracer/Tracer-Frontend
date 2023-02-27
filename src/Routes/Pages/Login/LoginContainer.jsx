@@ -24,6 +24,14 @@ const LoginContainer = () => {
     return true;
   };
 
+  
+  const handleOnSubmit = e => {
+
+    if( !emailCheck ) {
+      e.preventDefault();
+    }
+  }
+
   const handleLoginAction = async (e) => {
     // 세션 처리
     console.log(e.target.value);
@@ -38,9 +46,10 @@ const LoginContainer = () => {
     // 한호야 우선 지금 유저정보에 이메일만 다루고 있어서 바로 이렇게 유효성 검사 할게
     // 유저정보에 항목 추가되면 이게 이메일일 경우에만 사용해야해
     const checkEmail = RegEmail(e.target.value);
-    console.log(e.target.value);
+    //console.log(e.target.value);
+    console.log( checkEmail );
     if (checkEmail) {
-      console.log(checkEmail);
+      console.log( "CHECK : " + checkEmail);
       setEmailCheck(true);
     } else {
       setEmailCheck(false);
@@ -51,6 +60,7 @@ const LoginContainer = () => {
   return (
     <LoginPresenter
       handleLoginAction={handleLoginAction}
+      handleOnSubmit = { handleOnSubmit }
       handleUserInfo={handleUserInfo}
       handleOnClick={handleOnClick}
       userInfo={userInfo}
