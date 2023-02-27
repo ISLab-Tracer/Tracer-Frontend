@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Logo from '../Assets/img/logo.png';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -9,6 +9,7 @@ const Header = () => {
   /* State */
   const navigate = useNavigate();
   const [info, setInfo] = useState(false);
+  const drop = useRef();
   /* Hooks */
   /* Functions */
   /**
@@ -36,8 +37,9 @@ const Header = () => {
           fontSize="large"
           sx={{ color: '#8f91a0', cursor: 'pointer' }}
           onClick={changeInfo}
+          ref={drop}
         />
-        {info && <DropdownProfile info={info} setInfo={setInfo} />}
+        {info && <DropdownProfile info={info} setInfo={setInfo} drop={drop} />}
       </div>
     </header>
   );
