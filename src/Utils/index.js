@@ -46,7 +46,7 @@ export const deleteCookie = (name, { path, domain }) => {
 
 export const RegEmail = (email) => {
   // eslint-disable-next-line
-  const regEmail = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+  const regEmail = /^[A-Za-z0-9_\.\-]+@islab+\.re+\.kr+/;
   const result = regEmail.test(email);
   return result;
 };

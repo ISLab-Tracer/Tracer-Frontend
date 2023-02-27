@@ -5,8 +5,7 @@ const SignUpPresenter = (props) => {
   /* Router */
 
   /* State */
-  const { handleOnSubmit, handleOnChange, handleOnClick, handleKeyDown } =
-    props;
+  const { handleOnChange, handleOnClick, emailCheck } = props;
 
   /* Hooks */
   /* Functions */
@@ -29,9 +28,8 @@ const SignUpPresenter = (props) => {
               className="login-page-email"
               placeholder="이메일 주소를 입력해주세요."
               onChange={handleOnChange}
-              onKeyDown={handleKeyDown}
             />
-            <p id="errorment" className="login-page-errorment">
+            <p id="errorment" className="login-page-errorment" style={{display:'none'}}>
               올바른 형태의 이메일 주소를 입력해주세요.
             </p>
           </div>
@@ -39,8 +37,9 @@ const SignUpPresenter = (props) => {
         <div className="flex">
           <button
             id="submit"
-            className="login-page-submit-failed"
-            onClick={handleOnSubmit}
+            className={
+              emailCheck ? 'login-page-submit' : 'login-page-submit-failed'
+            }
           >
             보내기
           </button>

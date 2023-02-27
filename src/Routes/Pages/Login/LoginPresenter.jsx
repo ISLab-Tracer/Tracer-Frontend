@@ -5,9 +5,7 @@ const LoginPresenter = (props) => {
   /* Router */
   /* State */
   const {
-    handleOnSubmit,
     handleOnClick,
-    handleKeyDown,
     handleUserInfo,
     emailCheck,
   } = props;
@@ -37,7 +35,6 @@ const LoginPresenter = (props) => {
               className={'login-page-email'}
               placeholder="이메일 주소를 입력해주세요."
               onChange={handleUserInfo}
-              onKeyDown={handleKeyDown}
             />
             <p
               id="errorment"
@@ -54,7 +51,6 @@ const LoginPresenter = (props) => {
             className={
               emailCheck ? 'login-page-submit' : 'login-page-submit-failed'
             }
-            onClick={handleOnSubmit}
           >
             보내기
           </button>
