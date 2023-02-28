@@ -6,6 +6,7 @@ const ProfilePresenter = () => {
     user_name: '오시몬',
     user_email: 'simon@islab.re.kr',
     user_phone: '010-2914-9302',
+    user_team: 'Blockchain',
   };
   const [userInfo, setUserInfo] = useState(initialState);
   return (
@@ -39,6 +40,18 @@ const ProfilePresenter = () => {
           setValue={setUserInfo}
           style={{ width: '50%' }}
         />
+      </Properties>
+
+      <Properties title="팀정보">
+        <Properties.Select
+          feildTitle="팀명"
+          name="팀명"
+          property="user_team"
+          value={userInfo}
+          setValue={setUserInfo}
+          style={{width: '50%'}}
+        >
+        </Properties.Select>
       </Properties>
     </div>
   );
