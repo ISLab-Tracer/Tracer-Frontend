@@ -90,6 +90,7 @@ Properties.Select = ({
             style={ style }
             disabled={disabled}
           >
+            {/* Map 수정 */}
             <MenuItem name="user_email"  value="AI">AI</MenuItem>
             <MenuItem name="user_email" value="Blockchain">Blockchain</MenuItem>
             <MenuItem name="user_email"  value="Hardware">Hardware</MenuItem>
@@ -100,6 +101,10 @@ Properties.Select = ({
     </div>
     
   );
+
+
 }
+
+
 
 export default Properties;
