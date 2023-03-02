@@ -1,11 +1,8 @@
 import React from 'react';
-import ViewListIcon from '@mui/icons-material/ViewList';
-import AddIcon from '@mui/icons-material/Add';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const EquipHeader = (props) => {
 
-        
+    const { ViewListIcon, AddIcon, KeyboardArrowDownIcon } = props;
     /* Router */
     /* State */
     /* Hooks */

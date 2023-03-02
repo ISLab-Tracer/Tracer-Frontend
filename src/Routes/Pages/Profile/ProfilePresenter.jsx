@@ -8,6 +8,7 @@ const ProfilePresenter = () => {
     user_phone: '010-2914-9302',
     user_team: 'Blockchain',
   };
+
   const [userInfo, setUserInfo] = useState(initialState);
   return (
     <div className="main-content-container">
