@@ -66,7 +66,8 @@ Properties.Select = ({
   value,
   setValue,
   style,
-  disabled= false
+  disabled= false,
+  team
 }) => {
 
   const handleValue = e => {
@@ -75,6 +76,8 @@ Properties.Select = ({
     console.log( value );
   }
   
+  console.log( "TEAM" );
+  console.log( team );
 
   return (
     <div className="feild-container">
@@ -91,6 +94,7 @@ Properties.Select = ({
             disabled={disabled}
           >
             {/* Map 수정 */}
+            {/* Team State를 Map 작성 */}
             <MenuItem name="user_email"  value="AI">AI</MenuItem>
             <MenuItem name="user_email" value="Blockchain">Blockchain</MenuItem>
             <MenuItem name="user_email"  value="Hardware">Hardware</MenuItem>
