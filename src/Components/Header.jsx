@@ -28,7 +28,7 @@ const Header = () => {
       <img
         src={Logo}
         alt="logo"
-        style={{ width: 40 }}
+        style={{ width: 40, cursor: 'pointer' }}
         onClick={() => navigate('/')}
       />
       <div className="profile-container">
