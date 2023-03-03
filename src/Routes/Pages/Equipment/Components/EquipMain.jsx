@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+/*
 const initial = [
     {
         id: 1,
@@ -35,6 +35,7 @@ const initial = [
         charger: "정한호"
     },
 ]
+*/
 
 const tt = {
     id: 0,
@@ -54,9 +55,9 @@ const EquipMain = (props) => {
 
     /* State */
     const { AddIcon, KeyboardArrowDownIcon, FormatListNumberedRtlIcon } = props;
-    const [ check, setCheck ] = useState(true);
-    const [ test, setTest ] = useState( initial );
-    const [ change, setChange ] = useState( tt );
+    const [ check ] = useState(true);
+    //const [ test, setTest ] = useState( initial );
+    const [ change ] = useState( tt );
     const [ checkClick, setCheckClick ] = useState(false);
     const [ updateClick, setUpdateClick ] = useState( false );
     const [ updateCount, setUpdateCount ] = useState( change.count );
@@ -69,21 +70,28 @@ const EquipMain = (props) => {
         setCheckClick( !checkClick );
     }
 
-    const changeUpdateClick = () => {
+    const onchangeUpdateClick = () => {
 
-        setUpdateClick( !updateClick );
+        setUpdateClick( true );
+    }
 
-        console.log( updateClick )
+    const offchangeUpdateClick = () => {
+
+        // setChange( ...change, [count] = updateCount );
+
+        console.log( "CHANGE" );
+        console.log( change.count );
+        setUpdateClick( false );
     }
 
     const updateCountUp = () => {
 
-        setUpdateCount( updateCount + 1 );
+        updateClick ? setUpdateCount( updateCount + 1 ) : setUpdateClick( true );
     }
 
     const updateCountDown = () => {
-        
-        setUpdateCount( updateCount - 1 );
+
+        updateClick ? setUpdateCount( updateCount - 1 ) : setUpdateClick( true );
     }
     
     /* Render */
@@ -127,6 +135,7 @@ const EquipMain = (props) => {
                             <img
                                 className="equip-page-itembox-left-img"
                                 src={change.img}
+                                alt="img"
                             />
                             <div className="equip-page-itembox-left-info">
                                 <p className="equip-page-itembox-left-info-title">
@@ -182,6 +191,7 @@ const EquipMain = (props) => {
                                 <img
                                     class="centerflex equip-page-itembox-clickitembox-infobox-img"
                                     src={change.img}
+                                    alt="img"
                                 />
                                 <div>
                                     <div className="equip-page-itembox-clickitembox-infobox-infobox line">
@@ -257,13 +267,16 @@ const EquipMain = (props) => {
                                     </p>
                                     <p
                                         className="equip-page-itembox-clickitembox-changebox-button"
-                                        onClick={changeUpdateClick}
+                                        onClick={onchangeUpdateClick}
                                     >
                                         조정
                                     </p>
                                 </div>
 
-                                {/* 조정 */}
+                                { updateClick && 
+                                
+                                <div>
+                                    {/* 조정 */}
                                 <div className="centerflex equip-page-itembox-clickitembox-updatebox">
                                     <p className="equip-page-itembox-clickitembox-updatebox-count">
                                         {change.count}
@@ -277,6 +290,12 @@ const EquipMain = (props) => {
                                         placeholder={change.count}
                                         value={change.count}
                                     />
+                                    <p
+                                        className="equip-page-itembox-clickitembox-updatebox-button"
+                                        onClick={offchangeUpdateClick}
+                                    >
+                                        확인
+                                    </p>
                                 </div>
 
                                 {/* 입고 */}
@@ -290,7 +309,16 @@ const EquipMain = (props) => {
                                     <p className="equip-page-itembox-clickitembox-updatebox-updown">
                                         {updateCount}
                                     </p>
+                                    <p
+                                        className="equip-page-itembox-clickitembox-updatebox-button"
+                                        onClick={offchangeUpdateClick}
+                                    >
+                                        확인
+                                    </p>
                                 </div>
+                                </div>
+                                }
+                                
 
                             </div>
                         </div>
