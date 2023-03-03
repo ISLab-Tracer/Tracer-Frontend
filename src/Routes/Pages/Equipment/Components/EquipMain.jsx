@@ -8,7 +8,7 @@ const initial = [
         category: "소모품",
         team: "Blockchain",
         img: "https://item.kakaocdn.net/do/c5c470298d527ef65eb52883f0f186c48f324a0b9c48f77dbce3a43bd11ce785",
-        count: "1",
+        count: 1,
         barcode: "11111",
         charger: "정한호"
     },
@@ -19,7 +19,7 @@ const initial = [
         category: "소모품",
         team: "Hardware",
         img: "https://item.kakaocdn.net/do/c5c470298d527ef65eb52883f0f186c48f324a0b9c48f77dbce3a43bd11ce785",
-        count: "2",
+        count: 2,
         barcode: "22222",
         charger: "정한호"
     },
@@ -30,7 +30,7 @@ const initial = [
         category: "소모품",
         team: "Blockchain",
         img: "https://item.kakaocdn.net/do/c5c470298d527ef65eb52883f0f186c48f324a0b9c48f77dbce3a43bd11ce785",
-        count: "3",
+        count: 3,
         barcode: "33333",
         charger: "정한호"
     },
@@ -43,7 +43,7 @@ const tt = {
     category: "소모품",
     team: "Blockchain",
     img: "https://item.kakaocdn.net/do/c5c470298d527ef65eb52883f0f186c48f324a0b9c48f77dbce3a43bd11ce785",
-    count: "0",
+    count: 10,
     barcode: "00000",
     charger: "정한호"
 }
@@ -54,11 +54,12 @@ const EquipMain = (props) => {
 
     /* State */
     const { AddIcon, KeyboardArrowDownIcon, FormatListNumberedRtlIcon } = props;
-    const [ check, setCheck ] = useState(false);
+    const [ check, setCheck ] = useState(true);
     const [ test, setTest ] = useState( initial );
     const [ change, setChange ] = useState( tt );
     const [ checkClick, setCheckClick ] = useState(false);
     const [ updateClick, setUpdateClick ] = useState( false );
+    const [ updateCount, setUpdateCount ] = useState( change.count );
 
     /* Hooks */
 
@@ -73,6 +74,16 @@ const EquipMain = (props) => {
         setUpdateClick( !updateClick );
 
         console.log( updateClick )
+    }
+
+    const updateCountUp = () => {
+
+        setUpdateCount( updateCount + 1 );
+    }
+
+    const updateCountDown = () => {
+        
+        setUpdateCount( updateCount - 1 );
     }
     
     /* Render */
@@ -143,9 +154,11 @@ const EquipMain = (props) => {
                     </div>
 
                     
+                }
 
                     
-                }
+            </div>
+            }
 
                     <div className="equip-page-itembox-right">
                         <div className="equip-page-itembox-clickitembox">
@@ -201,6 +214,15 @@ const EquipMain = (props) => {
 
                                     <div className="equip-page-itembox-clickitembox-infobox-infobox">
                                         <p className="equip-page-itembox-clickitembox-infobox-infobox-title">
+                                            담당자
+                                        </p>
+                                        <p className="equip-page-itembox-clickitembox-infobox-infobox-content">
+                                            {change.charger}
+                                        </p>
+                                    </div>
+
+                                    <div className="equip-page-itembox-clickitembox-infobox-infobox">
+                                        <p className="equip-page-itembox-clickitembox-infobox-infobox-title">
                                             팀
                                         </p>
                                         <p className="equip-page-itembox-clickitembox-infobox-infobox-content">
@@ -221,10 +243,16 @@ const EquipMain = (props) => {
                                 </div>
 
                                 <div className="equip-page-itembox-clickitembox-changebox-buttonbox">
-                                    <p className="equip-page-itembox-clickitembox-changebox-button leftbutton">
+                                    <p 
+                                        className="equip-page-itembox-clickitembox-changebox-button leftbutton"
+                                        onClick={ updateCountUp }
+                                    >
                                         입고
                                     </p>
-                                    <p className="equip-page-itembox-clickitembox-changebox-button leftbutton">
+                                    <p
+                                        className="equip-page-itembox-clickitembox-changebox-button leftbutton"
+                                        onClick={ updateCountDown }
+                                    >
                                         출고
                                     </p>
                                     <p
@@ -234,12 +262,39 @@ const EquipMain = (props) => {
                                         조정
                                     </p>
                                 </div>
+
+                                {/* 조정 */}
+                                <div className="centerflex equip-page-itembox-clickitembox-updatebox">
+                                    <p className="equip-page-itembox-clickitembox-updatebox-count">
+                                        {change.count}
+                                    </p>
+                                    <p className="equip-page-itembox-clickitembox-updatebox-changecount">
+                                        {`>`}
+                                    </p>
+                                    <input
+                                        type="text"
+                                        className="equip-page-itembox-clickitembox-updatebox-input"
+                                        placeholder={change.count}
+                                        value={change.count}
+                                    />
+                                </div>
+
+                                {/* 입고 */}
+                                <div className="centerflex equip-page-itembox-clickitembox-updatebox">
+                                    <p className="equip-page-itembox-clickitembox-updatebox-count">
+                                        {change.count}
+                                    </p>
+                                    <p className="equip-page-itembox-clickitembox-updatebox-changecount">
+                                        {`>`}
+                                    </p>
+                                    <p className="equip-page-itembox-clickitembox-updatebox-updown">
+                                        {updateCount}
+                                    </p>
+                                </div>
+
                             </div>
                         </div>
                     </div>
-
-            </div>
-            }
         </div>
     );
 }
