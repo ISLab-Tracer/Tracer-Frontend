@@ -432,7 +432,7 @@
 .equip-page-itembox-clickitembox-updatebox-count {
     width: 30%;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 500;
 }
 
@@ -441,19 +441,32 @@
 }
 
 .equip-page-itembox-clickitembox-updatebox-input {
-    width: 40%;
+    width: 30%;
     height: 30px;
     border: 1px solid #cbccd3;
     border-radius: 5px;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #4f67ff;
 }
 
+.equip-page-itembox-clickitembox-updatebox-button {
+    display: flex;
+    height: 70%;
+    width: 15%;
+    background-color: #4f67ff;
+    border: 1px solid #4d5ecd;
+    border-radius: 4px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
 .equip-page-itembox-clickitembox-updatebox-updown {
-    width: 40%;
+    width: 30%;
     height: 30px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     text-align: center;
     color: #4f67ff;
 }
