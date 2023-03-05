@@ -54,6 +54,8 @@ const SideMenu = () => {
           />
           <span id="equipment">기자재 조회</span>
         </div>
+
+        
       </nav>
     </div>
   );
