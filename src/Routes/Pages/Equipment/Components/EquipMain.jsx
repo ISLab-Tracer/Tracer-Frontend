@@ -57,9 +57,9 @@ const EquipMain = (props) => {
     const { AddIcon, KeyboardArrowDownIcon, FormatListNumberedRtlIcon } = props;
     const [ check ] = useState(true);
     //const [ test, setTest ] = useState( initial );
-    const [ change ] = useState( tt );
+    const [ change, setChange ] = useState( tt );
     const [ checkClick, setCheckClick ] = useState(false);
-    const [ updateClick, setUpdateClick ] = useState( false );
+    const [ updateClick, setUpdateClick ] = useState( 0 );
     const [ updateCount, setUpdateCount ] = useState( change.count );
 
     /* Hooks */
@@ -75,25 +75,31 @@ const EquipMain = (props) => {
         setUpdateClick( true );
     }
 
-    const offchangeUpdateClick = () => {
+    const offchangeUpdateClick = e => {
 
-        // setChange( ...change, [count] = updateCount );
+        setChange( { ...change, [`count`] : updateCount * 1 } );
 
-        console.log( "CHANGE" );
-        console.log( change.count );
         setUpdateClick( false );
     }
 
     const updateCountUp = () => {
 
-        updateClick ? setUpdateCount( updateCount + 1 ) : setUpdateClick( true );
+        updateClick === 1 ? setUpdateCount( Number ( updateCount ) + 1 ) : setUpdateClick( true );
     }
 
     const updateCountDown = () => {
 
-        updateClick ? setUpdateCount( updateCount - 1 ) : setUpdateClick( true );
+        updateClick === 2 ? setUpdateCount( Number ( updateCount ) - 1 ) : setUpdateClick( true );
     }
     
+    const hadleOnChange = e => {
+
+        setUpdateCount( e.target.value );
+
+        console.log( typeof( Number( updateCount) ) );
+        console.log( updateCount )
+    }
+
     /* Render */
     return (
         <div className="equip-page-mainbox">
@@ -153,7 +159,7 @@ const EquipMain = (props) => {
                         </div>
                     </div>
                 </div>
-                { checkClick &&
+                { !checkClick &&
                     <div className="equip-page-itembox-right">
                         <div className="equip-page-itembox-zeroitem">
                             <p className="equip-page-itembox-zeroitem-p">
@@ -163,166 +169,174 @@ const EquipMain = (props) => {
                     </div>
 
                     
+
+                    
                 }
+
+                    
 
                     
             </div>
             }
 
-                    <div className="equip-page-itembox-right">
-                        <div className="equip-page-itembox-clickitembox">
-                            <div className="equip-page-itembox-clickitembox-titlebox">
-                                <p  className="equip-page-itembox-clickitembox-title">
-                                    제품 정보
+
+
+            <div className="equip-page-itembox-right">
+                <div className="equip-page-itembox-clickitembox">
+                    <div className="equip-page-itembox-clickitembox-titlebox">
+                        <p  className="equip-page-itembox-clickitembox-title">
+                            제품 정보
+                        </p>
+                        <div className="equip-page-itembox-clickitembox-buttonbox">
+                            <p className="centerflex equip-page-itembox-clickitembox-button">
+                                수정
+                            </p>
+                            <p className="centerflex equip-page-itembox-clickitembox-button">
+                                복제
+                            </p>
+                            <p className="centerflex equip-page-itembox-clickitembox-button">
+                                삭제
+                            </p>
+                        </div>
+                    </div>
+                    <div className="equip-page-itembox-clickitembox-infobox">
+                        <img
+                            className="centerflex equip-page-itembox-clickitembox-infobox-img"
+                            src={change.img}
+                            alt="img"
+                        />
+                        <div>
+                            <div className="equip-page-itembox-clickitembox-infobox-infobox line">
+                                <p className="equip-page-itembox-clickitembox-infobox-infobox-title">
+                                    제품명
                                 </p>
-                                <div className="equip-page-itembox-clickitembox-buttonbox">
-                                    <p className="centerflex equip-page-itembox-clickitembox-button">
-                                        수정
-                                    </p>
-                                    <p className="centerflex equip-page-itembox-clickitembox-button">
-                                        복제
-                                    </p>
-                                    <p className="centerflex equip-page-itembox-clickitembox-button">
-                                        삭제
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="equip-page-itembox-clickitembox-infobox">
-                                <img
-                                    class="centerflex equip-page-itembox-clickitembox-infobox-img"
-                                    src={change.img}
-                                    alt="img"
-                                />
-                                <div>
-                                    <div className="equip-page-itembox-clickitembox-infobox-infobox line">
-                                        <p className="equip-page-itembox-clickitembox-infobox-infobox-title">
-                                            제품명
-                                        </p>
-                                        <p className="equip-page-itembox-clickitembox-infobox-infobox-content">
-                                            {change.title}
-                                        </p>
-                                    </div>
-
-                                    <div className="equip-page-itembox-clickitembox-infobox-infobox">
-                                        <p className="equip-page-itembox-clickitembox-infobox-infobox-title">
-                                            바코드
-                                        </p>
-                                        <p className="equip-page-itembox-clickitembox-infobox-infobox-content">
-                                            {change.barcode}
-                                        </p>
-                                    </div>
-
-                                    <div className="equip-page-itembox-clickitembox-infobox-infobox">
-                                        <p className="equip-page-itembox-clickitembox-infobox-infobox-title">
-                                            가격
-                                        </p>
-                                        <p className="equip-page-itembox-clickitembox-infobox-infobox-content">
-                                            {change.price}
-                                        </p>
-
-                                    </div>
-
-                                    <div className="equip-page-itembox-clickitembox-infobox-infobox">
-                                        <p className="equip-page-itembox-clickitembox-infobox-infobox-title">
-                                            담당자
-                                        </p>
-                                        <p className="equip-page-itembox-clickitembox-infobox-infobox-content">
-                                            {change.charger}
-                                        </p>
-                                    </div>
-
-                                    <div className="equip-page-itembox-clickitembox-infobox-infobox">
-                                        <p className="equip-page-itembox-clickitembox-infobox-infobox-title">
-                                            팀
-                                        </p>
-                                        <p className="equip-page-itembox-clickitembox-infobox-infobox-content">
-                                            {change.team}
-                                        </p>
-                                    </div>
-                                </div>
+                                <p className="equip-page-itembox-clickitembox-infobox-infobox-content">
+                                    {change.title}
+                                </p>
                             </div>
 
-                            <div className="equip-page-itembox-clickitembox-changebox line">
-                                <div className="equip-page-itembox-clickitembox-changebox-infobox">
-                                    <p className="equip-page-itembox-clickitembox-infobox-infobox-title">
-                                        수량
-                                    </p>
-                                    <p className="equip-page-itembox-clickitembox-infobox-infobox-content">
-                                        {change.count}
-                                    </p>
-                                </div>
+                            <div className="equip-page-itembox-clickitembox-infobox-infobox">
+                                <p className="equip-page-itembox-clickitembox-infobox-infobox-title">
+                                    바코드
+                                </p>
+                                <p className="equip-page-itembox-clickitembox-infobox-infobox-content">
+                                    {change.barcode}
+                                </p>
+                            </div>
 
-                                <div className="equip-page-itembox-clickitembox-changebox-buttonbox">
-                                    <p 
-                                        className="equip-page-itembox-clickitembox-changebox-button leftbutton"
-                                        onClick={ updateCountUp }
-                                    >
-                                        입고
-                                    </p>
-                                    <p
-                                        className="equip-page-itembox-clickitembox-changebox-button leftbutton"
-                                        onClick={ updateCountDown }
-                                    >
-                                        출고
-                                    </p>
-                                    <p
-                                        className="equip-page-itembox-clickitembox-changebox-button"
-                                        onClick={onchangeUpdateClick}
-                                    >
-                                        조정
-                                    </p>
-                                </div>
+                            <div className="equip-page-itembox-clickitembox-infobox-infobox">
+                                <p className="equip-page-itembox-clickitembox-infobox-infobox-title">
+                                    가격
+                                </p>
+                                <p className="equip-page-itembox-clickitembox-infobox-infobox-content">
+                                    {change.price}
+                                </p>
 
-                                { updateClick && 
-                                
-                                <div>
-                                    {/* 조정 */}
-                                <div className="centerflex equip-page-itembox-clickitembox-updatebox">
-                                    <p className="equip-page-itembox-clickitembox-updatebox-count">
-                                        {change.count}
-                                    </p>
-                                    <p className="equip-page-itembox-clickitembox-updatebox-changecount">
-                                        {`>`}
-                                    </p>
-                                    <input
-                                        type="text"
-                                        className="equip-page-itembox-clickitembox-updatebox-input"
-                                        placeholder={change.count}
-                                        value={change.count}
-                                    />
-                                    <p
-                                        className="equip-page-itembox-clickitembox-updatebox-button"
-                                        onClick={offchangeUpdateClick}
-                                    >
-                                        확인
-                                    </p>
-                                </div>
+                            </div>
 
-                                {/* 입고 */}
-                                <div className="centerflex equip-page-itembox-clickitembox-updatebox">
-                                    <p className="equip-page-itembox-clickitembox-updatebox-count">
-                                        {change.count}
-                                    </p>
-                                    <p className="equip-page-itembox-clickitembox-updatebox-changecount">
-                                        {`>`}
-                                    </p>
-                                    <p className="equip-page-itembox-clickitembox-updatebox-updown">
-                                        {updateCount}
-                                    </p>
-                                    <p
-                                        className="equip-page-itembox-clickitembox-updatebox-button"
-                                        onClick={offchangeUpdateClick}
-                                    >
-                                        확인
-                                    </p>
-                                </div>
-                                </div>
-                                }
-                                
+                            <div className="equip-page-itembox-clickitembox-infobox-infobox">
+                                <p className="equip-page-itembox-clickitembox-infobox-infobox-title">
+                                    담당자
+                                </p>
+                                <p className="equip-page-itembox-clickitembox-infobox-infobox-content">
+                                    {change.charger}
+                                </p>
+                            </div>
 
+                            <div className="equip-page-itembox-clickitembox-infobox-infobox">
+                                <p className="equip-page-itembox-clickitembox-infobox-infobox-title">
+                                    팀
+                                </p>
+                                <p className="equip-page-itembox-clickitembox-infobox-infobox-content">
+                                    {change.team}
+                                </p>
                             </div>
                         </div>
                     </div>
+
+                    <div className="equip-page-itembox-clickitembox-changebox line">
+                        <div className="equip-page-itembox-clickitembox-changebox-infobox">
+                            <p className="equip-page-itembox-clickitembox-infobox-infobox-title">
+                                수량
+                            </p>
+                            <p className="equip-page-itembox-clickitembox-infobox-infobox-content">
+                                {change.count}
+                            </p>
+                        </div>
+
+                        <div className="equip-page-itembox-clickitembox-changebox-buttonbox">
+                            <p 
+                                className="equip-page-itembox-clickitembox-changebox-button leftbutton"
+                                onClick={ updateCountUp }
+                            >
+                                입고
+                            </p>
+                            <p
+                                className="equip-page-itembox-clickitembox-changebox-button leftbutton"
+                                onClick={ updateCountDown }
+                            >
+                                출고
+                            </p>
+                            <p
+                                className="equip-page-itembox-clickitembox-changebox-button"
+                                onClick={onchangeUpdateClick}
+                            >
+                                조정
+                            </p>
+                        </div>
+
+                        { updateClick && 
+                        
+                        <div>
+                            {/* 조정 */}
+                        <div className="centerflex equip-page-itembox-clickitembox-updatebox">
+                            <p className="equip-page-itembox-clickitembox-updatebox-count">
+                                {change.count}
+                            </p>
+                            <p className="equip-page-itembox-clickitembox-updatebox-changecount">
+                                {`>`}
+                            </p>
+                            <input
+                                name="changecount"
+                                type="number"
+                                className="equip-page-itembox-clickitembox-updatebox-input"
+                                placeholder={change.count}
+                                onChange={hadleOnChange}
+                            />
+                            <p
+                                className="equip-page-itembox-clickitembox-updatebox-button"
+                                onClick={offchangeUpdateClick}
+                            >
+                                확인
+                            </p>
+                        </div>
+
+                        {/* 입고 */}
+                        <div className="centerflex equip-page-itembox-clickitembox-updatebox">
+                            <p className="equip-page-itembox-clickitembox-updatebox-count">
+                                {change.count}
+                            </p>
+                            <p className="equip-page-itembox-clickitembox-updatebox-changecount">
+                                {`>`}
+                            </p>
+                            <p className="equip-page-itembox-clickitembox-updatebox-updown">
+                                {updateCount}
+                            </p>
+                            <p
+                                className="equip-page-itembox-clickitembox-updatebox-button"
+                                onClick={offchangeUpdateClick}
+                            >
+                                확인
+                            </p>
+                        </div>
+                        </div>
+                        }
+                        
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     );
 }
