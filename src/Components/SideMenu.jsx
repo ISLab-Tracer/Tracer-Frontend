@@ -55,7 +55,53 @@ const SideMenu = () => {
           <span id="equipment">기자재 조회</span>
         </div>
 
-        
+        <div
+          className="sidemenu-item"
+          id="register"
+          style={{
+            backgroundColor:
+              location.pathname === '/register' || mouse === 'register'
+                ? '#edefff'
+                : '',
+            color: location.pathname === '/register' ? '#4f67ff' : '',
+          }}
+          onClick={(e) => changeItemColor(e)}
+          onMouseOver={onMouseOver}
+          onMouseLeave={onMouseLeave}
+        >
+          <ImportantDevicesOutlinedIcon
+            id="login"
+            fontSize="small"
+            sx={{ margin: 2 }}
+          />
+          <span id="equipment">회원가입</span>
+        </div>
+
+        <div
+          className="sidemenu-item"
+          id="login"
+          style={{
+            backgroundColor:
+              location.pathname === '/login' || mouse === 'login'
+                ? '#edefff'
+                : '',
+            color: location.pathname === '/login' ? '#4f67ff' : '',
+          }}
+          onClick={(e) => changeItemColor(e)}
+          onMouseOver={onMouseOver}
+          onMouseLeave={onMouseLeave}
+        >
+          <ImportantDevicesOutlinedIcon
+            id="equipment"
+            fontSize="small"
+            sx={{ margin: 2 }}
+          />
+          <span id="equipment">로그인</span>
+        </div>
+
+
+
+
       </nav>
     </div>
   );

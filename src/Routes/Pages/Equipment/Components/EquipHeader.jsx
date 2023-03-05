@@ -11,9 +11,9 @@ const EquipHeader = (props) => {
     /* Render */
     return (
         <div className="equip-page-titlebox">
-        <h4 className="equip-page-title-h4">
-          제품 목록
-        </h4>
+          <h4 className="equip-page-title-h4">
+            제품 목록
+          </h4>
         <div className="equip-page-buttonbox">
           <div className="equip-page-button-firsthover">
             <div className="equip-page-button equip-page-button-first">

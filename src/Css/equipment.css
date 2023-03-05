@@ -1,6 +1,10 @@
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 .line {
-    padding-top: 25px;
+    padding-top: 2%;
     border-top: 1px solid #cccdd4;
 }
 
@@ -8,7 +12,8 @@
 .equip-page-titlebox {
     display: flex;
     width: 100%;
-    height: 70px;
+    height: 100%;
+    height: 5%;
     align-items: center;
 }
 
@@ -56,7 +61,7 @@
 
 .equip-page-searchbox {
     width: 100%;
-    height: 55px;
+    height: 5%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -128,13 +133,14 @@
     width: 100%;
     min-width: 500px;
     height: 100%;
+    overflow-y: scroll;
     border-top: 1px solid rgb(203, 204, 211);
     margin-top: 10px;
 }
 
-/* 50% -> 100% */
+/* 테스트용 50% -> 100% */
 .equip-page-zeroitembox {
-    width: 50%;
+    width: 100%;
     height: 300px;
     display: flex;
     flex-direction: column;
@@ -275,7 +281,6 @@
     display: flex;
     width: 50%;
     height: 100%;
-    
 }
 
 .equip-page-itembox-zeroitem {
@@ -323,6 +328,7 @@
 .equip-page-itembox-clickitembox-buttonbox {
     display: flex;
     align-items: flex-end;
+    justify-content: flex-end;
     width: 20%;
     min-width: 120px;
 }
@@ -343,36 +349,16 @@
     width: auto;
     height: auto;
     flex-direction: column;
-    padding: 20px 10px;
+    padding: 3% 2%;
 }
 
 .equip-page-itembox-clickitembox-infobox-img {
     width: 60%;
-    max-width: 230px;
+    max-width: 180px;
     height: auto;
     margin: 2px auto 20px auto;
     border: 1px solid black;
     border-radius: 7px;
-}
-
-.equip-page-itembox-clickitembox-infobox-infobox {
-    display: flex;
-    width: auto;
-    padding: 10px 20px;
-    flex-direction: row;
-    align-items: center;
-}
-
-.equip-page-itembox-clickitembox-infobox-infobox-title {
-    display: flex;
-    width: 50%;
-    font-size: 0.9rem;
-}
-
-.equip-page-itembox-clickitembox-infobox-infobox-content {
-    display: flex;
-    width: 50%;
-    font-size: 0.8rem;
 }
 
 .equip-page-itembox-clickitembox-changebox {
@@ -380,6 +366,7 @@
     flex-direction: column;
     width: 100%;
     height: 50%;
+    padding: 0 2%;
 }
 
 .equip-page-itembox-clickitembox-changebox-infobox {
@@ -394,7 +381,7 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 5%;
+    height: 10%;
     justify-content: center;
     align-items: center;
     border: 1px solid #cccdd4;
@@ -450,6 +437,10 @@
     color: #4f67ff;
 }
 
+.equip-page-itembox-clickitembox-updatebox-input::placeholder {
+    color: #4f67ff;
+}
+
 .equip-page-itembox-clickitembox-updatebox-button {
     display: flex;
     height: 70%;
@@ -469,4 +460,27 @@
     font-size: 1rem;
     text-align: center;
     color: #4f67ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qeuip-page-equipitem-box {
+    display: flex;
+    width: auto;
+    padding: 10px 20px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.qeuip-page-equipitem-box-title {
+    display: flex;
+    width: 50%;
+    font-size: 0.9rem;
+}
+
+.qeuip-page-equipitem-box-content {
+    display: flex;
+    width: 50%;
+    font-size: 0.8rem;
 }

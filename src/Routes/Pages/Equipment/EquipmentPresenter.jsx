@@ -1,4 +1,5 @@
 import React from 'react';
+import EquipText from './Components/EquipText'
 import '../../../Css/equipment.css'
 import ViewListIcon from '@mui/icons-material/ViewList';
 import AddIcon from '@mui/icons-material/Add';
@@ -29,6 +30,7 @@ const EquipmentPresenter = (props) => {
         AddIcon={AddIcon}
         KeyboardArrowDownIcon={KeyboardArrowDownIcon}
         FormatListNumberedRtlIcon={FormatListNumberedRtlIcon}
+        EquipText={EquipText}
       />
     </div>
   );
