@@ -64,6 +64,46 @@ const AuthAPI = {
       throw e;
     }
   },
+  /**
+   * 로그인 메일 전송
+   * --
+   * @param {*} userInfo
+   * @returns
+   */
+  createSignin: async (userInfo) => {
+    try {
+      const url = APIConstant.CREATE_SIGNIN;
+      const result = await $http.post(url, userInfo);
+      const { status, message, data } = result;
+      if (status === 200) {
+        return data;
+      }
+      throw message;
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  },
+  /**
+   * 로그인 요청
+   * --
+   * @param {*} userInfo
+   * @returns
+   */
+  requestSignin: async (userInfo) => {
+    try {
+      const url = APIConstant.REQUEST_SIGNIN;
+      const result = await $http.post(url, userInfo);
+      const { status, message, data } = result;
+      if (status === 200) {
+        return data;
+      }
+      throw message;
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+  },
 };
 
 export default AuthAPI;
