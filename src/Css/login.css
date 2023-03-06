@@ -70,8 +70,9 @@ input {
 .login-page-inputbox {
     width: 100%;
     height: 60px;
-    padding-bottom: 120px;
-    flex-flow: column;
+    /* padding-bottom: 120px; */
+    /* flex-flow: column; */
+    flex-direction: column;
 }
 
 .login-page-email {
@@ -106,7 +107,7 @@ input {
     color: #fff;
     border: 1px solid #cbccd3;
     background-color: #4f67ff;
-    cursor: auto;
+    cursor: pointer;
 }
 
 .login-page-submit-failed {

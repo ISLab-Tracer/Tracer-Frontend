@@ -1,24 +1,22 @@
 import React from 'react';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const LoginPresenter = (props) => {
   /* Router */
   /* State */
-  const {
-    handleOnClick,
-    handleOnSubmit,
-    handleUserInfo,
-    emailCheck,
-  } = props;
+  const { userInfo, emailCheck, isSend } = props;
+  const { handleLogin, handleUserInfo } = props;
+
+  const { user_email } = userInfo;
   /* Hooks */
   /* Functions */
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await handleLogin();
+  };
   /* Render */
 
   return (
     <div>
-      <div className="login-page-backbox">
-        <ArrowBackIcon sx={{ color: '#8f91a0' }} onClick={handleOnClick} />
-      </div>
       <div className="login-page-commentbox">
         <h1 className="login-page-title">이메일로 로그인</h1>
         <p className="login-page-ment">
@@ -26,7 +24,7 @@ const LoginPresenter = (props) => {
         </p>
         <p className="login-page-ment">이메일로 로그인 코드를 보내드립니다.</p>
       </div>
-      <form className="login-page-form">
+      <form className="login-page-form" onSubmit={handleSubmit}>
         <label className="login-page-label">이메일 주소</label>
         <div className="flex">
           <div className="flex login-page-inputbox">
@@ -34,8 +32,11 @@ const LoginPresenter = (props) => {
               id="input"
               type="email"
               className={'login-page-email'}
+              name="user_email"
               placeholder="이메일 주소를 입력해주세요."
               onChange={handleUserInfo}
+              value={user_email}
+              disabled={isSend}
             />
             <p
               id="errorment"
@@ -46,17 +47,27 @@ const LoginPresenter = (props) => {
             </p>
           </div>
         </div>
-        <div className="flex">
-          <button
-            id="submit"
-            className={
-              emailCheck ? 'login-page-submit' : 'login-page-submit-failed'
-            }
-            onClick={ handleOnSubmit }
-          >
-            보내기
-          </button>
-        </div>
+
+        {isSend ? (
+          <div>
+            위의 주소로 메일을 전송하였습니다. <br />
+            메일을 확인해주세요
+          </div>
+        ) : (
+          <>
+            <div className="flex">
+              <button
+                id="submit"
+                type="submit"
+                className={
+                  emailCheck ? 'login-page-submit' : 'login-page-submit-failed'
+                }
+              >
+                보내기
+              </button>
+            </div>
+          </>
+        )}
       </form>
     </div>
   );

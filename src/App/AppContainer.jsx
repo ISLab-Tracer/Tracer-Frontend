@@ -1,8 +1,19 @@
-import React from "react";
-import AppPresenter from "./AppPresenter";
+import React from 'react';
+import Loading from '../Components/Loading/Loading';
+import AppPresenter from './AppPresenter';
 
 const AppContainer = () => {
-  return <AppPresenter />;
+  /* Router */
+  /* State */
+  /* Functions */
+  /* Hooks */
+  /* Render */
+  return (
+    <>
+      <Loading isLoading={false} />
+      <AppPresenter />
+    </>
+  );
 };
 
 export default AppContainer;
