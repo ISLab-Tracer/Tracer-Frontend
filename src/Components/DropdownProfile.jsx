@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import { useNavigate } from 'react-router-dom';
+import { logout } from 'Utils';
 
 const DropdownProfile = ({ info, setInfo, drop }) => {
   /* Router */
@@ -52,6 +53,11 @@ const DropdownProfile = ({ info, setInfo, drop }) => {
       navigate('/profile');
     } else {
       console.log('로그아웃');
+      const result = logout();
+      if (result) {
+        navigate('/login');
+        return;
+      }
     }
   };
   /* Render */

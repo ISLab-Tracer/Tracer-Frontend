@@ -16,7 +16,11 @@ const index = () => {
           <Route index element={<Login />} />
           <Route path=":login_id" element={<Login />} />
         </Route>
-        <Route path="/register" element={<SignUp />} />
+
+        <Route path="/register">
+          <Route index element={<SignUp />} />
+          <Route path=":signup_id" element={<SignUp />} />
+        </Route>
       </Route>
     </Routes>
   );

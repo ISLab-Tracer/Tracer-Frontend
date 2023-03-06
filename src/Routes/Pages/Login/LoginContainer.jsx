@@ -28,7 +28,6 @@ const LoginContainer = () => {
     //console.log(e.target.value);
     // console.log(checkEmail);
     if (checkEmail) {
-      console.log('CHECK : ' + checkEmail);
       setEmailCheck(true);
     } else {
       setEmailCheck(false);

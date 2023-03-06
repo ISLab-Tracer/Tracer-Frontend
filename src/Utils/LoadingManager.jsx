@@ -15,8 +15,8 @@ const LoadingManager = ({ children }) => {
   /* State */
   const [isLoading, setIsLoading] = useState(false);
   /* Functions */
-  const handleLoading = () => {
-    setIsLoading(!isLoading);
+  const handleLoading = (val = true) => {
+    setIsLoading(val);
   };
   const handleLoadingTimer = (timer = 3000, callback = null) => {
     setIsLoading(true);
