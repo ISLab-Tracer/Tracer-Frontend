@@ -1,4 +1,7 @@
 import React from 'react';
+import { TypeManager } from 'Utils';
+
+const USER_RANK = TypeManager.getUserRankList();
 
 const SignUpPresenter = (props) => {
   /* Router */
@@ -14,13 +17,14 @@ const SignUpPresenter = (props) => {
     await handleSignup();
   };
 
-  const handleTeam = (e) => {
+  const handleSelect = (e) => {
     if (e.target.value === 0) {
       handleUserInfo(e, { ...userInfo, [e.target.name]: '' });
       return;
     }
     handleUserInfo(e);
   };
+
   /* Render */
   return (
     <div>
@@ -90,11 +94,31 @@ const SignUpPresenter = (props) => {
               </div>
 
               <div className="input-item">
+                <label className="label">직급 정보</label>
+                <div className="content">
+                  <select
+                    className="login-page-email"
+                    onChange={handleSelect}
+                    name="user_rank"
+                  >
+                    <option value={0}>직급 선택</option>
+                    {USER_RANK.map((item) => {
+                      const { id, title, value } = item;
+                      return (
+                        <option key={id} value={value}>
+                          {title}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+              </div>
+              <div className="input-item">
                 <label className="label">팀 정보</label>
                 <div className="content">
                   <select
                     className="login-page-email"
-                    onChange={handleTeam}
+                    onChange={handleSelect}
                     name="team_id"
                   >
                     <option value={0}>팀 선택</option>

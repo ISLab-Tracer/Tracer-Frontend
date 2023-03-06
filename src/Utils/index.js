@@ -1,4 +1,5 @@
 export { default as APIManager } from './APIManager';
+export { default as TypeManager } from './TypeManager';
 export const BASE_URL = process.env.REACT_APP_BASE_URL;
 export const HOST_DOMAIN = process.env.REACT_APP_HOST_DOMAIN;
 
