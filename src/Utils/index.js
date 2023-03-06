@@ -1,3 +1,32 @@
+export { default as APIManager } from './APIManager';
+export const BASE_URL = process.env.REACT_APP_BASE_URL;
+export const HOST_DOMAIN = process.env.REACT_APP_HOST_DOMAIN;
+
+/**
+ * 세션 체크
+ * --
+ * @returns
+ */
+export const checkSession = () => {
+  const s = getCookie('ISLAB_TRACER');
+  if (s && s.length >= 0) {
+    return true;
+  }
+  return false;
+};
+
+export const logout = () => {
+  deleteCookie('ISLAB_TRACER', { path: '/', domain: HOST_DOMAIN });
+  deleteCookie('TRACER_USER', { path: '/', domain: HOST_DOMAIN });
+  console.log(HOST_DOMAIN);
+  const r = checkSession();
+  console.log(r);
+  if (r) {
+    return false;
+  }
+  return true;
+};
+
 /**
  * 쿠키 가져오기
  * --

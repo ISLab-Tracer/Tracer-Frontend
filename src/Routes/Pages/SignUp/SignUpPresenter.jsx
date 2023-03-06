@@ -1,49 +1,144 @@
 import React from 'react';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const SignUpPresenter = (props) => {
   /* Router */
 
   /* State */
-  const { handleOnChange, handleOnClick, emailCheck, handleOnSubmit } = props;
-
+  const { userInfo, inputCheck, isSend, signup_id, teamList } = props;
+  const { handleSignup, handleUserInfo } = props;
+  const { user_email, user_nm, user_password } = userInfo;
   /* Hooks */
   /* Functions */
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await handleSignup();
+  };
+
+  const handleTeam = (e) => {
+    if (e.target.value === 0) {
+      handleUserInfo(e, { ...userInfo, [e.target.name]: '' });
+      return;
+    }
+    handleUserInfo(e);
+  };
   /* Render */
   return (
     <div>
-      <div className="login-page-backbox">
-        <ArrowBackIcon sx={{ color: '#8f91a0' }} onClick={handleOnClick} />
-      </div>
       <div className="login-page-commentbox">
         <h1 className="login-page-title">이메일로 회원가입</h1>
       </div>
-      <form className="login-page-form">
-        <label className="register-page-label">이메일 주소</label>
-        <div className="flex">
-          <div className="flex register-page-inputbox">
-            <input
-              id="input"
-              type="email"
-              className="login-page-email"
-              placeholder="이메일 주소를 입력해주세요."
-              onChange={handleOnChange}
-            />
-            <p id="errorment" className="login-page-errorment" style={{display:'none'}}>
-              올바른 형태의 이메일 주소를 입력해주세요.
-            </p>
+      <form className="login-page-form" onSubmit={handleSubmit}>
+        <div className="input-wrap">
+          <div className="input-item">
+            <label className="label header">
+              서비스를 가입하실 이메일 주소와 이름을 입력해주세요.
+            </label>
           </div>
+          <div className="input-item">
+            <label className="label">이메일 주소</label>
+            <div className="content">
+              <input
+                id="input"
+                type="email"
+                className="login-page-email"
+                name="user_email"
+                placeholder="이메일 주소를 입력해주세요."
+                onChange={handleUserInfo}
+                value={user_email}
+                disabled={isSend}
+              />
+              <p
+                id="errorment"
+                className="login-page-errorment"
+                style={{ display: 'none' }}
+              >
+                올바른 형태의 이메일 주소를 입력해주세요.
+              </p>
+            </div>
+          </div>
+          <div className="input-item">
+            <label className="label">이름</label>
+            <div className="content">
+              <input
+                id="input"
+                type="text"
+                className="login-page-email"
+                name="user_nm"
+                placeholder="사용자 이름을 입력해주세요."
+                onChange={handleUserInfo}
+                value={user_nm}
+                disabled={isSend}
+              />
+            </div>
+          </div>
+          {signup_id && (
+            <>
+              <div className="input-item">
+                <label className="label">비밀번호</label>
+                <div className="content">
+                  <input
+                    id="input"
+                    type="password"
+                    className="login-page-email"
+                    name="user_password"
+                    placeholder="사용자 비밀번호을 입력해주세요."
+                    onChange={handleUserInfo}
+                    value={user_password}
+                    disabled={isSend}
+                  />
+                </div>
+              </div>
+
+              <div className="input-item">
+                <label className="label">팀 정보</label>
+                <div className="content">
+                  <select
+                    className="login-page-email"
+                    onChange={handleTeam}
+                    name="team_id"
+                  >
+                    <option value={0}>팀 선택</option>
+                    {teamList.map((item) => {
+                      const { team_id, team_nm } = item;
+                      return (
+                        <option key={team_id} value={team_id}>
+                          {team_nm}
+                        </option>
+                      );
+                    })}
+                  </select>
+                  {/* <input
+                  id="input"
+                  type="text"
+                  className="login-page-email"
+                  name="user_nm"
+                  placeholder="사용자 이름을 입력해주세요."
+                  onChange={handleUserInfo}
+                  value={user_nm}
+                  disabled={isSend}
+                /> */}
+                </div>
+              </div>
+            </>
+          )}
         </div>
-        <div className="flex">
-          <button
-            id="submit"
-            className={
-              emailCheck ? 'login-page-submit' : 'login-page-submit-failed'
-            }
-            onClick = { handleOnSubmit }
-          >
-            보내기
-          </button>
+        <div className="btn-wrap">
+          {isSend ? (
+            <div>
+              위의 주소로 메일을 전송하였습니다. <br />
+              메일을 확인해주세요
+            </div>
+          ) : (
+            <button
+              id="submit"
+              type="submit"
+              className={
+                inputCheck ? 'login-page-submit' : 'login-page-submit-failed'
+              }
+            >
+              보내기
+            </button>
+          )}
         </div>
       </form>
     </div>

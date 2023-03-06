@@ -1,6 +1,5 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { Header } from '../../Components';
 import '../../Css/main.css';
 import '../../Css/login.css';
 import '../../Css/register.css';
@@ -13,7 +12,7 @@ const LoginLayoutPresenter = () => {
   /* Render */
   return (
     <div className="mainlayout-container">
-      <Header />
+      {/* <Header /> */}
       <div className="mainlayout-body-container">
         <div className="login-page-container">
           <div className="login-page-box">{<Outlet />}</div>
