@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 
@@ -7,7 +7,8 @@ const EquipSearch = (props) => {
     /* Router */
 
     /* State */
-    const { check, handleOnFocus, setSearch, emptycheck, setEmptycheck } = props;
+    const { setSearch, emptycheck, setEmptycheck } = props;
+    const [ inputClick, setInputClick ] = useState(true);
 
     /* Hooks */
 
@@ -22,11 +23,16 @@ const EquipSearch = (props) => {
         setEmptycheck( !emptycheck );
     }
     
+    const handleOnFocus = () => {
+
+        setInputClick( !inputClick );
+    }
+    
     /* Render */
     return (
         <div className="equip-page-searchbox">
             <div className={
-            check ? 'equip-page-search-inputbox' : 'equip-page-search-inputbox-focus'
+            inputClick ? 'equip-page-search-inputbox' : 'equip-page-search-inputbox-focus'
             }
             >
             <SearchIcon />
@@ -45,7 +51,7 @@ const EquipSearch = (props) => {
             <div className="equip-page-search-checkbox">
             <input
                 type="checkbox"
-                className="equip-page-search-checkbox-check"
+                className="equip-page-search-checkbox-inputClick"
                 onChange={ handleOnCheck }
             />
             <p className="equip-page-search-checkbox-input">

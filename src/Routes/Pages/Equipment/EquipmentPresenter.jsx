@@ -6,74 +6,26 @@ import AddIcon from '@mui/icons-material/Add';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import FormatListNumberedRtlIcon from '@mui/icons-material/FormatListNumberedRtl';
 
-import { EquipHeader, EquipMain, EquipSearch } from './Components';
+import { EquipHeader, EquipSearch } from './Components';
 
-
-const initial = [
-  {
-      id: 1,
-      title: "Test1",
-      price: "1000",
-      category: "소모품",
-      team: "Blockchain",
-      img: "https://item.kakaocdn.net/do/c5c470298d527ef65eb52883f0f186c48f324a0b9c48f77dbce3a43bd11ce785",
-      count: 1,
-      barcode: "11111",
-      charger: "정한호"
-  },
-  {
-      id: 2,
-      title: "Test2",
-      price: "2000",
-      category: "소모품",
-      team: "Hardware",
-      img: "https://item.kakaocdn.net/do/c5c470298d527ef65eb52883f0f186c49f5287469802eca457586a25a096fd31",
-      count: 0,
-      barcode: "22222",
-      charger: "정한호"
-  },
-  {
-      id: 3,
-      title: "WOW3",
-      price: "3000",
-      category: "소모품",
-      team: "Blockchain",
-      img: "https://item.kakaocdn.net/do/c5c470298d527ef65eb52883f0f186c46fb33a4b4cf43b6605fc7a1e262f0845",
-      count: 3,
-      barcode: "33333",
-      charger: "정한호"
-  },
-  {
-      id: 4,
-      title: "HANHO",
-      price: "4000",
-      category: "소모품",
-      team: "Blockchain",
-      img: "https://item.kakaocdn.net/do/c5c470298d527ef65eb52883f0f186c415b3f4e3c2033bfd702a321ec6eda72c",
-      count: 0,
-      barcode: "44444",
-      charger: "정한호"
-  },
-  {
-      id: 5,
-      title: "Test5",
-      price: "5000",
-      category: "소모품",
-      team: "Blockchain",
-      img: "https://item.kakaocdn.net/do/c5c470298d527ef65eb52883f0f186c4960f4ab09fe6e38bae8c63030c9b37f9",
-      count: 5,
-      barcode: "55555",
-      charger: "정한호"
-  },
-]
 
 const EquipmentPresenter = (props) => {
 
-  const { check, handleOnFocus } = props;
-  const [ test ] = useState( initial );
+  /* Router */
+
+  /* State */
+  
+  const { test, zeroItem, listClick, itemid, handleOnClick, editOn } = props;
+
   const [ search, setSearch ] = useState( "" );
   const [ emptycheck, setEmptycheck ] = useState( false );
 
+
+  /* Hooks */
+
+  /* Functions */
+
+  /* Render */
   return (
     <div className="main-content-container">
       <EquipHeader
@@ -84,23 +36,249 @@ const EquipmentPresenter = (props) => {
       />      
 
       <EquipSearch
-        check={ check }
-        handleOnFocus={ handleOnFocus }
         test={ test }
         setSearch={ setSearch }
         emptycheck= { emptycheck }
         setEmptycheck={ setEmptycheck  }
       />
-      
-      <EquipMain
-        AddIcon={AddIcon}
-        KeyboardArrowDownIcon={KeyboardArrowDownIcon}
-        FormatListNumberedRtlIcon={FormatListNumberedRtlIcon}
-        Equip={Equip}
-        test={ test }
-        search={ search }
-        emptycheck={ emptycheck }
-      />
+
+      {/* 메인 */}
+      <div className="equip-page-mainbox">
+
+            { zeroItem ?
+            /* 제품개수가 0일 경우 */
+            <div className="equip-page-zeroitembox">
+                <p className="equip-page-zeroitembox-p">
+                    등록된 제품이 없습니다. 제품을 추가해주세요.
+                </p>
+                <div className="equip-page-zeroitembox-button">
+                    <AddIcon />
+                    <p>
+                        제품추가
+                    </p>
+                </div>
+            </div>
+
+            :
+
+            // 제품개수가 0이 아닐 경우
+            <div className="equip-page-itembox">
+                <div className="equip-page-itembox-left">
+                    <div className="equip-page-itembox-left-titlebox">
+                        <div className="equip-page-itembox-left-titleall">
+                            <p className="equip-page-itembox-left-titleall-first">
+                                전체보기
+                            </p>
+                            <p className="equip-page-itembox-left-titleall-second">
+                            s    <KeyboardArrowDownIcon />
+                            </p>
+                        </div>
+                        <div className="equip-page-itembox-left-sortbox">
+                            <FormatListNumberedRtlIcon />
+                        </div>
+                    </div>
+
+                    
+                    { emptycheck ?
+                        // eslint-disable-next-line
+                        test.map( (item) => {
+
+                            if( item.count !== 0 ) {
+                                if( item.title.indexOf( search ) !== -1 ) {
+                                    // 포함되어있는 경우 출력
+    
+                                    return (
+                                        <div className="equip-page-itembox-left-listbox" id={item.id} name={item.id} onClick={handleOnClick}>
+                                            <Equip.List
+                                                img={ item.img }
+                                                title={ item.title }
+                                                price={ item.price }
+                                                team={ item.team }
+                                                category={ item.category } 
+                                                count= { item.count }
+                                            />
+                                        </div>
+                                    );
+    
+                                } else if ( search.serach === "" ) {
+                                    // 검색 입력 없을 시( 빈칸 )
+    
+                                    return (
+                                        <div className="equip-page-itembox-left-listbox" id={item.id} name={item.id} onClick={handleOnClick}>
+                                            <Equip.List
+                                                img={ item.img }
+                                                title={ item.title }
+                                                price={ item.price }
+                                                team={ item.team }
+                                                category={ item.category }
+                                                count= { item.count }
+                                            />
+                                        </div>
+                                    );
+                                }
+                            }
+
+                        } )
+
+                    :
+                        // eslint-disable-next-line
+                        test.map( (item) => {
+
+                            if( item.title.indexOf( search ) !== -1 ) {
+                                // 포함되어있는 경우 출력
+
+                                return (
+                                    <div className="equip-page-itembox-left-listbox" id={item.id} name={item.id} onClick={handleOnClick}>
+                                        <Equip.List
+                                            img={ item.img }
+                                            title={ item.title }
+                                            price={ item.price }
+                                            team={ item.team }
+                                            category={ item.category }
+                                            count= { item.count }
+                                        />
+                                    </div>
+                                );
+
+                                
+                            } else if ( search.serach === "" ) {
+                                // 검색 입력 없을 시( 빈칸 )
+
+                                return (
+                                    <div className="equip-page-itembox-left-listbox" id={item.id} name={item.id} onClick={handleOnClick}>
+                                        <Equip.List
+                                            img={ item.img }
+                                            title={ item.title }
+                                            price={ item.price }
+                                            team={ item.team }
+                                            category={ item.category }
+                                            count= { item.count }
+                                        />
+                                    </div>
+                                );
+                            }
+
+                        } )
+                    }
+                    
+
+
+                </div>
+
+                {/* ****** 페이지 디자인 개편이 시급 ****** */}
+
+                { !listClick ?
+                // 목록 클릭 안했을 경우
+                    <div className="equip-page-itembox-right">
+                        <div className="equip-page-itembox-zeroitem">
+                            <p className="equip-page-itembox-zeroitem-p">
+                                왼쪽목록에서 제품을 선택하면 자세히 볼 수 있습니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    :
+                
+                    // 목록 클릭 했을 경우
+                    // eslint-disable-next-line
+                    test.map( (item) => {
+
+
+                        if( item.id === Number( itemid ) ) {
+                            // == 박으면 워닝 뜸
+                            // item.id => Number
+                            // itemid => String
+                            // 이렇게 하는게 맞는건지 ??
+
+                            return (
+                                <div className="equip-page-itembox-right">
+                                    <div className="equip-page-itembox-clickitembox">
+                                        <div className="equip-page-itembox-clickitembox-titlebox">
+                                            <p  className="equip-page-itembox-clickitembox-title">
+                                                제품 정보
+                                            </p>
+                                            <div className="equip-page-itembox-clickitembox-buttonbox">
+                                                <p className="centerflex equip-page-itembox-clickitembox-button">
+                                                    인수
+                                                </p>
+                                                <p
+                                                    className="centerflex equip-page-itembox-clickitembox-button"
+                                                    onClick={editOn}
+                                                >
+                                                    수정
+                                                </p>
+                                                <p className="centerflex equip-page-itembox-clickitembox-button">
+                                                    삭제
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        {/* 여기서 IF 써야됨 */}
+                                        
+                                        <div className="equip-page-itembox-clickitembox-infobox">
+                                                <img
+                                                    className="centerflex equip-page-itembox-clickitembox-infobox-img"
+                                                    src={item.img}
+                                                    alt="img"
+                                                />
+                                                <Equip.Text
+                                                    title='제품명'
+                                                    value={item.title}
+                                                    style={{ 'paddingTop': '2%', 'borderTop': '1px solid #cccdd4' }}
+                                                />
+
+                                                <Equip.Text
+                                                    title='바코드'
+                                                    value={item.barcode}
+                                                />
+
+                                                <Equip.Text
+                                                    title='가격'
+                                                    value={item.price}
+                                                />
+
+                                                <Equip.Text
+                                                    title='소유자'
+                                                    value={item.charger}
+                                                />
+
+                                                <Equip.Text
+                                                    title='팀'
+                                                    value={item.team}
+                                                />
+                                            </div>
+
+                                            <div className="equip-page-itembox-clickitembox-changebox line">
+                                                <Equip.Text
+                                                    title='수량'
+                                                    value={item.count}
+                                                />
+                                            </div>
+                                        
+
+                                        {/* IF 종료 */}
+                                    </div>
+                                </div>
+                            );
+                        }
+                    } )
+
+
+
+                    
+                }
+
+                    
+
+                    
+            </div>
+            }
+
+
+
+            
+        </div>
+
     </div>
   );
 };
