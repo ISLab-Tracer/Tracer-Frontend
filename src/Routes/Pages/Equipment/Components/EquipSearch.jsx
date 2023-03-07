@@ -7,11 +7,20 @@ const EquipSearch = (props) => {
     /* Router */
 
     /* State */
-    const { check, handleOnFocus } = props;
+    const { check, handleOnFocus, setSearch, emptycheck, setEmptycheck } = props;
 
     /* Hooks */
 
     /* Functions */
+    const handleOnChange = e => {
+
+        setSearch( e.target.value );
+    }
+
+    const handleOnCheck = () => {
+
+        setEmptycheck( !emptycheck );
+    }
     
     /* Render */
     return (
@@ -27,6 +36,7 @@ const EquipSearch = (props) => {
                 placeholder="이름, 바코드, 속성 검색"
                 onFocus={ handleOnFocus }
                 onBlur={ handleOnFocus }
+                onChange={ handleOnChange }
             />
             </div>
             <div className="equip-page-search-codebox">
@@ -36,6 +46,7 @@ const EquipSearch = (props) => {
             <input
                 type="checkbox"
                 className="equip-page-search-checkbox-check"
+                onChange={ handleOnCheck }
             />
             <p className="equip-page-search-checkbox-input">
                 재고 없는 항목 제외

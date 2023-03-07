@@ -1,3 +1,6 @@
+::placeholder {
+    color: #4f67ff;
+}
 
 ::-webkit-scrollbar {
     display: none;
@@ -37,6 +40,7 @@
     align-items: center;
     border-radius: 4px;
     margin: 0 2px;
+    cursor: pointer;
 }
 
 .equip-page-button-first {
@@ -108,6 +112,7 @@
     border: 1px solid rgb(203, 204, 211);
     border-radius: 8px;
     margin-left: 10px;
+    cursor: pointer;
 }
 
 .equip-page-search-checkbox {
@@ -231,6 +236,7 @@
     display: flex;
     width: 100%;
     height: 80px;
+    cursor: pointer;
 }
 
 .equip-page-itembox-left-list {
@@ -342,6 +348,7 @@
     box-shadow: 0 1px 1px 0 #0000001a;
     font-size: 0.8rem;
     margin: 0 3px;
+    cursor: pointer;
 }
 
 .equip-page-itembox-clickitembox-infobox {
@@ -361,111 +368,12 @@
     border-radius: 7px;
 }
 
-.equip-page-itembox-clickitembox-changebox {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 50%;
-    padding: 0 2%;
-}
-
-.equip-page-itembox-clickitembox-changebox-infobox {
-    display: flex;
-    width: auto;
-    padding: 10px 20px;
-    align-items: center;
-}
-
-.equip-page-itembox-clickitembox-changebox-buttonbox {
-    margin-top: 2%;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 10%;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #cccdd4;
-    border-radius: 10px;
-    font-size: 0.8rem;
-    cursor: pointer;
-}
-
-.equip-page-itembox-clickitembox-changebox-button {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 2px 2px 0 #0000001a;
-}
-
 .leftbutton {
     border-right: 1px solid #cccdd4;
 }
 
-.equip-page-itembox-clickitembox-updatebox {
-    margin-top: 4%;
-    width: 100%;
-    height: 50px;
-    flex-direction: row;
-    border: 1px solid #cccdd4;
-    border-radius: 5px;
-    box-shadow: 1px 1px 4px 4px #0000001a;
-    color: #86878b;
-    font-size: 0.8rem;
-    justify-content: space-evenly;
-}
 
-.equip-page-itembox-clickitembox-updatebox-count {
-    width: 30%;
-    text-align: center;
-    font-size: 1rem;
-    font-weight: 500;
-}
-
-.equip-page-itembox-clickitembox-updatebox-changecount {
-    color: black;
-}
-
-.equip-page-itembox-clickitembox-updatebox-input {
-    width: 30%;
-    height: 30px;
-    border: 1px solid #cbccd3;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 1rem;
-    color: #4f67ff;
-}
-
-.equip-page-itembox-clickitembox-updatebox-input::placeholder {
-    color: #4f67ff;
-}
-
-.equip-page-itembox-clickitembox-updatebox-button {
-    display: flex;
-    height: 70%;
-    width: 15%;
-    background-color: #4f67ff;
-    border: 1px solid #4d5ecd;
-    border-radius: 4px;
-    color: white;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-
-.equip-page-itembox-clickitembox-updatebox-updown {
-    width: 30%;
-    height: 30px;
-    font-size: 1rem;
-    text-align: center;
-    color: #4f67ff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.qeuip-page-equipitem-box {
+.equip-page-equipitem-box {
     display: flex;
     width: auto;
     padding: 10px 20px;
@@ -473,14 +381,55 @@
     align-items: center;
 }
 
-.qeuip-page-equipitem-box-title {
+.equip-page-equipitem-box-title {
     display: flex;
     width: 50%;
     font-size: 0.9rem;
 }
 
-.qeuip-page-equipitem-box-content {
+.equip-page-equipitem-box-content {
     display: flex;
     width: 50%;
     font-size: 0.8rem;
+}
+
+.equip-page-equipitem-box-input {
+    display: flex;
+    width: 30%;
+    height: 100%;
+    text-align: center;
+    border: 1px solid #cbccd3;
+    border-radius: 4px;
+}
+
+.equip-page-equipitem-edit-buttonbox {
+    display: flex;
+    margin-top: 5%;
+    width: 100%;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.equip-page-equipitem-edit-button {
+    display: flex;
+    width: 20%;
+    border-radius: 5px;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    padding: 1%;
+    margin-left: 2%;
+}
+
+.equip-page-equipitem-button-left {
+    background-color: #4f67ff;
+    color: white;
+}
+
+.equip-page-equipitem-button-right {
+    background-color: #eeeef0;
+    border: 1px solid #dcdee8;
+    box-shadow: 0 1px 1px 0 #0000001a;
 }
