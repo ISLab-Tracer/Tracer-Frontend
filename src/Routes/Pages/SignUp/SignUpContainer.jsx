@@ -1,13 +1,13 @@
 import { AuthAPI, TeamAPI } from 'API';
 import React, { useCallback, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { RegEmail, setCookie } from 'Utils';
 import { useLoading } from 'Utils/LoadingManager';
 import SignUpPresenter from './SignUpPresenter';
 
 const SignUpContainer = () => {
   /* Router */
-  const { handleLoading } = useLoading();
+  const { handleLoading, handleLoadingTimer } = useLoading();
   const navigate = useNavigate();
   const { signup_id } = useParams();
 
@@ -106,10 +106,23 @@ const SignUpContainer = () => {
     const result = await AuthAPI.createSignup(userInfo);
     if (result) {
       handleLoading(false);
-      setIsSend(true);
+      setIsSend(
+        <div>
+          위의 주소로 메일을 전송하였습니다. <br />
+          메일을 확인해주세요
+        </div>
+      );
       return true;
     }
-    handleLoading(false);
+
+    handleLoadingTimer(2000, () => {
+      setIsSend(
+        <div>
+          이미 가입된 메일입니다. <br />
+          <Link to="/login">로그인</Link>을 사용해주세요.
+        </div>
+      );
+    });
     return false;
   };
 

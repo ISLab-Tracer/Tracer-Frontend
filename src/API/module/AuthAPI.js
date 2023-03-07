@@ -19,7 +19,6 @@ const AuthAPI = {
       }
       throw message;
     } catch (e) {
-      console.log(e);
       return false;
     }
   },
@@ -81,7 +80,7 @@ const AuthAPI = {
       throw message;
     } catch (e) {
       console.log(e);
-      throw e;
+      return false;
     }
   },
   /**
@@ -100,7 +99,6 @@ const AuthAPI = {
       }
       throw message;
     } catch (e) {
-      console.log(e);
       return false;
     }
   },

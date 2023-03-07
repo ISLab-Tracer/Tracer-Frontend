@@ -1,6 +1,6 @@
 import React, { useCallback, useLayoutEffect, useState } from 'react';
 import LoginPresenter from './LoginPresenter';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { RegEmail, setCookie } from '../../../Utils';
 import { useLoading } from '../../../Utils/LoadingManager';
 import { AuthAPI } from 'API';
@@ -43,11 +43,24 @@ const LoginContainer = () => {
     const result = await AuthAPI.createSignin(userInfo);
     if (result) {
       handleLoading(false);
-      setIsSend(true);
+      setIsSend(
+        <div>
+          위의 주소로 메일을 전송하였습니다. <br />
+          메일을 확인해주세요
+        </div>
+      );
       return true;
     }
 
-    handleLoading(false);
+    handleLoadingTimer(2000, () => {
+      setIsSend(
+        <div>
+          등록된 메일이 없습니다. <br />
+          <Link to="/register">회원가입</Link>을 진행해주세요.{' '}
+        </div>
+      );
+    });
+
     return false;
   };
 

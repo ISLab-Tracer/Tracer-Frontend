@@ -131,16 +131,6 @@ const SignUpPresenter = (props) => {
                       );
                     })}
                   </select>
-                  {/* <input
-                  id="input"
-                  type="text"
-                  className="login-page-email"
-                  name="user_nm"
-                  placeholder="사용자 이름을 입력해주세요."
-                  onChange={handleUserInfo}
-                  value={user_nm}
-                  disabled={isSend}
-                /> */}
                 </div>
               </div>
             </>
@@ -148,10 +138,7 @@ const SignUpPresenter = (props) => {
         </div>
         <div className="btn-wrap">
           {isSend ? (
-            <div>
-              위의 주소로 메일을 전송하였습니다. <br />
-              메일을 확인해주세요
-            </div>
+            isSend
           ) : (
             <button
               id="submit"

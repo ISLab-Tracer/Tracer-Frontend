@@ -49,10 +49,7 @@ const LoginPresenter = (props) => {
         </div>
 
         {isSend ? (
-          <div>
-            위의 주소로 메일을 전송하였습니다. <br />
-            메일을 확인해주세요
-          </div>
+          <div>{isSend}</div>
         ) : (
           <>
             <div className="flex">
