@@ -195,6 +195,7 @@ const EquipMain = (props) => {
 
 
                         if( item.id === Number( itemid ) ) {
+                            // == 박으면 워닝 뜸
                             // item.id => Number
                             // itemid => String
                             // 이렇게 하는게 맞는건지 ??
