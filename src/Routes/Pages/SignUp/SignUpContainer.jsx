@@ -1,6 +1,6 @@
 import { AuthAPI, TeamAPI } from 'API';
 import React, { useCallback, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { RegEmail, setCookie } from 'Utils';
 import { useLoading } from 'Utils/LoadingManager';
 import SignUpPresenter from './SignUpPresenter';
@@ -115,7 +115,15 @@ const SignUpContainer = () => {
       return true;
     }
     handleLoadingTimer(1500, () => {
-      alert('이미 회원가입 요청이 된 메일입니다.\n메일을 다시 확인해주세요.');
+      setIsSend(
+        <div>
+          이미 회원가입 요청이 되었거나 회원가입 된 메일입니다.
+          <br />
+          메일을 다시 확인해주세요.
+          <br />
+          <Link to="/login">로그인</Link>
+        </div>
+      );
     });
     return false;
   };
