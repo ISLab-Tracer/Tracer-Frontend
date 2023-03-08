@@ -361,13 +361,18 @@
     padding: 3% 2%;
 }
 
-.equip-page-itembox-clickitembox-infobox-img {
-    width: 60%;
-    max-width: 180px;
-    height: auto;
+.equip-page-itembox-clickitembox-infobox-imgbox {
+    width: 180px;
+    height: 180px;
     margin: 2px auto 20px auto;
     border: 1px solid black;
     border-radius: 7px;
+}
+
+.equip-page-itembox-clickitembox-infobox-img {
+    object-fit: scale-down;
+    width: 100%;
+    height: 100%;
 }
 
 .leftbutton {
@@ -434,4 +439,8 @@
     background-color: #eeeef0;
     border: 1px solid #dcdee8;
     box-shadow: 0 1px 1px 0 #0000001a;
+}
+
+.equip-component-file {
+    display: none;
 }
