@@ -7,7 +7,7 @@ import SignUpPresenter from './SignUpPresenter';
 
 const SignUpContainer = () => {
   /* Router */
-  const { handleLoading } = useLoading();
+  const { handleLoading, handleLoadingTimer } = useLoading();
   const navigate = useNavigate();
   const { signup_id } = useParams();
 
@@ -106,15 +106,21 @@ const SignUpContainer = () => {
     const result = await AuthAPI.createSignup(userInfo);
     if (result) {
       handleLoading(false);
-      setIsSend(true);
+      setIsSend(
+        <div>
+          위의 주소로 메일을 전송하였습니다. <br />
+          메일을 확인해주세요
+        </div>
+      );
       return true;
     }
-    handleLoading(false);
+    handleLoadingTimer(1500, () => {
+      alert('이미 회원가입 요청이 된 메일입니다.\n메일을 다시 확인해주세요.');
+    });
     return false;
   };
 
   /* Hooks */
-
   useEffect(() => {
     if (signup_id) {
       handleSignupInfo();
