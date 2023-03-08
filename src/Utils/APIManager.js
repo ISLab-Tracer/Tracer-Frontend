@@ -78,7 +78,6 @@ export default class ApiManager {
       });
       return response.data;
     } catch (error) {
-      console.log('error: ', error);
       return {
         code: 500,
         message: error,
@@ -102,7 +101,6 @@ export default class ApiManager {
       });
       return response.data;
     } catch (error) {
-      console.log('error: ', error);
       return {
         code: 500,
         message: error,
@@ -181,9 +179,7 @@ export default class ApiManager {
         mimeType: 'multipart/form-data',
         body: body,
       });
-      //console.log(response);
       const responseJson = await response.json();
-      //console.log("ERROR : ", responseJson);
       return responseJson;
     } catch (error) {
       return {

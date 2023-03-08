@@ -47,12 +47,10 @@ const DropdownProfile = ({ info, setInfo, drop }) => {
     setMouse();
   };
   const handlepage = (e) => {
-    console.log(e.currentTarget.id);
     if (e.currentTarget.id === 'info') {
       setInfo(false);
       navigate('/profile');
     } else {
-      console.log('로그아웃');
       const result = logout();
       if (result) {
         navigate('/login');

@@ -10,7 +10,6 @@ import {
   TextField,
 } from '@mui/material';
 
-
 const Properties = ({ title = 'title', children }) => {
   return (
     <div className="profile-properties-container">
@@ -35,8 +34,6 @@ Properties.Input = ({
 }) => {
   const handleValue = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
-    console.log( "Input" );
-    console.log( value );
   };
   return (
     <div className="feild-container">
@@ -52,8 +49,7 @@ Properties.Input = ({
           style={style}
           value={value[property]}
           onChange={handleValue}
-        >
-        </TextField>
+        ></TextField>
       </div>
     </div>
   );
@@ -66,18 +62,12 @@ Properties.Select = ({
   value,
   setValue,
   style,
-  disabled= false,
-  team
+  disabled = false,
+  team,
 }) => {
-
-  const handleValue = e => {
-    setValue( { ...value, [ e.target.name ] : e.target.value });
-    console.log( "Select" );
-    console.log( value );
-  }
-  
-  console.log( "TEAM" );
-  console.log( team );
+  const handleValue = (e) => {
+    setValue({ ...value, [e.target.name]: e.target.value });
+  };
 
   return (
     <div className="feild-container">
@@ -90,25 +80,28 @@ Properties.Select = ({
             value={value[property]}
             label={name}
             onChange={handleValue}
-            style={ style }
+            style={style}
             disabled={disabled}
           >
             {/* Map 수정 */}
             {/* Team State를 Map 작성 */}
-            <MenuItem name="user_email"  value="AI">AI</MenuItem>
-            <MenuItem name="user_email" value="Blockchain">Blockchain</MenuItem>
-            <MenuItem name="user_email"  value="Hardware">Hardware</MenuItem>
-            <MenuItem name="user_email"  value="Quantum">Quantum</MenuItem>
+            <MenuItem name="user_email" value="AI">
+              AI
+            </MenuItem>
+            <MenuItem name="user_email" value="Blockchain">
+              Blockchain
+            </MenuItem>
+            <MenuItem name="user_email" value="Hardware">
+              Hardware
+            </MenuItem>
+            <MenuItem name="user_email" value="Quantum">
+              Quantum
+            </MenuItem>
           </Select>
-      </FormControl>
+        </FormControl>
       </div>
     </div>
-    
   );
-
-
-}
-
-
+};
 
 export default Properties;

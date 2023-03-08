@@ -19,9 +19,7 @@ export const checkSession = () => {
 export const logout = () => {
   deleteCookie('ISLAB_TRACER', { path: '/', domain: HOST_DOMAIN });
   deleteCookie('TRACER_USER', { path: '/', domain: HOST_DOMAIN });
-  console.log(HOST_DOMAIN);
   const r = checkSession();
-  console.log(r);
   if (r) {
     return false;
   }

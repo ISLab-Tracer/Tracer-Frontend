@@ -13,7 +13,6 @@ const MainLayoutContainer = () => {
   /* Functions */
   const handleSession = useCallback(() => {
     const token = checkSession();
-    console.log(token);
     if (token) {
       return;
     }

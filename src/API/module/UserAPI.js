@@ -19,7 +19,6 @@ const UserApi = {
       }
       throw message;
     } catch (e) {
-      console.log(e);
       throw e;
     }
   },
