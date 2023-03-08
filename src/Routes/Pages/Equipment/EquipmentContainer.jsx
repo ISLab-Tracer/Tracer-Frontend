@@ -4,51 +4,51 @@ import EquipmentPresenter from './EquipmentPresenter';
 const initial = [
   {
     id: 1,
-    title: 'Test1',
+    title: 'Monitor',
     price: '1000',
     category: '소모품',
     team: 'Blockchain',
     img: 'https://item.kakaocdn.net/do/c5c470298d527ef65eb52883f0f186c48f324a0b9c48f77dbce3a43bd11ce785',
-    count: 1,
+    count: 11,
     barcode: '11111',
-    charger: '정한호',
+    charger: '조욱',
   },
   {
     id: 2,
-    title: 'Test2',
+    title: 'Mouse',
     price: '2000',
     category: '소모품',
     team: 'Hardware',
     img: 'https://item.kakaocdn.net/do/c5c470298d527ef65eb52883f0f186c49f5287469802eca457586a25a096fd31',
     count: 0,
     barcode: '22222',
-    charger: '정한호',
+    charger: '오경우',
   },
   {
     id: 3,
-    title: 'WOW3',
+    title: 'KeyBoard',
     price: '3000',
     category: '소모품',
     team: 'Blockchain',
     img: 'https://item.kakaocdn.net/do/c5c470298d527ef65eb52883f0f186c46fb33a4b4cf43b6605fc7a1e262f0845',
     count: 3,
     barcode: '33333',
-    charger: '정한호',
+    charger: '오시몬',
   },
   {
     id: 4,
-    title: 'HANHO',
+    title: 'Phone',
     price: '4000',
     category: '소모품',
     team: 'Blockchain',
     img: 'https://item.kakaocdn.net/do/c5c470298d527ef65eb52883f0f186c415b3f4e3c2033bfd702a321ec6eda72c',
     count: 0,
     barcode: '44444',
-    charger: '정한호',
+    charger: '김요한',
   },
   {
     id: 5,
-    title: 'Test5',
+    title: 'Desk',
     price: '5000',
     category: '소모품',
     team: 'Blockchain',
@@ -56,6 +56,17 @@ const initial = [
     count: 5,
     barcode: '55555',
     charger: '정한호',
+  },
+  {
+    id: 6,
+    title: 'Chair',
+    price: '6000',
+    category: '소모품',
+    team: 'Blockchain',
+    img: 'https://item.kakaocdn.net/do/c5c470298d527ef65eb52883f0f186c48b566dca82634c93f811198148a26065',
+    count: 1,
+    barcode: '6666',
+    charger: '조재한',
   },
 ];
 
@@ -105,6 +116,7 @@ const EquipmentContainer = () => {
       zeroItem={zeroItem}
       listClick={listClick}
       itemid={itemid}
+      s
       handleOnClick={handleOnClick}
       editOn={editOn}
     />

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import Equip from './Components/Equip';
 import '../../../Css/equipment.css';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import AddIcon from '@mui/icons-material/Add';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import FormatListNumberedRtlIcon from '@mui/icons-material/FormatListNumberedRtl';
 
-import { EquipHeader, EquipSearch } from './Components';
+import { EquipHeader, EquipSearch, Equip } from './Components';
 
 const EquipmentPresenter = (props) => {
   /* Router */
@@ -71,7 +70,8 @@ const EquipmentPresenter = (props) => {
               </div>
 
               {emptycheck
-                ? // eslint-disable-next-line
+                ? // 재고없는항목표시 체크
+                  // eslint-disable-next-line
                   test.map((item) => {
                     if (item.count !== 0) {
                       if (item.title.indexOf(search) !== -1) {
@@ -91,10 +91,11 @@ const EquipmentPresenter = (props) => {
                               team={item.team}
                               category={item.category}
                               count={item.count}
+                              charger={item.charger}
                             />
                           </div>
                         );
-                      } else if (search.serach === '') {
+                      } else if (search.search === '') {
                         // 검색 입력 없을 시( 빈칸 )
 
                         return (
@@ -111,13 +112,15 @@ const EquipmentPresenter = (props) => {
                               team={item.team}
                               category={item.category}
                               count={item.count}
+                              charger={item.charger}
                             />
                           </div>
                         );
                       }
                     }
                   })
-                : // eslint-disable-next-line
+                : // 재고없는항목표시 체크 X
+                  // eslint-disable-next-line
                   test.map((item) => {
                     if (item.title.indexOf(search) !== -1) {
                       // 포함되어있는 경우 출력
@@ -136,10 +139,11 @@ const EquipmentPresenter = (props) => {
                             team={item.team}
                             category={item.category}
                             count={item.count}
+                            charger={item.charger}
                           />
                         </div>
                       );
-                    } else if (search.serach === '') {
+                    } else if (search.search === '') {
                       // 검색 입력 없을 시( 빈칸 )
 
                       return (
@@ -156,6 +160,7 @@ const EquipmentPresenter = (props) => {
                             team={item.team}
                             category={item.category}
                             count={item.count}
+                            charger={item.charger}
                           />
                         </div>
                       );
@@ -210,11 +215,13 @@ const EquipmentPresenter = (props) => {
                         {/* 여기서 IF 써야됨 */}
 
                         <div className="equip-page-itembox-clickitembox-infobox">
-                          <img
-                            className="centerflex equip-page-itembox-clickitembox-infobox-img"
-                            src={item.img}
-                            alt="img"
-                          />
+                          <div className="equip-page-itembox-clickitembox-infobox-imgbox">
+                            <img
+                              className="centerflex equip-page-itembox-clickitembox-infobox-img"
+                              src={item.img}
+                              alt="img"
+                            />
+                          </div>
                           <Equip.Text
                             title="제품명"
                             value={item.title}
@@ -240,6 +247,33 @@ const EquipmentPresenter = (props) => {
                         {/* IF 종료 */}
                       </div>
                     </div>
+
+                    // <div className="equip-page-itembox-right">
+                    //     <div className="equip-page-itembox-clickitembox">
+                    //         <div className="equip-page-itembox-clickitembox-titlebox">
+                    //             <p  className="equip-page-itembox-clickitembox-title">
+                    //                 제품 정보
+                    //             </p>
+                    //             <div className="equip-page-itembox-clickitembox-buttonbox">
+                    //                 <p className="centerflex equip-page-itembox-clickitembox-button">
+                    //                     인수
+                    //                 </p>
+                    //                 <p
+                    //                     className="centerflex equip-page-itembox-clickitembox-button"
+                    //                     onClick={editOn}
+                    //                 >
+                    //                     수정
+                    //                 </p>
+                    //                 <p className="centerflex equip-page-itembox-clickitembox-button">
+                    //                     삭제
+                    //                 </p>
+                    //             </div>
+                    //         </div>
+
+                    //         <EquipCreate />
+
+                    //     </div>
+                    // </div>
                   );
                 }
               })

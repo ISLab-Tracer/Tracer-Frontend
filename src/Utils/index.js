@@ -80,3 +80,8 @@ export const RegEmail = (email) => {
   const result = regEmail.test(email);
   return result;
 };
+
+export const ImgError = (e) => {
+  return (e.target.src =
+    'https://item.kakaocdn.net/do/c5c470298d527ef65eb52883f0f186c4d0bbab1214a29e381afae56101ded106');
+};
