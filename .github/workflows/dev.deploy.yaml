@@ -20,7 +20,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd ~/Tracer-Backend
+            cd ~/Tracer-Frontend
             git pull origin develop
             npm ci
             npm run build
