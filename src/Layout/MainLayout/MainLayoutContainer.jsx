@@ -11,22 +11,22 @@ const MainLayoutContainer = () => {
   /* State */
 
   /* Functions */
-  // const handleSession = useCallback(() => {
-  //   const token = checkSession();
-  //   console.log(token);
-  //   if (token) {
-  //     return;
-  //   }
+  const handleSession = useCallback(() => {
+    const token = checkSession();
+    console.log(token);
+    if (token) {
+      return;
+    }
 
-  //   handleLoadingTimer(1000, () => {
-  //     navigate('/login');
-  //   });
-  // }, [navigate, handleLoadingTimer]);
+    handleLoadingTimer(1000, () => {
+      navigate('/login');
+    });
+  }, [navigate, handleLoadingTimer]);
 
   /* Hooks */
-  // useLayoutEffect(() => {
-  //   handleSession();
-  // }, [handleSession]);
+  useLayoutEffect(() => {
+    handleSession();
+  }, [handleSession]);
 
   /* Render */
   return <MainLayoutPresenter />;

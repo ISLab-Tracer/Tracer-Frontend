@@ -247,33 +247,6 @@ const EquipmentPresenter = (props) => {
                         {/* IF 종료 */}
                       </div>
                     </div>
-
-                    // <div className="equip-page-itembox-right">
-                    //     <div className="equip-page-itembox-clickitembox">
-                    //         <div className="equip-page-itembox-clickitembox-titlebox">
-                    //             <p  className="equip-page-itembox-clickitembox-title">
-                    //                 제품 정보
-                    //             </p>
-                    //             <div className="equip-page-itembox-clickitembox-buttonbox">
-                    //                 <p className="centerflex equip-page-itembox-clickitembox-button">
-                    //                     인수
-                    //                 </p>
-                    //                 <p
-                    //                     className="centerflex equip-page-itembox-clickitembox-button"
-                    //                     onClick={editOn}
-                    //                 >
-                    //                     수정
-                    //                 </p>
-                    //                 <p className="centerflex equip-page-itembox-clickitembox-button">
-                    //                     삭제
-                    //                 </p>
-                    //             </div>
-                    //         </div>
-
-                    //         <EquipCreate />
-
-                    //     </div>
-                    // </div>
                   );
                 }
               })
