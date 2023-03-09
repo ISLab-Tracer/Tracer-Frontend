@@ -6,6 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import LoadingManager from './Utils/LoadingManager';
 
+console.log(`
+--------------------------
+\n
+Release Version: V1.0
+Last Release: 2023.03.09
+\n
+--------------------------`);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
