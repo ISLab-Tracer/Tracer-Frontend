@@ -1,15 +1,26 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import LoadingManager from './Utils/LoadingManager';
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+console.log(`
+--------------------------
+\n
+Release Version: V1.0
+Last Release: 2023.03.09
+\n
+--------------------------`);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <LoadingManager>
+        <App />
+      </LoadingManager>
     </BrowserRouter>
   </React.StrictMode>
 );
