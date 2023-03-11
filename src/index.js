@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import LoadingManager from './Utils/LoadingManager';
+import SessionManager from 'Hooks/SessionManager';
 
 console.log(`
 --------------------------
@@ -16,13 +17,13 @@ Last Release: 2023.03.09
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
+  <BrowserRouter>
+    <SessionManager>
       <LoadingManager>
         <App />
       </LoadingManager>
-    </BrowserRouter>
-  </React.StrictMode>
+    </SessionManager>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -31,6 +31,11 @@ const AUTH_API = {
    * @param
    */
   REQUEST_SIGNIN: `${BASE_URL}/auth/signin`,
+  /**
+   * @method POST
+   * @param
+   */
+  VERIFY_TOKEN: `${BASE_URL}/auth/verify`,
 };
 
 const TEAM_API = {

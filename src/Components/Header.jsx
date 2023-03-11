@@ -4,6 +4,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useNavigate } from 'react-router-dom';
 import DropdownProfile from './DropdownProfile';
+
 const Header = () => {
   /* Router */
   /* State */

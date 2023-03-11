@@ -3,8 +3,11 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import { useNavigate } from 'react-router-dom';
 import { logout } from 'Utils';
+import { useSession } from 'Hooks/SessionManager';
 
 const DropdownProfile = ({ info, setInfo, drop }) => {
+  const { session } = useSession();
+  const { user_nm } = session;
   /* Router */
   /* State */
   const navigate = useNavigate();
@@ -61,7 +64,7 @@ const DropdownProfile = ({ info, setInfo, drop }) => {
   /* Render */
   return (
     <div className="info-menu-container" ref={dropMenuRef}>
-      <div className="info-name">이름</div>
+      <div className="info-name">{user_nm}</div>
       <div
         className="info-menu"
         id="info"

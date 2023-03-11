@@ -99,6 +99,25 @@ const AuthAPI = {
       return false;
     }
   },
+
+  /**
+   * 토큰 검증
+   * --
+   * @returns
+   */
+  verifyToken: async () => {
+    try {
+      const url = APIConstant.VERIFY_TOKEN;
+      const result = await $http.post(url);
+      const { status, message, data } = result;
+      if (status === 200) {
+        return data;
+      }
+      throw message;
+    } catch (e) {
+      return false;
+    }
+  },
 };
 
 export default AuthAPI;

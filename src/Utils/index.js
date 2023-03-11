@@ -1,3 +1,4 @@
+import { Buffer } from 'buffer';
 export { default as APIManager } from './APIManager';
 export { default as TypeManager } from './TypeManager';
 export const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -12,6 +13,19 @@ export const checkSession = () => {
   const s = getCookie('ISLAB_TRACER');
   if (s && s.length >= 0) {
     return true;
+  }
+  return false;
+};
+
+/**
+ * 세션 정보 불러오기
+ * @returns
+ */
+export const getSession = () => {
+  const access_token = getCookie('ISLAB_TRACER');
+  const s = JSON.parse(getCookie('TRACER_USER'));
+  if (access_token && access_token.length >= 0) {
+    return { access_token, ...s };
   }
   return false;
 };
@@ -82,4 +96,24 @@ export const RegEmail = (email) => {
 export const ImgError = (e) => {
   return (e.target.src =
     'https://item.kakaocdn.net/do/c5c470298d527ef65eb52883f0f186c4d0bbab1214a29e381afae56101ded106');
+};
+
+/**
+ * Buffer 쓰기
+ * --
+ * @param {string} str
+ * @returns
+ */
+export const writeBuffer = (str, format = 'base64') => {
+  return Buffer.from(str, 'utf8').toString(format);
+};
+
+/**
+ * Buffer 읽기
+ * --
+ * @param {string} str
+ * @returns
+ */
+export const readBuffer = (str, format = 'base64') => {
+  return Buffer.from(str, format).toString('utf8');
 };
