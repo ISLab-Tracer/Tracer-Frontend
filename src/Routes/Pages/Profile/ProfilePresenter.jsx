@@ -1,15 +1,34 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Properties from './Components/Properties';
 import './profile.css';
-const ProfilePresenter = () => {
+const ProfilePresenter = ({ getUserInfo }) => {
+  /* Router */
+  /* State */
   const initialState = {
-    user_name: '오시몬',
-    user_email: 'simon@islab.re.kr',
-    user_phone: '010-2914-9302',
-    user_team: 'Blockchain',
+    user_nm: '',
   };
-
   const [userInfo, setUserInfo] = useState(initialState);
+
+  /* Functions */
+  const handleUserInfo = useCallback(async () => {
+    if (userInfo.user_id) {
+      return;
+    }
+    const result = await getUserInfo();
+    if (result) {
+      setUserInfo(result);
+      return true;
+    }
+    return false;
+  }, [userInfo, getUserInfo]);
+
+  /* Hooks */
+  useEffect(() => {
+    handleUserInfo();
+  }, [handleUserInfo]);
+
+  /* Render */
+
   return (
     <div className="main-content-container">
       <Properties title="회원정보">
@@ -50,9 +69,8 @@ const ProfilePresenter = () => {
           property="user_team"
           value={userInfo}
           setValue={setUserInfo}
-          style={{width: '50%'}}
-        >
-        </Properties.Select>
+          style={{ width: '50%' }}
+        ></Properties.Select>
       </Properties>
     </div>
   );
