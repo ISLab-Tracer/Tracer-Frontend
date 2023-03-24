@@ -10,8 +10,8 @@ import SessionManager from 'Hooks/SessionManager';
 console.log(`
 --------------------------
 \n
-Release Version: V1.0
-Last Release: 2023.03.09
+Release Version: V1.0.0.1
+Last Release: 2023.03.24
 \n
 --------------------------`);
 

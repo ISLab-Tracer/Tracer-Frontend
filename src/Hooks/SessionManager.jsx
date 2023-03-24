@@ -71,6 +71,7 @@ const SessionManager = ({ children }) => {
     setSession(s_user);
     setCookie('ISLAB_TRACER', access_token);
     setCookie('TRACER_USER', JSON.stringify(s_user));
+    checkSession();
     return true;
   };
 

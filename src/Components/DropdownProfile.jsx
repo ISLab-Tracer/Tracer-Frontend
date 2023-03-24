@@ -16,6 +16,8 @@ const DropdownProfile = ({ info, setInfo, drop }) => {
   /* Hooks */
   /**
    * 클릭 감지
+   * FIXME
+   * NOTE Real DOM 접근 없앨것.
    */
   useEffect(() => {
     document.addEventListener('mousedown', clickOutSide);

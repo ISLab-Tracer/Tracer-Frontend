@@ -1,16 +1,22 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Properties from './Components/Properties';
 import './profile.css';
-const ProfilePresenter = ({ getUserInfo }) => {
+const ProfilePresenter = ({ teams, getUserInfo }) => {
   /* Router */
   /* State */
   const initialState = {
     user_nm: '',
+    user_email: '',
+    team_id: '',
+    team: {
+      team_id: '',
+      team_nm: '',
+    },
   };
   const [userInfo, setUserInfo] = useState(initialState);
 
   /* Functions */
-  const handleUserInfo = useCallback(async () => {
+  const handleGetUserInfo = useCallback(async () => {
     if (userInfo.user_id) {
       return;
     }
@@ -24,8 +30,8 @@ const ProfilePresenter = ({ getUserInfo }) => {
 
   /* Hooks */
   useEffect(() => {
-    handleUserInfo();
-  }, [handleUserInfo]);
+    handleGetUserInfo();
+  }, [handleGetUserInfo]);
 
   /* Render */
 
@@ -35,9 +41,8 @@ const ProfilePresenter = ({ getUserInfo }) => {
         <Properties.Input
           feildTitle="이름"
           name="이름"
-          property="user_name"
-          value={userInfo}
-          setValue={setUserInfo}
+          property="user_nm"
+          value={userInfo.user_nm}
           style={{ width: '50%' }}
           disabled={true}
           variant="filled"
@@ -46,31 +51,23 @@ const ProfilePresenter = ({ getUserInfo }) => {
           feildTitle="이메일"
           name="이메일"
           property="user_email"
-          value={userInfo}
-          setValue={setUserInfo}
+          value={userInfo.user_email}
           style={{ width: '50%' }}
           disabled={true}
           variant="filled"
         />
-        <Properties.Input
-          feildTitle="휴대폰"
-          name="휴대폰"
-          property="user_phone"
-          value={userInfo}
-          setValue={setUserInfo}
-          style={{ width: '50%' }}
-        />
       </Properties>
 
       <Properties title="팀정보">
-        <Properties.Select
+        <Properties.Input
           feildTitle="팀명"
           name="팀명"
-          property="user_team"
-          value={userInfo}
-          setValue={setUserInfo}
+          property="team_id"
+          value={userInfo.team.team_nm}
           style={{ width: '50%' }}
-        ></Properties.Select>
+          variant="filled"
+          disabled
+        />
       </Properties>
     </div>
   );
