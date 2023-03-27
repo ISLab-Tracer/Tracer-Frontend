@@ -113,4 +113,32 @@ Properties.Select = ({
   );
 };
 
+Properties.Header = ({}) => {
+  return (
+    <div className="profile-page-mainbox-header">
+      <div className="profile-page-mainbox-header-div">
+        <span className="profile-page-mainbox-header-div-top">
+          결제 및 설정
+        </span>
+      </div>
+      <div className="profile-page-mainbox-header-div">
+        <span className="profile-page-mainbox-header-div-bottom">
+          유저 설정
+        </span>
+      </div>
+    </div>
+  );
+};
+
+Properties.Box = ({ feildTitle, children }) => {
+  return (
+    <div className="property-box-main">
+      <div className="property-box-main-title">
+        <span>{feildTitle}</span>
+      </div>
+      {children}
+    </div>
+  );
+};
+
 export default Properties;
