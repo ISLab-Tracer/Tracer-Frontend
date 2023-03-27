@@ -37,7 +37,17 @@ const ProfilePresenter = ({ teams, getUserInfo }) => {
 
   return (
     <div className="main-content-container">
-      <Properties title="회원정보">
+      <div className="profile-page-main">
+        <div className="profile-page-mainbox">
+          <Properties.Box feildTitle="유저정보">
+            <div>입력</div>
+            <div>저장</div>
+          </Properties.Box>
+          <div>3</div>
+          <div>4</div>
+        </div>
+      </div>
+      {/* <Properties title="회원정보">
         <Properties.Input
           feildTitle="이름"
           name="이름"
@@ -68,7 +78,7 @@ const ProfilePresenter = ({ teams, getUserInfo }) => {
           variant="filled"
           disabled
         />
-      </Properties>
+      </Properties> */}
     </div>
   );
 };

@@ -43,3 +43,61 @@
 .profile-details-container .feild-container .property-feild {
   width: 80%;
 }
+
+.property-box-main {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #c5c5fd;
+}
+
+.property-box-main-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+  border-bottom: 1px solid #dfdfe5;
+  font-size: 18px;
+  line-height: 27px;
+  font-weight: 500;
+}
+
+.profile-page-main {
+  min-width: 948px;
+  max-width: 1660px;
+  height: 100%;
+}
+
+.profile-page-mainbox {
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.profile-page-mainbox-header {
+  display: flex;
+  height: 84px;
+  -webkit-box-align: end;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex-direction: column;
+  background-color: greenyellow;
+}
+
+.profile-page-mainbox-header-div {
+  display: flex;
+  align-items: center;
+}
+
+.profile-page-mainbox-header-div-top {
+  font-size: 12px;
+  line-height: 18px;
+  color: #8f91a0;
+}
+
+.profile-page-mainbox-header-div-bottom {
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 500;
+}
