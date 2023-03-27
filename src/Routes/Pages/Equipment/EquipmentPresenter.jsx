@@ -1,11 +1,11 @@
 import React from 'react';
-import '../../../Css/equipment.css';
-import ViewListIcon from '@mui/icons-material/ViewList';
-import AddIcon from '@mui/icons-material/Add';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import FormatListNumberedRtlIcon from '@mui/icons-material/FormatListNumberedRtl';
-
 import { EquipHeader, EquipSearch, Equip } from './Components';
+import '../../../Css/equipment.css';
+import {
+  Add,
+  FormatListNumbered,
+  KeyboardArrowDown,
+} from '@mui/icons-material';
 
 const EquipmentPresenter = ({
   equipList,
@@ -15,13 +15,9 @@ const EquipmentPresenter = ({
   editOn,
 }) => {
   /* Router */
-
   /* State */
-
   /* Hooks */
-
   /* Functions */
-
   /* Render */
   const equipRender = equipList.map((item) => {
     const {
@@ -58,17 +54,9 @@ const EquipmentPresenter = ({
 
   return (
     <div className="main-content-container">
-      <EquipHeader
-        ViewListIcon={ViewListIcon}
-        AddIcon={AddIcon}
-        KeyboardArrowDownIcon={KeyboardArrowDownIcon}
-      />
+      <EquipHeader />
 
-      <EquipSearch
-      // setSearch={setSearch}
-      // emptycheck={emptycheck}
-      // setEmptycheck={setEmptycheck}
-      />
+      <EquipSearch />
 
       {/* 메인 */}
       <div className="equip-page-mainbox">
@@ -78,7 +66,7 @@ const EquipmentPresenter = ({
               등록된 제품이 없습니다. 제품을 추가해주세요.
             </p>
             <div className="equip-page-zeroitembox-button">
-              <AddIcon />
+              <Add />
               <p>제품추가</p>
             </div>
           </div>
@@ -91,11 +79,11 @@ const EquipmentPresenter = ({
                   전체보기
                 </p>
                 <p className="equip-page-itembox-left-titleall-second">
-                  <KeyboardArrowDownIcon />
+                  <KeyboardArrowDown />
                 </p>
               </div>
               <div className="equip-page-itembox-left-sortbox">
-                <FormatListNumberedRtlIcon />
+                <FormatListNumbered />
               </div>
             </div>
             {equipRender}

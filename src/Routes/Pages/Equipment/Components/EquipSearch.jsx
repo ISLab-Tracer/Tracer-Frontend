@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import SearchIcon from '@mui/icons-material/Search';
-import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
+import { QrCodeScanner, Search } from '@mui/icons-material';
 
 const EquipSearch = ({ setSearch, setEmptycheck }) => {
   /* Router */
@@ -29,7 +28,7 @@ const EquipSearch = ({ setSearch, setEmptycheck }) => {
             : 'equip-page-search-inputbox-focus'
         }
       >
-        <SearchIcon />
+        <Search />
         <input
           type="text"
           className="equip-page-search-input"
@@ -40,7 +39,7 @@ const EquipSearch = ({ setSearch, setEmptycheck }) => {
         />
       </div>
       <div className="equip-page-search-codebox">
-        <QrCodeScannerIcon style={{ color: '#8f91a0' }} />
+        <QrCodeScanner style={{ color: '#8f91a0' }} />
       </div>
     </div>
   );

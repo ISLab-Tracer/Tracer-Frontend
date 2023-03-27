@@ -1,6 +1,7 @@
+import { Add, ViewList } from '@mui/icons-material';
 import React from 'react';
 
-const EquipHeader = ({ ViewListIcon, AddIcon, KeyboardArrowDownIcon }) => {
+const EquipHeader = ({}) => {
   /* Router */
   /* State */
   /* Hooks */
@@ -13,14 +14,14 @@ const EquipHeader = ({ ViewListIcon, AddIcon, KeyboardArrowDownIcon }) => {
       <div className="equip-page-buttonbox">
         <div className="equip-page-button-firsthover">
           <div className="equip-page-button equip-page-button-first">
-            <AddIcon />
+            <Add />
             <p>제품 추가</p>
-            <KeyboardArrowDownIcon />
+            {/* <KeyboardArrowDownIcon /> */}
           </div>
         </div>
         <div className="equip-page-button-secondhover">
           <div className="equip-page-button equip-page-button-second">
-            <ViewListIcon />
+            <ViewList />
             <p>데이터 관리</p>
           </div>
         </div>
