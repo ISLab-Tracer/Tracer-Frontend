@@ -60,6 +60,16 @@ const EQUIPMENT_API = {
    * @param
    */
   CREATE_EQUIPMENT: `${BASE_URL}/equipment`,
+  /**
+   * @method GET
+   * @param
+   */
+  GET_EQUIPMENT_LIST: `${BASE_URL}/equipment`,
+  /**
+   * @method GET
+   * @param { string } equipment_id
+   */
+  GET_EQUIPMENT: `${BASE_URL}/equipment/:equipment_id`,
 };
 
 const APIConstant = {

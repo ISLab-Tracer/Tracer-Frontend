@@ -5,23 +5,48 @@ const Equip = ({ childrun }) => {
   return { childrun };
 };
 
-Equip.List = ({ img, title, price, team, category, count, charger }) => {
+Equip.List = ({
+  id,
+  img,
+  title,
+  price,
+  team,
+  category,
+  count,
+  charger,
+  onClick,
+}) => {
+  /* Router */
+  /* State */
+  /* Functions */
+  const handleOnClick = () => {
+    onClick(id);
+  };
+  /* Hooks */
+  /* Render */
   return (
-    <div className="equip-page-itembox-left-list">
-      <img
-        className="equip-page-itembox-left-img"
-        src={img}
-        alt="img"
-        onError={ImgError}
-      />
-      <div className="equip-page-itembox-left-info">
-        <p className="equip-page-itembox-left-info-title">{title}</p>
-        <p className="equip-page-itembox-left-info-property">
-          {price}원 / {team} / {category} / {charger}
-        </p>
-      </div>
-      <div className="equip-page-itembox-left-countbox">
-        <p>{count}</p>
+    <div
+      className="equip-page-itembox-left-listbox"
+      id={id}
+      name={id}
+      onClick={handleOnClick}
+    >
+      <div className="equip-page-itembox-left-list">
+        <img
+          className="equip-page-itembox-left-img"
+          src={img}
+          alt="img"
+          onError={ImgError}
+        />
+        <div className="equip-page-itembox-left-info">
+          <p className="equip-page-itembox-left-info-title">{title}</p>
+          <p className="equip-page-itembox-left-info-property">
+            {price}원 / {team} / {category} / {charger}
+          </p>
+        </div>
+        <div className="equip-page-itembox-left-countbox">
+          <p>{count}</p>
+        </div>
       </div>
     </div>
   );
@@ -64,6 +89,75 @@ Equip.Img = ({ src }) => {
 
 Equip.File = () => {
   return <input type="file" accept="image/*" />;
+};
+
+Equip.Detail = ({
+  editOn,
+  id,
+  title,
+  price,
+  thumbnail,
+  charger,
+  qty,
+  team,
+}) => {
+  return (
+    <div className="equip-page-itembox-right">
+      <div className="equip-page-itembox-clickitembox">
+        <div className="equip-page-itembox-clickitembox-titlebox">
+          <p className="equip-page-itembox-clickitembox-title">제품 정보</p>
+          <div className="equip-page-itembox-clickitembox-buttonbox">
+            <p className="centerflex equip-page-itembox-clickitembox-button">
+              인수
+            </p>
+            <p
+              className="centerflex equip-page-itembox-clickitembox-button"
+              onClick={editOn}
+            >
+              수정
+            </p>
+            <p className="centerflex equip-page-itembox-clickitembox-button">
+              삭제
+            </p>
+          </div>
+        </div>
+
+        {/* 여기서 IF 써야됨 */}
+
+        <div className="equip-page-itembox-clickitembox-infobox">
+          <div className="equip-page-itembox-clickitembox-infobox-imgbox">
+            <img
+              className="centerflex equip-page-itembox-clickitembox-infobox-img"
+              src={thumbnail}
+              alt="img"
+            />
+          </div>
+          <Equip.Text
+            title="제품명"
+            value={title}
+            style={{
+              paddingTop: '2%',
+              borderTop: '1px solid #cccdd4',
+            }}
+          />
+
+          {/* <Equip.Text title="바코드" value={} /> */}
+
+          <Equip.Text title="가격" value={price} />
+
+          <Equip.Text title="소유자" value={charger} />
+
+          <Equip.Text title="팀" value={team} />
+        </div>
+
+        <div className="equip-page-itembox-clickitembox-changebox line">
+          <Equip.Text title="수량" value={qty} />
+        </div>
+
+        {/* IF 종료 */}
+      </div>
+    </div>
+  );
 };
 
 export default Equip;
