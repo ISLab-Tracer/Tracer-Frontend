@@ -1,9 +1,6 @@
 import React from 'react';
 import {
-  //   Checkbox,
   FormControl,
-  //   FormControlLabel,
-  //   FormHelperText,
   InputLabel,
   MenuItem,
   Select,
@@ -33,7 +30,10 @@ Properties.Input = ({
   disabled = false,
 }) => {
   const handleValue = (e) => {
-    setValue({ ...value, [e.target.name]: e.target.value });
+    if (!setValue) {
+      return;
+    }
+    setValue(e.target.name, e.target.value);
   };
   return (
     <div className="feild-container">
@@ -47,11 +47,19 @@ Properties.Input = ({
           size={size}
           helperText={desc}
           style={style}
-          value={value[property]}
+          value={value}
           onChange={handleValue}
         ></TextField>
       </div>
     </div>
+  );
+};
+
+Properties.Menus = ({ name, value }) => {
+  return (
+    <MenuItem key={name} value={value}>
+      {name}
+    </MenuItem>
   );
 };
 
@@ -63,11 +71,25 @@ Properties.Select = ({
   setValue,
   style,
   disabled = false,
-  team,
+  items = [],
+  render,
 }) => {
   const handleValue = (e) => {
-    setValue({ ...value, [e.target.name]: e.target.value });
+    if (!setValue) {
+      return;
+    }
+    setValue(e.target.name, e.target.value);
   };
+
+  const renderMenus = render
+    ? items.map(render)
+    : items.map((item) => {
+        return (
+          <Properties.Menus key={item.value} value={item.value}>
+            {item.name}
+          </Properties.Menus>
+        );
+      });
 
   return (
     <div className="feild-container">
@@ -77,26 +99,13 @@ Properties.Select = ({
           <InputLabel>{feildTitle}</InputLabel>
           <Select
             name={property}
-            value={value[property]}
+            value={value}
             label={name}
             onChange={handleValue}
             style={style}
             disabled={disabled}
           >
-            {/* Map 수정 */}
-            {/* Team State를 Map 작성 */}
-            <MenuItem name="user_email" value="AI">
-              AI
-            </MenuItem>
-            <MenuItem name="user_email" value="Blockchain">
-              Blockchain
-            </MenuItem>
-            <MenuItem name="user_email" value="Hardware">
-              Hardware
-            </MenuItem>
-            <MenuItem name="user_email" value="Quantum">
-              Quantum
-            </MenuItem>
+            {render ? renderMenus : <MenuItem value="0">선택</MenuItem>}
           </Select>
         </FormControl>
       </div>

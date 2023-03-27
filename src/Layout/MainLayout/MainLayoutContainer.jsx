@@ -1,6 +1,6 @@
-import React, { useCallback, useLayoutEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { checkSession } from 'Utils';
+import { getSession } from 'Utils';
 import { useLoading } from 'Utils/LoadingManager';
 import MainLayoutPresenter from './MainLayoutPresenter';
 
@@ -12,8 +12,7 @@ const MainLayoutContainer = () => {
 
   /* Functions */
   const handleSession = useCallback(() => {
-    const token = checkSession();
-    if (token) {
+    if (getSession()) {
       return;
     }
 
@@ -23,7 +22,7 @@ const MainLayoutContainer = () => {
   }, [navigate, handleLoadingTimer]);
 
   /* Hooks */
-  useLayoutEffect(() => {
+  useEffect(() => {
     handleSession();
   }, [handleSession]);
 

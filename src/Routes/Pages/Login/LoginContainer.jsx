@@ -1,12 +1,14 @@
 import React, { useCallback, useLayoutEffect, useState } from 'react';
 import LoginPresenter from './LoginPresenter';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { RegEmail, setCookie } from '../../../Utils';
+import { RegEmail } from '../../../Utils';
 import { useLoading } from '../../../Utils/LoadingManager';
 import { AuthAPI } from 'API';
+import { useSession } from 'Hooks/SessionManager';
 
 const LoginContainer = () => {
   const { handleLoading, handleLoadingTimer } = useLoading();
+  const { session, handleSession } = useSession();
   /* Router */
   const navigate = useNavigate();
   const { login_id } = useParams();
@@ -75,28 +77,29 @@ const LoginContainer = () => {
     const result = await AuthAPI.requestSignin(postData);
     if (result) {
       handleLoadingTimer(1000, () => {
-        const { access_token, ...user } = result;
-        setCookie('ISLAB_TRACER', access_token);
-        setCookie('TRACER_USER', JSON.stringify(user));
+        handleSession(result);
         navigate('/');
+        return true;
       });
       return false;
     }
 
+    if (session) {
+      return;
+    }
+
     handleLoadingTimer(3000, () => {
-      alert('로그인정보가 정확하지 않습니다.');
       navigate('/login');
     });
     return;
-
-    // 세션 처리
-    // 로그인 처리
-    // 지금은 이렇게 두고 나중에 user DB정보에 없는 유저가 나오면 error 문구에 등록되지 않은 사용자라고 알려주자
-    // 어차피 이메일양식 체크만 되면 버튼 활성화/비활성화가 되니깐 따로 공백체크는 안해도 될거 같아
-    // handleLoadingTimer(3000, () => {
-    //   navigate('/');
-    // });
-  }, [login_id, navigate, handleLoading, handleLoadingTimer]);
+  }, [
+    login_id,
+    navigate,
+    handleLoading,
+    handleLoadingTimer,
+    handleSession,
+    session,
+  ]);
 
   /* Hooks */
   useLayoutEffect(() => {
