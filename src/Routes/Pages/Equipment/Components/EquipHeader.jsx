@@ -1,18 +1,26 @@
 import { Add, ViewList } from '@mui/icons-material';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const EquipHeader = ({}) => {
+const EquipHeader = () => {
   /* Router */
+  const navigate = useNavigate();
   /* State */
   /* Hooks */
   /* Functions */
-
+  const handleCreatePage = () => {
+    navigate('/equipment/register');
+    return;
+  };
   /* Render */
   return (
     <div className="equip-page-titlebox">
       <h4 className="equip-page-title-h4">제품 목록</h4>
       <div className="equip-page-buttonbox">
-        <div className="equip-page-button-firsthover">
+        <div
+          className="equip-page-button-firsthover"
+          onClick={handleCreatePage}
+        >
           <div className="equip-page-button equip-page-button-first">
             <Add />
             <p>제품 추가</p>

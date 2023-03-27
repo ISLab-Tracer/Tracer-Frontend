@@ -7,6 +7,18 @@ import {
   KeyboardArrowDown,
 } from '@mui/icons-material';
 
+const EmptyEquipList = () => {
+  return (
+    <div className="equip-page-itembox-right">
+      <div className="equip-page-itembox-zeroitem">
+        <p className="equip-page-itembox-zeroitem-p">
+          왼쪽목록에서 제품을 선택하면 자세히 볼 수 있습니다.
+        </p>
+      </div>
+    </div>
+  );
+};
+
 const EquipmentPresenter = ({
   equipList,
   zeroItem,
@@ -89,8 +101,6 @@ const EquipmentPresenter = ({
             {equipRender}
           </div>
 
-          {/* ****** 페이지 디자인 개편이 시급 ****** */}
-
           {itemid ? (
             <Equip.Detail
               id={detailItem.equipment_id}
@@ -103,14 +113,7 @@ const EquipmentPresenter = ({
               editOn={() => {}}
             />
           ) : (
-            // 목록 클릭 안했을 경우
-            <div className="equip-page-itembox-right">
-              <div className="equip-page-itembox-zeroitem">
-                <p className="equip-page-itembox-zeroitem-p">
-                  왼쪽목록에서 제품을 선택하면 자세히 볼 수 있습니다.
-                </p>
-              </div>
-            </div>
+            <EmptyEquipList />
           )}
         </div>
       </div>
