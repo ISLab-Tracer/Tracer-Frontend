@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../../../Css/equipment.css';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import AddIcon from '@mui/icons-material/Add';
@@ -17,9 +17,6 @@ const EquipmentPresenter = ({
   /* Router */
 
   /* State */
-
-  const [search, setSearch] = useState('');
-  const [emptycheck, setEmptycheck] = useState(false);
 
   /* Hooks */
 
@@ -68,9 +65,9 @@ const EquipmentPresenter = ({
       />
 
       <EquipSearch
-        setSearch={setSearch}
-        // emptycheck={emptycheck}
-        setEmptycheck={setEmptycheck}
+      // setSearch={setSearch}
+      // emptycheck={emptycheck}
+      // setEmptycheck={setEmptycheck}
       />
 
       {/* 메인 */}
