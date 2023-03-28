@@ -5,10 +5,30 @@
 }
 
 .equipment-register-container .equipment-register-form{
-    width: 100%;
+    width: 70%;
     min-height: 500px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
+}
+
+.equipment-register-container .equipment-register-form .equipinfo-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.equipment-register-container .equipment-register-form .equipinfo-wrapper .left{
+    flex: 1;
+}
+
+.equipment-register-container .equipment-register-form .equipinfo-wrapper .right{
+    min-width: 200px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #f00;
 }

@@ -36,6 +36,8 @@
 
 .eqipInfo-container .profile-details-container .field-container h5 {
     min-width: 100px;
+    font-weight: 500;
+    font-size: 0.825rem;
 }
 
 .eqipInfo-container .profile-details-container .field-container .property-feild {
