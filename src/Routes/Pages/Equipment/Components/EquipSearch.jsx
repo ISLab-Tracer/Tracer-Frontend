@@ -1,65 +1,48 @@
 import React, { useState } from 'react';
-import SearchIcon from '@mui/icons-material/Search';
-import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
+import { QrCodeScanner, Search } from '@mui/icons-material';
 
-const EquipSearch = (props) => {
+const EquipSearch = ({ setSearch, setEmptycheck }) => {
+  /* Router */
 
-    /* Router */
+  /* State */
+  const [inputClick, setInputClick] = useState(true);
 
-    /* State */
-    const { setSearch, emptycheck, setEmptycheck } = props;
-    const [ inputClick, setInputClick ] = useState(true);
+  /* Hooks */
 
-    /* Hooks */
+  /* Functions */
+  const handleOnChange = (e) => {
+    setSearch(e.target.value);
+  };
 
-    /* Functions */
-    const handleOnChange = e => {
+  const handleOnFocus = () => {
+    setInputClick(!inputClick);
+  };
 
-        setSearch( e.target.value );
-    }
-
-    const handleOnCheck = () => {
-
-        setEmptycheck( !emptycheck );
-    }
-    
-    const handleOnFocus = () => {
-
-        setInputClick( !inputClick );
-    }
-    
-    /* Render */
-    return (
-        <div className="equip-page-searchbox">
-            <div className={
-            inputClick ? 'equip-page-search-inputbox' : 'equip-page-search-inputbox-focus'
-            }
-            >
-            <SearchIcon />
-            <input 
-                type="text"
-                className="equip-page-search-input"
-                placeholder="이름, 바코드, 속성 검색"
-                onFocus={ handleOnFocus }
-                onBlur={ handleOnFocus }
-                onChange={ handleOnChange }
-            />
-            </div>
-            <div className="equip-page-search-codebox">
-            <QrCodeScannerIcon style={{ color: '#8f91a0' }}/>
-            </div>
-            <div className="equip-page-search-checkbox">
-            <input
-                type="checkbox"
-                className="equip-page-search-checkbox-inputClick"
-                onChange={ handleOnCheck }
-            />
-            <p className="equip-page-search-checkbox-input">
-                재고 없는 항목 제외
-            </p>
-            </div>
-        </div>
-    );
-}
+  /* Render */
+  return (
+    <div className="equip-page-searchbox">
+      <div
+        className={
+          inputClick
+            ? 'equip-page-search-inputbox'
+            : 'equip-page-search-inputbox-focus'
+        }
+      >
+        <Search />
+        <input
+          type="text"
+          className="equip-page-search-input"
+          placeholder="이름, 바코드, 속성 검색"
+          onFocus={handleOnFocus}
+          onBlur={handleOnFocus}
+          onChange={handleOnChange}
+        />
+      </div>
+      <div className="equip-page-search-codebox">
+        <QrCodeScanner style={{ color: '#8f91a0' }} />
+      </div>
+    </div>
+  );
+};
 
 export default EquipSearch;
