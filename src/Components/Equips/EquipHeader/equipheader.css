@@ -1,8 +1,14 @@
 .equipment-header-container {
     width: 100%;
-    /* min-height: 60px; */
-    height: 100px;
-    margin-bottom: 15px;
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.equipment-header-container .top{
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,4 +37,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.equipment-header-container .bottom{
+    width: 100%;
+}
+
+.equipment-header-container .bottom div{
+    width: 100%;
+    font-size: 1.15rem;
 }

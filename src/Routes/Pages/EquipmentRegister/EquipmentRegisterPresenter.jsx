@@ -1,8 +1,6 @@
 import { Button } from '@mui/material';
-import { EquipHeader } from 'Components';
+import { EquipHeader, EquipInfo, EquipSubTitle } from 'Components';
 import React from 'react';
-import { EquipmentThumbnail } from './components';
-
 import './equipment-register.css';
 
 const EquipmentRegisterPresenter = () => {
@@ -22,7 +20,14 @@ const EquipmentRegisterPresenter = () => {
           </Button>
         }
       />
-      {/* <EquipmentThumbnail /> */}
+      <div className="equipment-register-form">
+        <EquipInfo title="제품 정보">
+          <EquipInfo.Input label="제품명" />
+        </EquipInfo>
+        <EquipInfo title="제품 속성">
+          <EquipInfo.Input />
+        </EquipInfo>
+      </div>
     </div>
   );
 };

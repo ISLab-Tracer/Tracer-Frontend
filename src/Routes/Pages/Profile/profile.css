@@ -21,6 +21,8 @@
 
 .profile-properties-container > h3 {
   margin: 10px 0px;
+  font-weight: 400;
+  font-size: 1.15rem;
 }
 
 .profile-details-container {
@@ -38,6 +40,8 @@
   justify-content: flex-start;
   align-items: center;
   margin-right: 20px;
+  font-weight: normal;
+  font-size: 1rem;
 }
 
 .profile-details-container .feild-container .property-feild {
