@@ -6,33 +6,8 @@ import {
   Select,
   TextField,
 } from '@mui/material';
-
-const times = [
-  '00:00',
-  '01:00',
-  '02:00',
-  '03:00',
-  '04:00',
-  '05:00',
-  '06:00',
-  '07:00',
-  '08:00',
-  '09:00',
-  '10:00',
-  '11:00',
-  '12:00',
-  '13:00',
-  '14:00',
-  '15:00',
-  '16:00',
-  '17:00',
-  '18:00',
-  '19:00',
-  '20:00',
-  '21:00',
-  '22:00',
-  '23:00',
-];
+import { AiFillQuestionCircle } from 'react-icons/ai';
+import { click } from '@testing-library/user-event/dist/click';
 
 const Properties = ({ title = 'title', children }) => {
   return (
@@ -63,6 +38,9 @@ Properties.Input = ({
   style = { width: '100%' },
   property,
   disabled = false,
+  multiline = true,
+  rows,
+  h5style,
 }) => {
   const handleValue = (e) => {
     if (!setValue) {
@@ -72,7 +50,7 @@ Properties.Input = ({
   };
   return (
     <div className="field-container">
-      <h5>{fieldTitle}</h5>
+      <h5 style={h5style}>{fieldTitle}</h5>
       <div className="property-field">
         <TextField
           disabled={disabled}
@@ -84,17 +62,22 @@ Properties.Input = ({
           style={style}
           value={value}
           onChange={handleValue}
+          multiline={multiline}
+          rows={rows}
         ></TextField>
       </div>
     </div>
   );
 };
 
-Properties.Menus = ({ name }) => {
+Properties.Textarea = ({ fieldTitle }) => {
   return (
-    <MenuItem key={name} value={name}>
-      {name}
-    </MenuItem>
+    <div className="field-container">
+      <h5>{fieldTitle}</h5>
+      <div className="property-field">
+        <textarea placeholder="test" />
+      </div>
+    </div>
   );
 };
 
@@ -102,33 +85,28 @@ Properties.Select = ({
   fieldTitle,
   name,
   property,
-  value,
+  value = '',
   setValue,
   style,
   disabled = false,
-  items,
-  render = times,
+  render,
 }) => {
   const handleValue = (e) => {
     if (!setValue) {
-      console.log('HERE2');
       return;
     }
-    console.log('HERE');
     setValue(e.target.value);
   };
 
-  const renderMenus = render
-    ? render.map((item) => {
-        return (
-          <Properties.Menus key={item} name={item} value={item}>
-            {item}
-          </Properties.Menus>
-        );
-      })
-    : items.map((item) => {
-        return <Properties.Menus key={item}>{item}</Properties.Menus>;
-      });
+  const renderMenus =
+    render &&
+    render.map((item) => {
+      return (
+        <MenuItem key={item} value={item}>
+          {item}
+        </MenuItem>
+      );
+    });
 
   return (
     <div className="field-container">
@@ -168,15 +146,90 @@ Properties.Header = ({ fieldTitle, name }) => {
 };
 
 // 정보 Box ( ex: ProfilePage- 유저 정보, 이메일 알림 )
-Properties.Box = ({ fieldTitle, children, help }) => {
+// setValue 왜 안되노
+Properties.Box = ({
+  fieldTitle,
+  children,
+  help,
+  style,
+  value = '',
+  setValue = '',
+}) => {
+  const handleChangeState = () => {
+    console.log('CLICK');
+    setValue(!value);
+  };
+
   return (
-    <div className="property-box-main">
+    <div className="property-box-main" style={style}>
       <div className="property-box-main-title">
         <span>{fieldTitle}</span>
-        {help && <span className="property-box-main-title-help">{help}</span>}
+        {help && (
+          <div className="property-box-main-title-help">
+            {/* 얘를 눌르면 Alert 동작 */}
+            <AiFillQuestionCircle
+              className="property-box-main-title-help-icon"
+              onClick={handleChangeState}
+            />
+          </div>
+        )}
       </div>
       {children}
     </div>
+  );
+};
+
+// 외부영역 클릭 처리 해야함
+Properties.Alert = ({
+  Header,
+  Title,
+  Sub,
+  clickHelp = false,
+  setValue,
+  clickRef = '',
+}) => {
+  const handleChangeState = (e) => {
+    console.log('current');
+    console.log(clickRef.current);
+    console.log('TARGET');
+    console.log(e.target);
+    console.log(clickRef.current.contains(e.target));
+
+    if (clickRef && clickRef.current.contains(e.target)) {
+      console.log('UP');
+    } else {
+      console.log('DOWN');
+    }
+    setValue(!clickHelp);
+  };
+  return (
+    clickHelp && (
+      <div
+        className="property-alertbox"
+        ref={clickRef}
+        onClick={handleChangeState}
+      >
+        {/* 외부영역 */}
+        <div className="property-alert">
+          {/* 내부영역 */}
+          <div className="property-alert-header">
+            <span className="property-alert-header-span property-alert-span">
+              {Header}
+            </span>
+            <span
+              className="property-alert-header-span property-alert-span cursor"
+              onClick={handleChangeState}
+            >
+              X
+            </span>
+          </div>
+          <div className="property-alert-body flexcolumn">
+            <span className="property-alert-span">{Title}</span>
+            <span className="property-alert-body-bottomspan">{Sub}</span>
+          </div>
+        </div>
+      </div>
+    )
   );
 };
 
