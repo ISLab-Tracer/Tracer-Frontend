@@ -13,6 +13,7 @@ const DropdownProfile = ({ info, setInfo, drop }) => {
   const navigate = useNavigate();
   const [mouse, setMouse] = useState(false);
   const dropMenuRef = useRef();
+
   /* Hooks */
   /**
    * 클릭 감지
