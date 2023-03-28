@@ -16,7 +16,7 @@
 .profile-properties-container > hr {
   margin: 10px 0px;
   border: 0;
-  border-bottom: 1px solid rgb(239, 239, 239);
+  border-bottom: 1px solid #efefef;
 }
 
 .profile-properties-container > h3 {
@@ -26,13 +26,31 @@
 .profile-details-container {
   width: 100%;
 }
-.profile-details-container .feild-container {
+.profile-details-container {
   width: 100%;
   display: flex;
   margin-bottom: 20px;
 }
 
-.profile-details-container .feild-container > h5 {
+.field-container {
+  width: 100%;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+/* .a .b {
+  이거 갑자기 왜 안먹징
+} */
+
+.field-container > h5 {
+  width: 120px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.profile-details-container > h5 {
   width: 20%;
   display: flex;
   justify-content: flex-start;
@@ -40,42 +58,36 @@
   margin-right: 20px;
 }
 
-.profile-details-container .feild-container .property-feild {
+.profile-details-container .field-container {
   width: 80%;
 }
 
-.property-box-main {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #c5c5fd;
+.property-field {
+  width: 100%;
 }
 
-.property-box-main-title {
+.property-button {
   display: flex;
-  justify-content: space-between;
+  align-items: flex-end;
+  height: 56px;
+  margin-top: 30px;
+}
+
+.property-button-span {
+  display: flex;
+  min-width: 76px;
+  min-height: 26px;
+  outline: none;
+  padding: 7px;
+  color: white;
+  background-color: #4f67ff;
+  border-color: #4d5ecd;
+  border-radius: 6px;
+  justify-content: center;
   align-items: center;
-  height: 64px;
-  border-bottom: 1px solid #dfdfe5;
-  font-size: 18px;
-  line-height: 27px;
-  font-weight: 500;
 }
 
-.profile-page-main {
-  min-width: 948px;
-  max-width: 1660px;
-  height: 100%;
-}
-
-.profile-page-mainbox {
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  flex-direction: column;
-  box-sizing: border-box;
-}
-
-.profile-page-mainbox-header {
+.property-header-main {
   display: flex;
   height: 84px;
   -webkit-box-align: end;
@@ -85,19 +97,74 @@
   background-color: greenyellow;
 }
 
-.profile-page-mainbox-header-div {
+.property-header-main-div {
   display: flex;
   align-items: center;
 }
 
-.profile-page-mainbox-header-div-top {
+.property-header-main-div-top {
   font-size: 12px;
   line-height: 18px;
   color: #8f91a0;
 }
 
-.profile-page-mainbox-header-div-bottom {
+.property-header-main-div-bottom {
   font-size: 24px;
   line-height: 36px;
   font-weight: 500;
+}
+
+.property-box-main {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #c5c5fd;
+  margin-top: 30px;
+}
+
+.property-box-main-title {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  border-bottom: 1px solid #dfdfe5;
+  font-size: 18px;
+  line-height: 27px;
+  font-weight: 500;
+}
+
+.property-box-main-title-help {
+  margin-left: 10px;
+}
+
+.profile-page-main {
+  min-width: 948px;
+  max-width: 1660px;
+  height: 100%;
+}
+
+.profile-page-main-mainbox {
+  display: flex;
+  width: 100%;
+}
+
+.profile-page-main-mainbox-leftbox {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.profile-page-main-mainbox-rightbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 135px;
+  border: 1px solid black;
+  border-radius: 6px;
+  background-size: 30px;
+  margin-left: 80px;
+}
+
+.profile-page-main-mainbox-rightbox-img {
+  width: 100%;
+  height: 100%;
 }

@@ -7,6 +7,33 @@ import {
   TextField,
 } from '@mui/material';
 
+const times = [
+  '00:00',
+  '01:00',
+  '02:00',
+  '03:00',
+  '04:00',
+  '05:00',
+  '06:00',
+  '07:00',
+  '08:00',
+  '09:00',
+  '10:00',
+  '11:00',
+  '12:00',
+  '13:00',
+  '14:00',
+  '15:00',
+  '16:00',
+  '17:00',
+  '18:00',
+  '19:00',
+  '20:00',
+  '21:00',
+  '22:00',
+  '23:00',
+];
+
 const Properties = ({ title = 'title', children }) => {
   return (
     <div className="profile-properties-container">
@@ -17,15 +44,23 @@ const Properties = ({ title = 'title', children }) => {
   );
 };
 
+Properties.Button = ({ fieldTitle }) => {
+  return (
+    <div className="property-button">
+      <span className="property-button-span">{fieldTitle}</span>
+    </div>
+  );
+};
+
 Properties.Input = ({
-  feildTitle = 'title',
+  fieldTitle = 'title',
   name,
   value,
   setValue,
   desc = null,
   size = 'small',
   variant = 'outlined',
-  style,
+  style = { width: '100%' },
   property,
   disabled = false,
 }) => {
@@ -36,9 +71,9 @@ Properties.Input = ({
     setValue(e.target.name, e.target.value);
   };
   return (
-    <div className="feild-container">
-      <h5>{feildTitle}</h5>
-      <div className="property-feild">
+    <div className="field-container">
+      <h5>{fieldTitle}</h5>
+      <div className="property-field">
         <TextField
           disabled={disabled}
           label={name}
@@ -55,48 +90,52 @@ Properties.Input = ({
   );
 };
 
-Properties.Menus = ({ name, value }) => {
+Properties.Menus = ({ name }) => {
   return (
-    <MenuItem key={name} value={value}>
+    <MenuItem key={name} value={name}>
       {name}
     </MenuItem>
   );
 };
 
 Properties.Select = ({
-  feildTitle,
+  fieldTitle,
   name,
   property,
   value,
   setValue,
   style,
   disabled = false,
-  items = [],
-  render,
+  items,
+  render = times,
 }) => {
   const handleValue = (e) => {
     if (!setValue) {
+      console.log('HERE2');
       return;
     }
-    setValue(e.target.name, e.target.value);
+    console.log('HERE');
+    setValue(e.target.value);
   };
 
   const renderMenus = render
-    ? items.map(render)
-    : items.map((item) => {
+    ? render.map((item) => {
         return (
-          <Properties.Menus key={item.value} value={item.value}>
-            {item.name}
+          <Properties.Menus key={item} name={item} value={item}>
+            {item}
           </Properties.Menus>
         );
+      })
+    : items.map((item) => {
+        return <Properties.Menus key={item}>{item}</Properties.Menus>;
       });
 
   return (
-    <div className="feild-container">
-      <h5>{feildTitle}</h5>
-      <div className="property-feild">
+    <div className="field-container">
+      <h5>{fieldTitle}</h5>
+      <div className="property-field">
         <FormControl fullWidth>
-          <InputLabel>{feildTitle}</InputLabel>
+          <InputLabel>{fieldTitle}</InputLabel>
           <Select
             name={property}
             value={value}
@@ -113,28 +152,28 @@ Properties.Select = ({
   );
 };
 
-Properties.Header = ({}) => {
+// 제일 상단 Header ( MainTitle, SubTitle 입력 후 출력 )
+// 이미 만들어져있는걸 사용하기 위해 굳이 새로 만들지 않음
+Properties.Header = ({ fieldTitle, name }) => {
   return (
-    <div className="profile-page-mainbox-header">
-      <div className="profile-page-mainbox-header-div">
-        <span className="profile-page-mainbox-header-div-top">
-          결제 및 설정
-        </span>
+    <div className="property-header-main">
+      <div className="property-header-main-div">
+        <span className="property-header-main-div-top">{name}</span>
       </div>
-      <div className="profile-page-mainbox-header-div">
-        <span className="profile-page-mainbox-header-div-bottom">
-          유저 설정
-        </span>
+      <div className="property-header-main-div">
+        <span className="property-header-main-div-bottom">{fieldTitle}</span>
       </div>
     </div>
   );
 };
 
-Properties.Box = ({ feildTitle, children }) => {
+// 정보 Box ( ex: ProfilePage- 유저 정보, 이메일 알림 )
+Properties.Box = ({ fieldTitle, children, help }) => {
   return (
     <div className="property-box-main">
       <div className="property-box-main-title">
-        <span>{feildTitle}</span>
+        <span>{fieldTitle}</span>
+        {help && <span className="property-box-main-title-help">{help}</span>}
       </div>
       {children}
     </div>
