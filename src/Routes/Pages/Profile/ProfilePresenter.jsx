@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Properties from './Components/Properties';
+import { ImgError } from 'Utils';
 import './profile.css';
 const ProfilePresenter = ({ teams, getUserInfo }) => {
   /* Router */
@@ -14,6 +15,7 @@ const ProfilePresenter = ({ teams, getUserInfo }) => {
     },
   };
   const [userInfo, setUserInfo] = useState(initialState);
+  const [setTestInfo] = useState('test');
 
   /* Functions */
   const handleGetUserInfo = useCallback(async () => {
@@ -36,49 +38,71 @@ const ProfilePresenter = ({ teams, getUserInfo }) => {
   /* Render */
 
   return (
+    // 팀 설정
     <div className="main-content-container">
       <div className="profile-page-main">
-        <div className="profile-page-mainbox">
-          <Properties.Box feildTitle="유저정보">
-            <div>입력</div>
-            <div>저장</div>
-          </Properties.Box>
-          <div>3</div>
-          <div>4</div>
-        </div>
-      </div>
-      {/* <Properties title="회원정보">
-        <Properties.Input
-          feildTitle="이름"
-          name="이름"
-          property="user_nm"
-          value={userInfo.user_nm}
-          style={{ width: '50%' }}
-          disabled={true}
-          variant="filled"
-        />
-        <Properties.Input
-          feildTitle="이메일"
-          name="이메일"
-          property="user_email"
-          value={userInfo.user_email}
-          style={{ width: '50%' }}
-          disabled={true}
-          variant="filled"
-        />
-      </Properties>
+        <Properties.Header fieldTitle="팀 설정" name="결제 및 설정" />
+        <Properties.Box fieldTitle="팀 정보">
+          <div className="profile-page-main-mainbox flexrow">
+            <div className="profile-page-main-mainbox-leftbox">
+              <Properties.Input
+                fieldTitle="이름"
+                name="이름"
+                style={{ width: '100%' }}
+              />
 
-      <Properties title="팀정보">
-        <Properties.Input
-          feildTitle="팀명"
-          name="팀명"
-          property="team_id"
-          value={userInfo.team.team_nm}
-          style={{ width: '50%' }}
-          variant="filled"
-          disabled
-        />
-      </Properties> */}
+              {/* textArea로 수정 해야 함 */}
+              <Properties.Input
+                fieldTitle="팀 메모"
+                name="팀 메모"
+                style={{ width: '100%' }}
+              />
+
+              {/* Select 수정 해야 함 */}
+              <Properties.Select
+                fieldTitle="시간대"
+                style={{ width: '100%' }}
+                setValue={setTestInfo}
+              />
+            </div>
+            <div className="profile-page-main-mainbox-rightbox">
+              <img
+                src=""
+                alt="img"
+                className="profile-page-main-mainbox-rightbox-img"
+                onError={ImgError}
+              />
+            </div>
+          </div>
+          <Properties.Button fieldTitle="저장" />
+        </Properties.Box>
+
+        <Properties.Box fieldTitle="회사 정보" help="t">
+          <div className="profile-page-main-mainbox flexcolumn">
+            <Properties.Input fieldTitle="상호" name="상호" />
+            <Properties.Input fieldTitle="등록번호" name="등록번호" />
+            <Properties.Input fieldTitle="주소" name="주소" />
+            <Properties.Input fieldTitle="대표자명" name="대표자명" />
+            <Properties.Input fieldTitle="전화번호" name="전화번호" />
+          </div>
+          <div>
+            <Properties.Button fieldTitle="저장" />
+          </div>
+        </Properties.Box>
+
+        <Properties.Box fieldTitle="표시 설정">
+          <div className="profile-page-main-mainbox flexcolumn">
+            {/* Select로 변경 해야 함 */}
+            <Properties.Input fieldTitle="통화" name="통화" />
+            <Properties.Input fieldTitle="제품정보" name="제품정보" />
+          </div>
+          <div>
+            <Properties.Button fieldTitle="저장" />
+          </div>
+        </Properties.Box>
+
+        <Properties.Box fieldTitle="데이터 삭제"></Properties.Box>
+      </div>
     </div>
   );
 };

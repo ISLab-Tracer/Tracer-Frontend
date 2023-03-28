@@ -7,6 +7,14 @@ input {
     sans-serif !important;
 }
 
+.flexrow {
+  flex-direction: row;
+}
+
+.flexcolumn {
+  flex-direction: column;
+}
+
 .centerflex {
   display: flex;
   justify-content: center;
