@@ -1,61 +1,119 @@
 import React, { useState } from 'react';
 import ImportantDevicesOutlinedIcon from '@mui/icons-material/ImportantDevicesOutlined';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import {
+  Collapse,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  ListSubheader,
+} from '@mui/material';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import { styled } from '@mui/material/styles';
+import { ExpandLess, ExpandMore, StarBorder } from '@mui/icons-material';
+
+const StyledList = styled(List)({
+  // selected and (selected + hover) states
+  '&& .Mui-selected, && .Mui-selected:hover': {
+    backgroundColor: '#edefff',
+    '&, & .MuiListItemIcon-root': {
+      color: '#4f67ff',
+    },
+  },
+  // hover states
+  '& .MuiListItemButton-root:hover': {
+    backgroundColor: '#edefff',
+    '&, & .MuiListItemIcon-root': {
+      color: '#4f67ff',
+    },
+  },
+});
 
 const SideMenu = () => {
   /* Router */
   /* State */
   const navigate = useNavigate();
-  const location = useLocation();
-  const [mouse, setMouse] = useState('');
-
+  const [selected, setSelected] = useState('equipment');
+  const [open, setOpen] = useState(true);
   /* Hooks */
   /* Functions */
-  /**
-   * menuItem 클릭시 색상 변경
-   * @param {*} e
-   */
-  const changeItemColor = (e) => {
-    navigate(`/${e.target.id}`);
+  const handleListClick = (e) => {
+    setSelected(e.currentTarget.id);
+    navigate(`/${e.currentTarget.id}`);
   };
-
-  /**
-   * 마우스 온/오버 이벤트 핸들러
-   * @param {*} e
-   */
-  const onMouseOver = (e) => {
-    setMouse(e.target.id);
-  };
-  const onMouseLeave = () => {
-    setMouse();
+  const handleOpenList = () => {
+    setOpen(!open);
   };
   /* Render */
   return (
     <div className="sidemenu-container">
       <nav>
-
-        <div
-          className="sidemenu-item"
-          id="equipment"
-          style={{
-            backgroundColor:
-              location.pathname === '/equipment' || mouse === 'equipment'
-                ? '#edefff'
-                : '',
-            color: location.pathname === '/equipment' ? '#4f67ff' : '',
-          }}
-          onClick={(e) => changeItemColor(e)}
-          onMouseOver={onMouseOver}
-          onMouseLeave={onMouseLeave}
+        <StyledList
+          subheader={
+            <ListSubheader
+              component="div"
+              id="nested-list-subheader"
+              sx={{ width: '100%', textAlign: 'center' }}
+            >
+              ISLab 기자재 관리
+            </ListSubheader>
+          }
+          sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
         >
-          <ImportantDevicesOutlinedIcon
+          <ListItemButton
+            sx={{ width: '100%' }}
+            selected={selected === 'equipment'}
             id="equipment"
-            fontSize="small"
-            sx={{ margin: 2 }}
-          />
-          <span id="equipment">기자재 조회</span>
-        </div>
-
+            onClick={(e) => handleListClick(e)}
+          >
+            <ListItemIcon>
+              <ImportantDevicesOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="기자재 조회" />
+          </ListItemButton>
+          <ListItemButton sx={{ width: '100%' }} onClick={handleOpenList}>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="데이터 관리" />
+            {open ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItemButton
+                sx={{ pl: 4 }}
+                selected={selected === 2}
+                onClick={() => handleListClick(2)}
+              >
+                <ListItemIcon>
+                  <StarBorder />
+                </ListItemIcon>
+                <ListItemText primary="제품" />
+              </ListItemButton>
+              <ListItemButton
+                sx={{ pl: 4 }}
+                selected={selected === 3}
+                onClick={() => handleListClick(2)}
+              >
+                <ListItemIcon>
+                  <StarBorder />
+                </ListItemIcon>
+                <ListItemText primary="카테고리" />
+              </ListItemButton>
+              <ListItemButton
+                sx={{ pl: 4 }}
+                selected={selected === 4}
+                onClick={() => handleListClick(2)}
+              >
+                <ListItemIcon>
+                  <StarBorder />
+                </ListItemIcon>
+                <ListItemText primary="과제" />
+              </ListItemButton>
+            </List>
+          </Collapse>
+        </StyledList>
       </nav>
     </div>
   );
