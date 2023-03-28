@@ -5,7 +5,7 @@
 }
 
 .equipment-register-container .equipment-register-form{
-    width: 70%;
+    width: 90%;
     min-height: 500px;
     display: flex;
     justify-content: flex-start;
@@ -15,6 +15,7 @@
 
 .equipment-register-container .equipment-register-form .equipinfo-wrapper{
     width: 100%;
+    min-height: 275px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,13 +23,20 @@
 
 .equipment-register-container .equipment-register-form .equipinfo-wrapper .left{
     flex: 1;
+    min-height: 275px;
 }
 
 .equipment-register-container .equipment-register-form .equipinfo-wrapper .right{
-    min-width: 200px;
-    height: 100%;
+    min-width: 250px;
+    min-height: 375px;
     display: flex;
     justify-content: center;
+    align-items: flex-start;
+}
+
+.equipment-register-container .equipment-register-form .btn-group{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
     align-items: center;
-    border: 1px solid #f00;
 }

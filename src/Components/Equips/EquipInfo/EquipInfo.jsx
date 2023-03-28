@@ -29,6 +29,8 @@ EqipInfo.Input = ({
   style,
   property,
   disabled = false,
+  multiline = false,
+  type = 'text',
 }) => {
   const handleValue = (e) => {
     if (!setValue) {
@@ -36,11 +38,23 @@ EqipInfo.Input = ({
     }
     setValue(e.target.name, e.target.value);
   };
+
+  const textArea = multiline
+    ? {
+        multiline: true,
+        minRows: 10,
+        maxRows: 10,
+      }
+    : {};
+
+  const val = type === 'number' ? value : value;
+
   return (
     <div className="field-container">
       <h5>{label}</h5>
       <div className="property-feild">
         <TextField
+          type={type}
           disabled={disabled}
           label={name}
           name={property}
@@ -49,8 +63,9 @@ EqipInfo.Input = ({
           helperText={desc}
           style={style}
           fullWidth={true}
-          value={value}
+          value={val}
           onChange={handleValue}
+          {...textArea}
         />
       </div>
     </div>

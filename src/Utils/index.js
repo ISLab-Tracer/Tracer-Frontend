@@ -117,3 +117,27 @@ export const writeBuffer = (str, format = 'base64') => {
 export const readBuffer = (str, format = 'base64') => {
   return Buffer.from(str, format).toString('utf8');
 };
+
+/**
+ * 금액포매터
+ * --
+ * @param {*} v
+ * @param {*} unit
+ * @returns
+ */
+export const stringToMoneyFormat = (v = 0, unit = '') => {
+  // const value = String(isNull(v) ? 0 : v)
+  const value = String(v ? v : 0)
+    .split('')
+    .reverse()
+    .join('');
+  const valueLength = value.length;
+  let result = '';
+  for (let ii in value) {
+    result += String(value[ii]);
+    if ((ii + 1) % 3 === 0 && ii < valueLength - 1) {
+      result += ',';
+    }
+  }
+  return `${result.split('').reverse().join('')}${unit}`;
+};
