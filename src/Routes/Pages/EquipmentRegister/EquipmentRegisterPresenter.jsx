@@ -1,5 +1,5 @@
 import { Button } from '@mui/material';
-import { EquipHeader, EquipInfo, EquipSubTitle } from 'Components';
+import { EquipInfo, PageHeader } from 'Components';
 import React from 'react';
 import './equipment-register.css';
 
@@ -11,7 +11,7 @@ const EquipmentRegisterPresenter = () => {
   /* Render */
   return (
     <div className="equipment-register-container">
-      <EquipHeader
+      <PageHeader
         title="제품 추가"
         subTitle="제품 목록"
         right={

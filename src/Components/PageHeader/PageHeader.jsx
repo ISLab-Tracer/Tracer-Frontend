@@ -1,8 +1,8 @@
 import { Divider } from '@mui/material';
 import React from 'react';
-import './equipheader.css';
+import './pageheader.css';
 
-const EquipHeader = ({
+const PageHeader = ({
   title,
   subTitle,
   maxWidth = '100%',
@@ -15,7 +15,7 @@ const EquipHeader = ({
   /* Hooks */
   /* Render */
   return (
-    <div className="equipment-header-container" style={{ maxWidth }}>
+    <div className="page-header-container" style={{ maxWidth }}>
       <div className="top">
         <div className="header-left">
           <div className="header-subtitle">{subTitle}</div>
@@ -38,4 +38,4 @@ const EquipHeader = ({
   );
 };
 
-export default EquipHeader;
+export default PageHeader;
