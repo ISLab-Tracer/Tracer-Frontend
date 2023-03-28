@@ -113,7 +113,7 @@ Properties.Select = ({
   );
 };
 
-Properties.Header = ({}) => {
+Properties.Header = () => {
   return (
     <div className="profile-page-mainbox-header">
       <div className="profile-page-mainbox-header-div">
