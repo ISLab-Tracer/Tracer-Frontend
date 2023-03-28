@@ -11,7 +11,7 @@ console.log(`
 --------------------------
 \n
 Release Version: V1.0.0.1
-Last Release: 2023.03.24
+Last Release: 2023.03.28
 \n
 --------------------------`);
 
