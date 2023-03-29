@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { EquipHeader, EquipSearch, Equip } from './Components';
 import '../../../Css/equipment.css';
 import {
@@ -29,23 +29,48 @@ const EquipmentPresenter = ({
 }) => {
   /* Router */
   /* State */
+  const [keyword, setKeyword] = useState('');
+  const [filterList, setFilterList] = useState(equipList);
   /* Hooks */
   /* Functions */
+  useEffect(() => {
+    // console.log(equipList);
+    if (keyword === '') {
+      setFilterList(equipList);
+      return;
+    }
+
+    const temp = equipList.filter((item) => {
+      const {
+        team: { team_nm },
+        equipment_nm,
+        user: { user_nm },
+        category: { category_nm },
+        project: { project_title },
+      } = item;
+      const teamCond = team_nm.includes(keyword);
+      const userCond = user_nm.includes(keyword);
+      const equipCond = equipment_nm.includes(keyword);
+      const categoryCond = category_nm.includes(keyword);
+      const projectCond = project_title.includes(keyword);
+      return teamCond || userCond || equipCond || categoryCond || projectCond;
+    });
+    setFilterList(temp);
+  }, [keyword, equipList]);
+
   /* Render */
-  const equipRender = equipList.map((item) => {
+  const equipRender = filterList.map((item) => {
     const {
       equipment_id,
       equipment_nm,
       equipment_price,
       equipment_thumbnail,
       equipment_qty,
-      team,
-      category,
-      user,
+      team: { team_nm },
+      category: { category_nm },
+      user: { user_nm },
+      project: { project_title },
     } = item;
-    const { team_nm } = team;
-    const { category_nm } = category;
-    const { user_nm } = user;
     const thumbnail = `${BUCKET_URL}${equipment_thumbnail}`;
     return (
       <Equip.List
@@ -55,6 +80,7 @@ const EquipmentPresenter = ({
         title={equipment_nm}
         price={equipment_price}
         team={team_nm}
+        project={project_title}
         category={category_nm}
         count={equipment_qty}
         charger={user_nm}
@@ -70,7 +96,7 @@ const EquipmentPresenter = ({
     <div className="main-content-container">
       <EquipHeader />
 
-      <EquipSearch />
+      <EquipSearch keyword={keyword} setKeyword={setKeyword} />
 
       {/* 메인 */}
       <div className="equip-page-mainbox">
@@ -111,6 +137,7 @@ const EquipmentPresenter = ({
               qty={detailItem.equipment_qty}
               charger={detailItem.user.user_nm}
               team={detailItem.team.team_nm}
+              project={detailItem.project.project_title}
               thumbnail={`${BUCKET_URL}${detailItem.equipment_thumbnail}`}
               editOn={() => {}}
             />
