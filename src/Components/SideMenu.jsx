@@ -83,8 +83,9 @@ const SideMenu = () => {
             <List component="div" disablePadding>
               <ListItemButton
                 sx={{ pl: 4 }}
-                selected={selected === 2}
-                onClick={() => handleListClick(2)}
+                id="equipmentdata"
+                selected={selected === 'equipmentdata'}
+                onClick={(e) => handleListClick(e)}
               >
                 <ListItemIcon>
                   <StarBorder />
@@ -93,8 +94,9 @@ const SideMenu = () => {
               </ListItemButton>
               <ListItemButton
                 sx={{ pl: 4 }}
-                selected={selected === 3}
-                onClick={() => handleListClick(2)}
+                id="attributes"
+                selected={selected === 'attributes'}
+                onClick={(e) => handleListClick(e)}
               >
                 <ListItemIcon>
                   <StarBorder />
@@ -103,8 +105,9 @@ const SideMenu = () => {
               </ListItemButton>
               <ListItemButton
                 sx={{ pl: 4 }}
-                selected={selected === 4}
-                onClick={() => handleListClick(2)}
+                id="assignment"
+                selected={selected === 'assignment'}
+                onClick={(e) => handleListClick(e)}
               >
                 <ListItemIcon>
                   <StarBorder />

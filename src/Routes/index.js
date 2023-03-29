@@ -2,7 +2,10 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { LoginLayout, MainLayout } from '../Layout';
 import {
+  Assignment,
+  Attributes,
   Equipment,
+  EquipmentData,
   EquipmentRegister,
   Login,
   Main,
@@ -20,6 +23,9 @@ const index = () => {
           <Route index element={<Equipment />} />
           <Route path="register" element={<EquipmentRegister />} />
         </Route>
+        <Route path="attributes" element={<Attributes />} />
+        <Route path="equipmentdata" element={<EquipmentData />} />
+        <Route path="assignment" element={<Assignment />} />
       </Route>
       <Route element={<LoginLayout />}>
         <Route path="/login" element={<Login />}>
