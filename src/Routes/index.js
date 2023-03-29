@@ -4,6 +4,7 @@ import { LoginLayout, MainLayout } from '../Layout';
 import {
   Assignment,
   Attributes,
+  Barcode,
   Equipment,
   EquipmentData,
   EquipmentRegister,
@@ -26,6 +27,7 @@ const index = () => {
         <Route path="attributes" element={<Attributes />} />
         <Route path="equipmentdata" element={<EquipmentData />} />
         <Route path="assignment" element={<Assignment />} />
+        <Route path="barcode" element={<Barcode />} />
       </Route>
       <Route element={<LoginLayout />}>
         <Route path="/login" element={<Login />}>

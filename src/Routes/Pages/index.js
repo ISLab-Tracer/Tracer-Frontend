@@ -13,3 +13,4 @@ export { default as EquipmentRegister } from './EquipmentRegister';
 export { default as Attributes } from './Attributes';
 export { default as EquipmentData } from './EquipmentData';
 export { default as Assignment } from './Assignment';
+export { default as Barcode } from './Barcode';

@@ -116,6 +116,17 @@ const SideMenu = () => {
               </ListItemButton>
             </List>
           </Collapse>
+          <ListItemButton
+            sx={{ width: '100%' }}
+            selected={selected === 'barcode'}
+            id="barcode"
+            onClick={(e) => handleListClick(e)}
+          >
+            <ListItemIcon>
+              <ImportantDevicesOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="바코드 테스트" />
+          </ListItemButton>
         </StyledList>
       </nav>
     </div>
