@@ -34,7 +34,7 @@ const ProfilePresenter = ({ teams, getUserInfo }) => {
 
   const [teamInfo] = useState(initialTeamProfile);
 
-  // 유저 설정 / 팀 설정 모드( 렌더링 )
+  // 유저 설정(1) / 팀 설정(2) 모드( 렌더링 )
   const [mode] = useState('1');
 
   /* Functions */
