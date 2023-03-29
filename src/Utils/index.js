@@ -127,17 +127,28 @@ export const readBuffer = (str, format = 'base64') => {
  */
 export const stringToMoneyFormat = (v = 0, unit = '') => {
   // const value = String(isNull(v) ? 0 : v)
-  const value = String(v ? v : 0)
-    .split('')
-    .reverse()
-    .join('');
-  const valueLength = value.length;
-  let result = '';
-  for (let ii in value) {
-    result += String(value[ii]);
-    if ((ii + 1) % 3 === 0 && ii < valueLength - 1) {
-      result += ',';
-    }
-  }
-  return `${result.split('').reverse().join('')}${unit}`;
+  // const value = String(v ? v : 0)
+  //   .split('')
+  //   .reverse()
+  //   .join('');
+  // const valueLength = value.length;
+  // let result = '';
+  // for (let ii in value) {
+  //   result += String(value[ii]);
+  //   if ((ii + 1) % 3 === 0 && ii < valueLength - 1) {
+  //     result += ',';
+  //   }
+  // }
+  // return `${result.split('').reverse().join('')}${unit}`;
+
+  return comma(uncomma(v));
+};
+
+export const comma = (str) => {
+  str = String(str);
+  return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+};
+export const uncomma = (str) => {
+  str = String(str);
+  return str.replace(/[^\d]+/g, '');
 };

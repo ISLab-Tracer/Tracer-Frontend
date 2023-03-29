@@ -1,5 +1,5 @@
 import { LocalSeeOutlined, SystemUpdateAlt } from '@mui/icons-material';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import './equip-thumbnail.css';
 
@@ -23,6 +23,12 @@ const EquipThumbnail = ({ img, setImg }) => {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
   /* Hooks */
+  useEffect(() => {
+    if (img) {
+      return;
+    }
+    setPreview(null);
+  }, [img]);
 
   /* Render */
 

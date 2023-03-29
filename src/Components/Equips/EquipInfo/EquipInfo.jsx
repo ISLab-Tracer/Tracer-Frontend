@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormControl, MenuItem, Select, TextField } from '@mui/material';
 import './equipinfo.css';
+import { stringToMoneyFormat } from '../../../Utils/index';
 
 const EqipInfo = ({ title = 'title', children }) => {
   return (
@@ -41,14 +42,12 @@ EqipInfo.Input = ({
       }
     : {};
 
-  const val = type === 'number' ? value : value;
-
+  const val = type === 'number' ? stringToMoneyFormat(value) : value;
   return (
     <div className="field-container">
       <h5>{label}</h5>
       <div className="property-feild">
         <TextField
-          type={type}
           disabled={disabled}
           label={name}
           name={property}

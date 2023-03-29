@@ -1,6 +1,7 @@
 import { Button, MenuItem, Stack } from '@mui/material';
 import { EquipInfo, PageHeader } from 'Components';
 import React, { useEffect, useState } from 'react';
+import { uncomma } from 'Utils';
 import { EquipmentThumbnail } from './components';
 import './equipment-register.css';
 
@@ -17,8 +18,8 @@ const EquipmentRegisterPresenter = ({
     project_id: '',
     equipment_nm: '',
     equipment_desc: '',
-    equipment_price: 0,
-    equipment_qty: 0,
+    equipment_price: null,
+    equipment_qty: null,
     user_id: '',
     files: null,
   };
@@ -46,14 +47,16 @@ const EquipmentRegisterPresenter = ({
 
     const postData = {
       ...equipInfo,
-      equipment_price: Number(equipInfo.equipment_price),
-      equipment_qty: Number(equipInfo.equipment_qty),
+      equipment_price: Number(uncomma(equipInfo.equipment_price)),
+      equipment_qty: Number(uncomma(equipInfo.equipment_qty)),
     };
 
     console.log(postData);
+
     const result = await handleRegister(postData);
     if (result) {
       setEquipInfo(initialState);
+      setThumbnail(null);
       return true;
     }
 
@@ -73,7 +76,6 @@ const EquipmentRegisterPresenter = ({
       return;
     }
     setEquipInfo({ ...equipInfo, files: thumbnail });
-    setThumbnail(null);
     // eslint-disable-next-line
   }, [thumbnail]);
 
