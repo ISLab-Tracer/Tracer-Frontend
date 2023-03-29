@@ -7,11 +7,21 @@ input {
     sans-serif !important;
 }
 
+.cursor {
+  cursor: pointer;
+}
+
+.overflow {
+  overflow: scroll;
+}
+
 .flexrow {
+  display: flex;
   flex-direction: row;
 }
 
 .flexcolumn {
+  display: flex;
   flex-direction: column;
 }
 
