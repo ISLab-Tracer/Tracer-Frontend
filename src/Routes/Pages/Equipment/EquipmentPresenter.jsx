@@ -6,6 +6,7 @@ import {
   FormatListNumbered,
   KeyboardArrowDown,
 } from '@mui/icons-material';
+import { BUCKET_URL } from 'Utils';
 
 const EmptyEquipList = () => {
   return (
@@ -45,11 +46,12 @@ const EquipmentPresenter = ({
     const { team_nm } = team;
     const { category_nm } = category;
     const { user_nm } = user;
+    const thumbnail = `${BUCKET_URL}${equipment_thumbnail}`;
     return (
       <Equip.List
         key={equipment_id}
         id={equipment_id}
-        img={equipment_thumbnail}
+        img={thumbnail}
         title={equipment_nm}
         price={equipment_price}
         team={team_nm}
@@ -109,7 +111,7 @@ const EquipmentPresenter = ({
               qty={detailItem.equipment_qty}
               charger={detailItem.user.user_nm}
               team={detailItem.team.team_nm}
-              thumbnail={detailItem.equipment_thumbnail}
+              thumbnail={`${BUCKET_URL}${detailItem.equipment_thumbnail}`}
               editOn={() => {}}
             />
           ) : (

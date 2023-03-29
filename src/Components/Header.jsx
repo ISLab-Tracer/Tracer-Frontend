@@ -5,10 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import DropdownProfile from './DropdownProfile';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
+import { useSession } from 'Hooks/SessionManager';
 
 const Header = () => {
   /* Router */
   /* State */
+  const { session } = useSession();
+  const { user_nm } = session;
   const navigate = useNavigate();
   const [info, setInfo] = useState(false);
   const drop = useRef();
@@ -74,7 +77,7 @@ const Header = () => {
       <div className="profile-container">
         <NotificationsIcon sx={{ marginRight: 3 }} />
         <Stack direction="row" spacing={2}>
-          <Avatar {...stringAvatar('오시몬')} onClick={changeInfo} ref={drop} />
+          <Avatar {...stringAvatar(user_nm)} onClick={changeInfo} ref={drop} />
         </Stack>
         {info && <DropdownProfile info={info} setInfo={setInfo} drop={drop} />}
       </div>

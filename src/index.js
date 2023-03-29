@@ -6,12 +6,13 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import LoadingManager from './Utils/LoadingManager';
 import SessionManager from 'Hooks/SessionManager';
+import CommonDataManager from 'Hooks/CommonDataManager';
 
 console.log(`
 --------------------------
 \n
-Release Version: V1.0.0.1
-Last Release: 2023.03.28
+Release Version: V1.0.0.2
+Last Release: 2023.03.29
 \n
 --------------------------`);
 
@@ -19,9 +20,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <SessionManager>
-      <LoadingManager>
-        <App />
-      </LoadingManager>
+      <CommonDataManager>
+        <LoadingManager>
+          <App />
+        </LoadingManager>
+      </CommonDataManager>
     </SessionManager>
   </BrowserRouter>
 );

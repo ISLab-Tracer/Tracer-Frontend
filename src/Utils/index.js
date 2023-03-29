@@ -3,6 +3,7 @@ export { default as APIManager } from './APIManager';
 export { default as TypeManager } from './TypeManager';
 export const BASE_URL = process.env.REACT_APP_BASE_URL;
 export const HOST_DOMAIN = process.env.REACT_APP_HOST_DOMAIN;
+export const BUCKET_URL = process.env.REACT_APP_BUCKET_URL;
 
 /**
  * 세션 체크
@@ -116,4 +117,39 @@ export const writeBuffer = (str, format = 'base64') => {
  */
 export const readBuffer = (str, format = 'base64') => {
   return Buffer.from(str, format).toString('utf8');
+};
+
+/**
+ * 금액포매터
+ * --
+ * @param {*} v
+ * @param {*} unit
+ * @returns
+ */
+export const stringToMoneyFormat = (v = 0, unit = '') => {
+  // const value = String(isNull(v) ? 0 : v)
+  // const value = String(v ? v : 0)
+  //   .split('')
+  //   .reverse()
+  //   .join('');
+  // const valueLength = value.length;
+  // let result = '';
+  // for (let ii in value) {
+  //   result += String(value[ii]);
+  //   if ((ii + 1) % 3 === 0 && ii < valueLength - 1) {
+  //     result += ',';
+  //   }
+  // }
+  // return `${result.split('').reverse().join('')}${unit}`;
+
+  return comma(uncomma(v));
+};
+
+export const comma = (str) => {
+  str = String(str);
+  return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+};
+export const uncomma = (str) => {
+  str = String(str);
+  return str.replace(/[^\d]+/g, '');
 };

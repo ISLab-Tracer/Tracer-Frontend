@@ -47,10 +47,12 @@
 
 .equip-page-button-firsthover :hover {
     background-color: #465adb;
+    cursor: pointer;
 }
 
 .equip-page-button-secondhover :hover {
     background-color: #eeeef0;
+    cursor: pointer;
 }
 
 .equip-page-button-second {
