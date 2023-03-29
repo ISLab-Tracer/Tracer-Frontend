@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImgError } from 'Utils';
+import { ImgError, stringToMoneyFormat } from 'Utils';
 
 const Equip = ({ childrun }) => {
   return { childrun };
@@ -41,11 +41,11 @@ Equip.List = ({
         <div className="equip-page-itembox-left-info">
           <p className="equip-page-itembox-left-info-title">{title}</p>
           <p className="equip-page-itembox-left-info-property">
-            {price}원 / {team} / {category} / {charger}
+            {stringToMoneyFormat(price)}원 / {team} / {category} / {charger}
           </p>
         </div>
         <div className="equip-page-itembox-left-countbox">
-          <p>{count}</p>
+          <p>{stringToMoneyFormat(count)}</p>
         </div>
       </div>
     </div>
@@ -143,7 +143,7 @@ Equip.Detail = ({
 
           {/* <Equip.Text title="바코드" value={} /> */}
 
-          <Equip.Text title="가격" value={price} />
+          <Equip.Text title="가격" value={stringToMoneyFormat(price)} />
 
           <Equip.Text title="소유자" value={charger} />
 
@@ -151,7 +151,7 @@ Equip.Detail = ({
         </div>
 
         <div className="equip-page-itembox-clickitembox-changebox line">
-          <Equip.Text title="수량" value={qty} />
+          <Equip.Text title="수량" value={stringToMoneyFormat(qty)} />
         </div>
 
         {/* IF 종료 */}

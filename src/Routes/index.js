@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { LoginLayout, MainLayout } from '../Layout';
+import { LoginLayout, MainLayout, PlaygroundLayout } from '../Layout';
 import {
   Equipment,
   EquipmentRegister,
@@ -9,6 +9,7 @@ import {
   Profile,
   SignUp,
 } from './Pages';
+import EquipPlayground from './Pages/Playground/equip';
 
 const index = () => {
   return (
@@ -30,6 +31,10 @@ const index = () => {
           <Route index element={<SignUp />} />
           <Route path=":signup_id" element={<SignUp />} />
         </Route>
+      </Route>
+
+      <Route path="/playground" element={<PlaygroundLayout />}>
+        <Route path="equipment" element={<EquipPlayground />} />
       </Route>
     </Routes>
   );
