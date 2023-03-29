@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import TeamProfile from './Components/TeamProfile';
+import UserProfile from './Components/UserProfile';
 import './profile.css';
 const ProfilePresenter = ({ teams, getUserInfo }) => {
   /* Router */
@@ -31,9 +32,10 @@ const ProfilePresenter = ({ teams, getUserInfo }) => {
 
   const [userInfo, setUserInfo] = useState(initialState);
 
-  const [teamInfo, setTeamInfo] = useState(initialTeamProfile);
+  const [teamInfo] = useState(initialTeamProfile);
 
-  const [setTestInfo] = useState('test');
+  // 유저 설정 / 팀 설정 모드( 렌더링 )
+  const [mode] = useState('1');
 
   /* Functions */
   const handleGetUserInfo = useCallback(async () => {
@@ -55,10 +57,9 @@ const ProfilePresenter = ({ teams, getUserInfo }) => {
 
   /* Render */
 
-  return (
-    // 유저 설정
-
-    // 팀 설정
+  return mode === '1' ? (
+    <UserProfile info={userInfo} />
+  ) : (
     <TeamProfile info={teamInfo} />
   );
 };

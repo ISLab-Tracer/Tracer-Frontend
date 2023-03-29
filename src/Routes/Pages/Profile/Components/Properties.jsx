@@ -7,7 +7,6 @@ import {
   TextField,
 } from '@mui/material';
 import { AiFillQuestionCircle } from 'react-icons/ai';
-import { click } from '@testing-library/user-event/dist/click';
 
 const Properties = ({ title = 'title', children }) => {
   return (
@@ -146,7 +145,6 @@ Properties.Header = ({ fieldTitle, name }) => {
 };
 
 // 정보 Box ( ex: ProfilePage- 유저 정보, 이메일 알림 )
-// setValue 왜 안되노
 Properties.Box = ({
   fieldTitle,
   children,

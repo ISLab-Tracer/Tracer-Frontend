@@ -1,42 +1,41 @@
 import React from 'react';
+import Properties from './Properties';
+import { ImgError } from 'Utils';
+import * as XLSX from 'xlsx';
 
 const UserProfile = () => {
   /* Router */
   /* State */
   /* Functions */
+  const testChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      const data = e.target.result;
+      const workbook = XLSX.read(data, { type: 'binary' });
+      const sheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[sheetName];
+      const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+      console.log(jsonData);
+    };
+    reader.readAsBinaryString(file);
+  };
   /* Hooks */
   /* Render */
   return (
     <div className="main-content-container">
       <div className="profile-page-main">
-        <Properties.Header fieldTitle="팀 설정" name="결제 및 설정" />
-        <Properties.Box fieldTitle="팀 정보">
+        <Properties.Header fieldTitle="유저 설정" name="결제 및 설정" />
+        {/* 유저 정보 */}
+        <Properties.Box fieldTitle="유저 정보" style={{ marginTop: '0' }}>
           <div className="profile-page-main-mainbox flexrow">
             <div className="profile-page-main-mainbox-leftbox">
-              <Properties.Input
-                fieldTitle="이름"
-                name="이름"
-                style={{ width: '100%' }}
-              />
-
-              {/* textArea로 수정 해야 함 */}
-              <Properties.Input
-                fieldTitle="팀 메모"
-                name="팀 메모"
-                style={{ width: '100%' }}
-                multiline={true}
-                rows={4}
-                h5style={{ alignItems: 'flex-start' }}
-              />
-
-              {/* Select 수정 해야 함 */}
-              <Properties.Select
-                fieldTitle="시간대"
-                style={{ width: '100%' }}
-                setValue
-              />
+              <Properties.Input fieldTitle="이름" name="이름" />
+              <Properties.Input fieldTitle="언어" name="언어" />
             </div>
             <div className="profile-page-main-mainbox-rightbox">
+              <input type="file" accept="image/*" style={{ display: 'none' }} />
               <img
                 src=""
                 alt="img"
@@ -48,32 +47,15 @@ const UserProfile = () => {
           <Properties.Button fieldTitle="저장" />
         </Properties.Box>
 
-        <Properties.Box fieldTitle="회사 정보" help="t">
-          <div className="profile-page-main-mainbox flexcolumn">
-            <Properties.Input fieldTitle="상호" name="상호" />
-            <Properties.Input fieldTitle="등록번호" name="등록번호" />
-            <Properties.Input fieldTitle="주소" name="주소" />
-            <Properties.Input fieldTitle="대표자명" name="대표자명" />
-            <Properties.Input fieldTitle="전화번호" name="전화번호" />
-          </div>
+        <Properties.Box fieldTitle="테스트" name="테스트">
           <div>
-            <Properties.Button fieldTitle="저장" />
+            <input type="file" accept=".xlsx,.xls" onChange={testChange} />
           </div>
         </Properties.Box>
-
-        <Properties.Box fieldTitle="표시 설정">
-          <div className="profile-page-main-mainbox flexcolumn">
-            {/* Select로 변경 해야 함 */}
-            <Properties.Input fieldTitle="통화" name="통화" />
-            <Properties.Input fieldTitle="제품정보" name="제품정보" />
-          </div>
-          <div>
-            <Properties.Button fieldTitle="저장" />
-          </div>
-        </Properties.Box>
-
-        <Properties.Box fieldTitle="데이터 삭제"></Properties.Box>
+        {/* 이메일 알림 */}
       </div>
     </div>
   );
 };
+
+export default UserProfile;
