@@ -162,25 +162,14 @@ export default class ApiManager {
    */
   multipartRequest = async (url, body = null, method = 'POST') => {
     try {
-      const response = await fetch(`${url}`, {
-        method,
+      const config = {
         headers: {
-          Accept: '*/*',
-          'Cache-Control': 'no-cache',
-          'Accept-Encoding': 'gzip, deflate',
-          'cache-control': 'no-cache',
-          'Access-Control-Allow-Origin': '*', // Required for CORS support to work
-          'Access-Control-Allow-Credentials': true, // Required for cookies, authorization headers with HTTPS
-          'content-type': 'multipart/form-data',
-          boundary: '----WebKitFormBoundaryIn312MOjBWdkffIM',
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${getCookie('ISLAB_TRACER')}`,
         },
-        processData: false,
-        contentType: false,
-        mimeType: 'multipart/form-data',
-        body: body,
-      });
-      const responseJson = await response.json();
-      return responseJson;
+      };
+      const response = await this.http.post(url, body, config);
+      return response.data;
     } catch (error) {
       return {
         code: 500,

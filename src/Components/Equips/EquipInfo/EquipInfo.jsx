@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-} from '@mui/material';
+import { FormControl, MenuItem, Select, TextField } from '@mui/material';
 import './equipinfo.css';
 
 const EqipInfo = ({ title = 'title', children }) => {
@@ -72,16 +66,8 @@ EqipInfo.Input = ({
   );
 };
 
-EqipInfo.Menus = ({ name, value }) => {
-  return (
-    <MenuItem key={name} value={value}>
-      {name}
-    </MenuItem>
-  );
-};
-
 EqipInfo.Select = ({
-  feildTitle,
+  label = 'label',
   name,
   property,
   value,
@@ -102,27 +88,29 @@ EqipInfo.Select = ({
     ? items.map(render)
     : items.map((item) => {
         return (
-          <EqipInfo.Menus key={item.value} value={item.value}>
+          <MenuItem key={item.value} value={item.value}>
             {item.name}
-          </EqipInfo.Menus>
+          </MenuItem>
         );
       });
 
   return (
-    <div className="feild-container">
-      <h5>{feildTitle}</h5>
+    <div className="field-container">
+      <h5>{label}</h5>
       <div className="property-feild">
         <FormControl fullWidth>
-          <InputLabel>{feildTitle}</InputLabel>
           <Select
             name={property}
             value={value}
-            label={name}
             onChange={handleValue}
             style={style}
             disabled={disabled}
+            defaultValue=""
           >
-            {render ? renderMenus : <MenuItem value="0">선택</MenuItem>}
+            <MenuItem disabled value="">
+              선택
+            </MenuItem>
+            {render && renderMenus}
           </Select>
         </FormControl>
       </div>

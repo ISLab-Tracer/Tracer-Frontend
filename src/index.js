@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import LoadingManager from './Utils/LoadingManager';
 import SessionManager from 'Hooks/SessionManager';
+import CommonDataManager from 'Hooks/CommonDataManager';
 
 console.log(`
 --------------------------
@@ -19,9 +20,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <SessionManager>
-      <LoadingManager>
-        <App />
-      </LoadingManager>
+      <CommonDataManager>
+        <LoadingManager>
+          <App />
+        </LoadingManager>
+      </CommonDataManager>
     </SessionManager>
   </BrowserRouter>
 );

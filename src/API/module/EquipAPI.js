@@ -14,7 +14,7 @@ const EquipAPI = {
   createEquip: async (equipInfo) => {
     try {
       const url = APIConstant.CREATE_EQUIPMENT;
-      const result = await $http.post(url, equipInfo);
+      const result = await $http.multipart(url, equipInfo);
       const { status, message, data } = result;
       if (status === 200) {
         return data;

@@ -1,21 +1,26 @@
-import { Button, Stack } from '@mui/material';
+import { Button, MenuItem, Stack } from '@mui/material';
 import { EquipInfo, PageHeader } from 'Components';
 import React, { useEffect, useState } from 'react';
 import { EquipmentThumbnail } from './components';
 import './equipment-register.css';
 
-const EquipmentRegisterPresenter = () => {
+const EquipmentRegisterPresenter = ({
+  categoryList,
+  projectList,
+  userList,
+  handleRegister,
+}) => {
   /* Router */
   /* State */
   const initialState = {
     category_id: '',
     project_id: '',
-    equipment_nm: '기자재 #1',
-    equipment_desc:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi magni praesentium tempora expedita aperiam deserunt unde, provident voluptate quasi a quam ipsam eveniet dolorum accusantium enim dolore cumque? Molestias, at.',
-    equipment_thumbnail: '',
-    equipment_price: '50000',
-    equipment_qty: 1,
+    equipment_nm: '',
+    equipment_desc: '',
+    equipment_price: 0,
+    equipment_qty: 0,
+    user_id: '',
+    files: null,
   };
   const [equipInfo, setEquipInfo] = useState(initialState);
   const [thumbnail, setThumbnail] = useState(null);
@@ -30,9 +35,29 @@ const EquipmentRegisterPresenter = () => {
     setEquipInfo({ ...equipInfo, [name]: value });
   };
 
-  const onSubmit = (e) => {
+  /**
+   * Form 핸들러
+   * --
+   * @param {*} e
+   * @returns
+   */
+  const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(equipInfo);
+
+    const postData = {
+      ...equipInfo,
+      equipment_price: Number(equipInfo.equipment_price),
+      equipment_qty: Number(equipInfo.equipment_qty),
+    };
+
+    console.log(postData);
+    const result = await handleRegister(postData);
+    if (result) {
+      setEquipInfo(initialState);
+      return true;
+    }
+
+    return false;
   };
 
   const handleImg = (f) => {
@@ -47,7 +72,7 @@ const EquipmentRegisterPresenter = () => {
     if (thumbnail === null) {
       return;
     }
-    setEquipInfo({ ...equipInfo, equipment_thumbnail: thumbnail });
+    setEquipInfo({ ...equipInfo, files: thumbnail });
     setThumbnail(null);
     // eslint-disable-next-line
   }, [thumbnail]);
@@ -102,8 +127,45 @@ const EquipmentRegisterPresenter = () => {
           </div>
         </div>
         <EquipInfo title="제품 속성">
-          <EquipInfo.Input />
-          <EquipInfo.Input />
+          <EquipInfo.Select
+            label="카테고리"
+            name="category_id"
+            property="category_id"
+            value={equipInfo.category_id}
+            items={categoryList}
+            setValue={handleEquipinfo}
+            render={(item) => (
+              <MenuItem key={item.category_id} value={item.category_id}>
+                {item.category_nm}
+              </MenuItem>
+            )}
+          />
+          <EquipInfo.Select
+            label="관련 사업"
+            name="project_id"
+            property="project_id"
+            setValue={handleEquipinfo}
+            value={equipInfo.project_id}
+            items={projectList}
+            render={(item) => (
+              <MenuItem key={item.project_id} value={item.project_id}>
+                {item.project_title}
+              </MenuItem>
+            )}
+          />
+          <EquipInfo.Select
+            label="담당자"
+            name="user_id"
+            property="user_id"
+            setValue={handleEquipinfo}
+            value={equipInfo.user_id}
+            items={userList}
+            render={(item) => (
+              <MenuItem key={item.user_id} value={item.user_id}>
+                {item.user_nm}
+              </MenuItem>
+            )}
+          />
         </EquipInfo>
         <div className="btn-group">
           <Stack direction="row" spacing={2}>

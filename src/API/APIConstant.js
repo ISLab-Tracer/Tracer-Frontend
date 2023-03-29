@@ -77,6 +77,11 @@ const APIConstant = {
   ...USER_API,
   ...EQUIPMENT_API,
   ...TEAM_API,
+  /**
+   * @method
+   * @param
+   */
+  GET_COMMON_DATA: `${BASE_URL}/common`,
 };
 
 export default APIConstant;
