@@ -69,17 +69,6 @@ Properties.Input = ({
   );
 };
 
-Properties.Textarea = ({ fieldTitle }) => {
-  return (
-    <div className="field-container">
-      <h5>{fieldTitle}</h5>
-      <div className="property-field">
-        <textarea placeholder="test" />
-      </div>
-    </div>
-  );
-};
-
 Properties.Select = ({
   fieldTitle,
   name,

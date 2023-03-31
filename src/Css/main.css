@@ -15,6 +15,10 @@ input {
   overflow: scroll;
 }
 
+.flex {
+  display: flex;
+}
+
 .flexrow {
   display: flex;
   flex-direction: row;

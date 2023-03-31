@@ -1,6 +1,8 @@
 import { Buffer } from 'buffer';
+import * as XLSX from 'xlsx';
 export { default as APIManager } from './APIManager';
 export { default as TypeManager } from './TypeManager';
+
 export const BASE_URL = process.env.REACT_APP_BASE_URL;
 export const HOST_DOMAIN = process.env.REACT_APP_HOST_DOMAIN;
 
@@ -116,4 +118,26 @@ export const writeBuffer = (str, format = 'base64') => {
  */
 export const readBuffer = (str, format = 'base64') => {
   return Buffer.from(str, format).toString('utf8');
+};
+
+/**
+ *
+ * @param {*} param0
+ */
+export const ExcelParsing = ({ setField, setRow, target }) => {
+  const file = target.files[0];
+  const reader = new FileReader();
+
+  reader.onload = (e) => {
+    const data = target.result;
+    const workbook = XLSX.read(data, { type: 'binary' });
+
+    const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+    const rowData = XLSX.utils.sheet_to_json(worksheet, { header: 0 });
+    const fieldHeader = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+    setField(fieldHeader);
+    setRow(rowData);
+  };
+  reader.readAsBinaryString(file);
 };
