@@ -44,6 +44,10 @@ const SessionManager = ({ children }) => {
    * @returns
    */
   const handleCheckToken = async () => {
+    const s = getSession();
+    if (!s) {
+      return;
+    }
     const result = await AuthAPI.verifyToken();
     if (result) {
       return true;
