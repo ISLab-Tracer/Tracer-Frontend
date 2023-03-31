@@ -7,6 +7,7 @@ import {
   KeyboardArrowDown,
 } from '@mui/icons-material';
 import { BUCKET_URL } from 'Utils';
+import { useNavigate } from 'react-router-dom';
 
 const EmptyEquipList = () => {
   return (
@@ -28,11 +29,16 @@ const EquipmentPresenter = ({
   editOn,
 }) => {
   /* Router */
+  const navigate = useNavigate();
   /* State */
   const [keyword, setKeyword] = useState('');
   const [filterList, setFilterList] = useState(equipList);
-  /* Hooks */
   /* Functions */
+  const handleModify = (id) => {
+    const path = `/equipment/modify/${id}`;
+    navigate(path);
+  };
+  /* Hooks */
   useEffect(() => {
     // console.log(equipList);
     if (keyword === '') {
@@ -139,7 +145,8 @@ const EquipmentPresenter = ({
               team={detailItem.team.team_nm}
               project={detailItem.project.project_title}
               thumbnail={`${BUCKET_URL}${detailItem.equipment_thumbnail}`}
-              editOn={() => {}}
+              editOn={handleModify}
+              handeoverOn={console.log}
             />
           ) : (
             <EmptyEquipList />

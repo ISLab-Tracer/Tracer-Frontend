@@ -7,6 +7,7 @@ import {
   Barcode,
   Equipment,
   EquipmentData,
+  EquipmentModify,
   EquipmentRegister,
   Login,
   Main,
@@ -24,6 +25,7 @@ const index = () => {
         <Route path="equipment">
           <Route index element={<Equipment />} />
           <Route path="register" element={<EquipmentRegister />} />
+          <Route path="modify/:equipment_id" element={<EquipmentModify />} />
         </Route>
         <Route path="attributes" element={<Attributes />} />
         <Route path="equipmentdata" element={<EquipmentData />} />

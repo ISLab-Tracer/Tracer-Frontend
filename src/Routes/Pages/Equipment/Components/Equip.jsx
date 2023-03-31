@@ -103,10 +103,18 @@ Equip.Detail = ({
   project,
   qty,
   team,
+  handeoverOn,
 }) => {
   /* Router */
   /* State */
   /* Functions */
+  const onEdit = () => {
+    editOn(id);
+  };
+
+  const onHandover = () => {
+    handeoverOn(id);
+  };
   /* Hooks */
   /* Render */
   return (
@@ -115,12 +123,15 @@ Equip.Detail = ({
         <div className="equip-page-itembox-clickitembox-titlebox">
           <p className="equip-page-itembox-clickitembox-title">제품 정보</p>
           <div className="equip-page-itembox-clickitembox-buttonbox">
-            <p className="centerflex equip-page-itembox-clickitembox-button">
+            <p
+              className="centerflex equip-page-itembox-clickitembox-button"
+              onClick={onHandover}
+            >
               인수
             </p>
             <p
               className="centerflex equip-page-itembox-clickitembox-button"
-              onClick={editOn}
+              onClick={onEdit}
             >
               수정
             </p>
