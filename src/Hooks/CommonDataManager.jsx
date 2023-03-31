@@ -2,6 +2,7 @@
 
 import { createContext, useReducer, useEffect, useContext } from 'react';
 import { CommonAPI } from 'API';
+import { getSession } from 'Utils';
 
 const CommonDataContext = createContext();
 
@@ -34,6 +35,10 @@ const CommonDataManager = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
+    const s = getSession();
+    if (!s) {
+      return;
+    }
     const fetchData = async () => {
       try {
         const result = await CommonAPI.getCommonData();

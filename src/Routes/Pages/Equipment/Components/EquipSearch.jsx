@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { QrCodeScanner, Search } from '@mui/icons-material';
 
-const EquipSearch = ({ setSearch, setEmptycheck }) => {
+const EquipSearch = ({ keyword, setKeyword }) => {
   /* Router */
 
   /* State */
@@ -11,7 +11,7 @@ const EquipSearch = ({ setSearch, setEmptycheck }) => {
 
   /* Functions */
   const handleOnChange = (e) => {
-    setSearch(e.target.value);
+    setKeyword(e.target.value);
   };
 
   const handleOnFocus = () => {
@@ -32,10 +32,11 @@ const EquipSearch = ({ setSearch, setEmptycheck }) => {
         <input
           type="text"
           className="equip-page-search-input"
-          placeholder="이름, 바코드, 속성 검색"
+          placeholder="[장비명, 이름, 팀, 과제]로 검색"
           onFocus={handleOnFocus}
           onBlur={handleOnFocus}
           onChange={handleOnChange}
+          value={keyword}
         />
       </div>
       <div className="equip-page-search-codebox">

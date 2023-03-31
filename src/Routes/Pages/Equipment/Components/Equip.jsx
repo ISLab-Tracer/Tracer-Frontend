@@ -12,6 +12,7 @@ Equip.List = ({
   price,
   team,
   category,
+  project,
   count,
   charger,
   onClick,
@@ -41,7 +42,8 @@ Equip.List = ({
         <div className="equip-page-itembox-left-info">
           <p className="equip-page-itembox-left-info-title">{title}</p>
           <p className="equip-page-itembox-left-info-property">
-            {stringToMoneyFormat(price)}원 / {team} / {category} / {charger}
+            {stringToMoneyFormat(price)}원 / {project} / {team} / {category} /{' '}
+            {charger}
           </p>
         </div>
         <div className="equip-page-itembox-left-countbox">
@@ -98,9 +100,15 @@ Equip.Detail = ({
   price,
   thumbnail,
   charger,
+  project,
   qty,
   team,
 }) => {
+  /* Router */
+  /* State */
+  /* Functions */
+  /* Hooks */
+  /* Render */
   return (
     <div className="equip-page-itembox-right">
       <div className="equip-page-itembox-clickitembox">
@@ -140,14 +148,10 @@ Equip.Detail = ({
               borderTop: '1px solid #cccdd4',
             }}
           />
-
-          {/* <Equip.Text title="바코드" value={} /> */}
-
           <Equip.Text title="가격" value={stringToMoneyFormat(price)} />
-
-          <Equip.Text title="소유자" value={charger} />
-
+          <Equip.Text title="프로젝트" value={project} />
           <Equip.Text title="팀" value={team} />
+          <Equip.Text title="소유자" value={charger} />
         </div>
 
         <div className="equip-page-itembox-clickitembox-changebox line">

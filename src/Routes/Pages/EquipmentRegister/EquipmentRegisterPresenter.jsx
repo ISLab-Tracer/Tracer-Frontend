@@ -70,6 +70,10 @@ const EquipmentRegisterPresenter = ({
     setThumbnail(f);
   };
 
+  const onReset = () => {
+    setEquipInfo(initialState);
+  };
+
   /* Hooks */
   useEffect(() => {
     if (thumbnail === null) {
@@ -86,7 +90,7 @@ const EquipmentRegisterPresenter = ({
         title="제품 추가"
         subTitle="제품 목록"
         right={
-          <Button variant="outlined" size="large">
+          <Button variant="outlined" size="large" onClick={onReset}>
             초기화
           </Button>
         }
