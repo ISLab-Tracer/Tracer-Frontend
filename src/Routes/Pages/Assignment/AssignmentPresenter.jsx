@@ -5,7 +5,6 @@ import { useCommonData } from 'Hooks/CommonDataManager';
 import React from 'react';
 
 const columns = [
-  { field: 'project_id', headerName: 'ID', width: 100 },
   {
     field: 'project_title',
     headerName: '과제명',
@@ -35,7 +34,7 @@ const AssignmentPresenter = () => {
   return (
     <div className="main-content-container">
       <PageHeader title="과제" subTitle="데이터 관리" />
-      <Box sx={{ height: 800, width: '100%' }}>
+      <Box sx={{ height: 700, width: '100%' }}>
         <DataGrid
           rows={dataList}
           columns={columns}

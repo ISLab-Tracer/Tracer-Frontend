@@ -72,11 +72,25 @@ const EQUIPMENT_API = {
   GET_EQUIPMENT: `${BASE_URL}/equipment/:equipment_id`,
 };
 
+const CATEGORY_API = {
+  /**
+   * @method POST
+   * @param
+   */
+  CREATE_CATEGORY: `${BASE_URL}/category`,
+  /**
+   * @method PUT
+   * @param
+   */
+  UPDATE_CATEGORY: `${BASE_URL}/category`,
+};
+
 const APIConstant = {
   ...AUTH_API,
   ...USER_API,
   ...EQUIPMENT_API,
   ...TEAM_API,
+  ...CATEGORY_API,
   /**
    * @method
    * @param
