@@ -26,6 +26,15 @@ Properties.Button = ({ fieldTitle }) => {
   );
 };
 
+Properties.Text = ({ fieldTitle, h5style, name }) => {
+  return (
+    <div className="field-container">
+      <h5 style={h5style}>{fieldTitle}</h5>
+      <div className="property-field">{name}</div>
+    </div>
+  );
+};
+
 Properties.Input = ({
   fieldTitle = 'title',
   name,
@@ -34,7 +43,7 @@ Properties.Input = ({
   desc = null,
   size = 'small',
   variant = 'outlined',
-  style = { width: '100%' },
+  style = { width: '100%', padding: '2px 14px !important' },
   property,
   disabled = false,
   multiline = true,
@@ -75,7 +84,7 @@ Properties.Select = ({
   property,
   value = '',
   setValue,
-  style,
+  style = { padding: '8.5px 14px !important' },
   disabled = false,
   render,
 }) => {
@@ -103,11 +112,11 @@ Properties.Select = ({
         <FormControl fullWidth>
           <InputLabel>{fieldTitle}</InputLabel>
           <Select
+            style={style}
             name={property}
             value={value}
             label={name}
             onChange={handleValue}
-            style={style}
             disabled={disabled}
           >
             {render ? renderMenus : <MenuItem value="0">선택</MenuItem>}
@@ -217,6 +226,17 @@ Properties.Alert = ({
         </div>
       </div>
     )
+  );
+};
+
+Properties.Delete = ({ fieldTitle, name, style }) => {
+  return (
+    <div style={style} className="property-deletebox">
+      <span className="property-deletebox-span">{fieldTitle}</span>
+      <div className="property-deletebox-buttonbox">
+        <span className="property-deletebox-buttonbox-span">{name}</span>
+      </div>
+    </div>
   );
 };
 

@@ -1,12 +1,11 @@
-import React from 'react';
 import * as XLSX from 'xlsx';
 
-const ExcelParsing = ({ setField, setRow, target } = props) => {
-  const file = target.files[0];
+const ExcelParsing = (setField, setRow, targetFile) => {
+  const file = targetFile;
   const reader = new FileReader();
 
   reader.onload = (e) => {
-    const data = target.result;
+    const data = e.target.result;
     const workbook = XLSX.read(data, { type: 'binary' });
 
     const worksheet = workbook.Sheets[workbook.SheetNames[0]];
@@ -16,8 +15,7 @@ const ExcelParsing = ({ setField, setRow, target } = props) => {
     setField(fieldHeader);
     setRow(rowData);
   };
-  /* Hooks */
-  /* Render */
+  reader.readAsBinaryString(file);
 };
 
 export default ExcelParsing;

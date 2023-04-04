@@ -1,35 +1,7 @@
 import React, { useState, useRef } from 'react';
 import Properties from './Properties';
 import { ImgError } from 'Utils';
-
-const times = [
-  '00:00',
-  '01:00',
-  '02:00',
-  '03:00',
-  '04:00',
-  '05:00',
-  '06:00',
-  '07:00',
-  '08:00',
-  '09:00',
-  '10:00',
-  '11:00',
-  '12:00',
-  '13:00',
-  '14:00',
-  '15:00',
-  '16:00',
-  '17:00',
-  '18:00',
-  '19:00',
-  '20:00',
-  '21:00',
-  '22:00',
-  '23:00',
-];
-const money = ['$', '¥', '₩', '€', 'BTC', 'EHT'];
-const set = ['가격 + 전체속성', '전체속성 + 가격', '전체속성', '바코드'];
+import { i_times, i_money, i_set } from './Initial';
 
 const TeamProfile = ({ info }) => {
   /* Router */
@@ -96,7 +68,7 @@ const TeamProfile = ({ info }) => {
                 style={{ width: '100%' }}
                 value={testState}
                 setValue={setTestState}
-                render={times}
+                render={i_times}
               />
             </div>
             <input
@@ -169,14 +141,14 @@ const TeamProfile = ({ info }) => {
               name="통화"
               value={testMoney}
               setValue={setTestMoney}
-              render={money}
+              render={i_money}
             />
             <Properties.Select
               fieldTitle="제품정보"
               name="제품정보"
               value={testSet}
               setValue={setTestSet}
-              render={set}
+              render={i_set}
             />
           </div>
           <div>
@@ -185,16 +157,10 @@ const TeamProfile = ({ info }) => {
         </Properties.Box>
 
         <Properties.Box fieldTitle="데이터 삭제">
-          <div className="profile-page-main-mainbox flexrow profile-page-main-bottombox">
-            <span className="profile-page-main-bottombox-leftspan">
-              팀 정보 및 데이터가 모두 삭제됩니다.
-            </span>
-            <div className="profile-page-main-bottombox-rightbox">
-              <span className="profile-page-main-bottombox-rightbox-span">
-                팀 삭제
-              </span>
-            </div>
-          </div>
+          <Properties.Delete
+            fieldTitle="팀 정보 및 데이터가 모두 삭제됩니다."
+            name="팀 삭제"
+          />
         </Properties.Box>
       </div>
       <Properties.Alert
