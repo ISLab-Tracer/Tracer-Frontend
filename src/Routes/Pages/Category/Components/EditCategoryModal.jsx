@@ -10,45 +10,46 @@ import {
 } from '@mui/material';
 import React, { Fragment } from 'react';
 
-const CategoryModal = ({
-  handleRegister,
-  categoryList,
+const EditCategoryModal = ({
+  editData,
+  setEditData,
   parentCategory,
-  categoryState,
-  setCategoryState,
+  handleUpdate,
+  categoryList,
 }) => {
   /* Router */
   /* State */
   /* Hooks */
   /* Functions */
-  const handleCategoryChange = (e) => {
-    setCategoryState({ ...categoryState, category_nm: e.target.value });
-  };
-
-  const handleCategoryDesc = (e) => {
-    setCategoryState({ ...categoryState, category_desc: e.target.value });
-  };
   const handleParentChange = (e) => {
-    setCategoryState({ ...categoryState, parent: e.target.value });
+    setEditData({ ...editData, parent_category: e.target.value });
   };
-  const handleCategoryRegister = (e) => {
+  const handleCategoryChange = (e) => {
+    setEditData({ ...editData, category_nm: e.target.value });
+  };
+  const handleCategoryDesc = (e) => {
+    setEditData({ ...editData, category_desc: e.target.value });
+  };
+  const handleUpdateCategory = (e) => {
     e.preventDefault();
-    const parentId = categoryList.filter(
-      (i) => i.category_nm === categoryState.parent
+    const parent = categoryList.filter(
+      (i) => i.category_nm === editData.parent_category
     );
     const data = {
-      category_nm: categoryState.category_nm,
-      category_desc: categoryState.category_desc,
-      parent_id: parentId[0].category_id,
-      category_level: parentId[0].category_level + 1,
+      category_id: editData.category_id,
+      category_nm: editData.category_nm,
+      category_desc: editData.category_desc,
+      parent_id: parent[0].category_id,
+      category_level: parent[0].category_level + 1,
     };
-    handleRegister(data);
+    handleUpdate(data);
   };
+  console.log(editData);
   /* Render */
   return (
     <Fragment>
       <Typography id="transition-modal-title" variant="h6" component="h2">
-        카테고리 추가
+        카테고리 수정
       </Typography>
       <Typography id="transition-modal-description" sx={{ color: '#cecece' }}>
         제품 카테고리 정보를 입력해주세요.
@@ -69,7 +70,7 @@ const CategoryModal = ({
             <Select
               labelId="demo-select-small"
               id="demo-select-small"
-              value={categoryState.parent}
+              value={editData.parent_category}
               label="상위 카테고리"
               onChange={handleParentChange}
             >
@@ -102,9 +103,9 @@ const CategoryModal = ({
             label="카테고리명"
             variant="outlined"
             size="small"
-            value={categoryState.category_nm}
+            value={editData.category_nm}
             onChange={handleCategoryChange}
-            sx={{ ml: 5, minWidth: 150 }}
+            sx={{ my: 2, ml: 5, minWidth: 150 }}
           />
         </div>
       </div>
@@ -119,11 +120,11 @@ const CategoryModal = ({
         <h4 style={{ width: 100 }}>설명</h4>
         <div>
           <TextField
-            id="outlined-basic"
+            id="ou"
             label="설명"
             variant="outlined"
             size="small"
-            value={categoryState.category_desc}
+            value={editData.category_desc}
             onChange={handleCategoryDesc}
             sx={{ ml: 5, minWidth: 150 }}
           />
@@ -132,7 +133,7 @@ const CategoryModal = ({
       <div
         style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 30 }}
       >
-        <Button variant="contained" onClick={handleCategoryRegister}>
+        <Button variant="contained" onClick={handleUpdateCategory}>
           등록
         </Button>
       </div>
@@ -140,4 +141,4 @@ const CategoryModal = ({
   );
 };
 
-export default CategoryModal;
+export default EditCategoryModal;

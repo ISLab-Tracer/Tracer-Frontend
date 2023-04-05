@@ -3,7 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { ModalLayout, PageHeader } from 'Components';
 import { useCommonData } from 'Hooks/CommonDataManager';
 import React, { useState } from 'react';
-import { CategoryModal } from './Components';
+import { CategoryModal, EditCategoryModal } from './Components';
 const columns = [
   {
     field: 'parent_category',
@@ -31,7 +31,7 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
-  height: 300,
+  height: 340,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -44,17 +44,20 @@ const initialState = {
   parent: 'None',
 };
 
-const CategoryPresenter = ({ handleRegister }) => {
+const CategoryPresenter = ({ handleRegister, handleDelete, handleUpdate }) => {
   /* Router */
   /* State */
   const [categoryState, setCategoryState] = useState(initialState);
+  const [selectId, setSelectId] = useState();
   const [open, setOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
+  const [editData, setEditData] = useState();
   const { categoryList } = useCommonData();
   console.log(categoryList);
   // 부모 카테고리 항목 추출
   const parentCategory = categoryList.filter((i) => i.category_level === 0);
   // 카테고리 리스트에 DataGrid id, 부모 카테고리명 추가
-  const dataList = categoryList.map((item) => {
+  const data = categoryList.map((item) => {
     const { category_id, parent_id } = item;
     const parentCategory = categoryList.filter(
       (i) => i.category_id === parent_id
@@ -66,8 +69,26 @@ const CategoryPresenter = ({ handleRegister }) => {
       parent_category: parent_nm[0],
     };
   });
+  const [dataList, setDataList] = useState(data);
   /* Hooks */
   /* Functions */
+  /**
+   * 카테고리 항목 선택
+   * @param {*} id
+   */
+  const handleSelect = (id) => {
+    setSelectId(id);
+    console.log(selectId);
+  };
+  /**
+   * 선택 카테고리 삭제
+   */
+  const handleDeleteCategory = () => {
+    const result = dataList.filter((i) => !selectId.includes(i.id));
+    setDataList(result);
+    // selectId.map((i) => handleDelete(i));
+    // handleDelete(selectId[0]);
+  };
   /**
    * 모달창 오픈
    */
@@ -80,6 +101,13 @@ const CategoryPresenter = ({ handleRegister }) => {
   const handleCloseModal = () => {
     setOpen(false);
   };
+  const handleOpenEditModal = (e) => {
+    setEditOpen(true);
+    setEditData(e.row);
+  };
+  const handleCloseEditModal = () => {
+    setEditOpen(false);
+  };
   /* Render */
   return (
     <div className="main-content-container">
@@ -87,14 +115,23 @@ const CategoryPresenter = ({ handleRegister }) => {
         title="카테고리"
         subTitle="데이터 관리"
         right={
-          <Button
-            variant="outlined"
-            size="middium"
-            sx={{ marginRight: 1 }}
-            onClick={handleOpenModal}
-          >
-            카테고리 추가
-          </Button>
+          <>
+            <Button
+              variant="outlined"
+              size="middium"
+              sx={{ marginRight: 1 }}
+              onClick={handleOpenModal}
+            >
+              카테고리 추가
+            </Button>
+            <Button
+              variant="outlined"
+              size="middium"
+              onClick={handleDeleteCategory}
+            >
+              선택항목 삭제
+            </Button>
+          </>
         }
       />
       <Divider sx={{ marginTop: 1, marginBottom: 3 }} />
@@ -112,7 +149,9 @@ const CategoryPresenter = ({ handleRegister }) => {
           pageSizeOptions={[10]}
           checkboxSelection
           disableRowSelectionOnClick
-          //   onRowSelectionModelChange={(id) => handleSelect(id)}
+          isCellEditable={() => false}
+          onRowDoubleClick={(e) => handleOpenEditModal(e)}
+          onRowSelectionModelChange={(id) => handleSelect(id)}
         />
       </Box>
       <ModalLayout open={open} close={handleCloseModal} style={style}>
@@ -122,6 +161,16 @@ const CategoryPresenter = ({ handleRegister }) => {
           parentCategory={parentCategory}
           categoryState={categoryState}
           setCategoryState={setCategoryState}
+        />
+      </ModalLayout>
+      <ModalLayout open={editOpen} style={style} close={handleCloseEditModal}>
+        <EditCategoryModal
+          editData={editData}
+          dataList={dataList}
+          setEditData={setEditData}
+          parentCategory={parentCategory}
+          categoryList={categoryList}
+          handleUpdate={handleUpdate}
         />
       </ModalLayout>
     </div>
