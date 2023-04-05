@@ -161,12 +161,15 @@ const CategoryPresenter = ({ handleRegister, handleDelete, handleUpdate }) => {
           parentCategory={parentCategory}
           categoryState={categoryState}
           setCategoryState={setCategoryState}
+          setEditOpen={setEditOpen}
         />
       </ModalLayout>
       <ModalLayout open={editOpen} style={style} close={handleCloseEditModal}>
         <EditCategoryModal
           editData={editData}
           dataList={dataList}
+          setEditOpen={setEditOpen}
+          setDataList={setDataList}
           setEditData={setEditData}
           parentCategory={parentCategory}
           categoryList={categoryList}

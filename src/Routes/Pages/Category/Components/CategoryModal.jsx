@@ -16,6 +16,7 @@ const CategoryModal = ({
   parentCategory,
   categoryState,
   setCategoryState,
+  setEditOpen,
 }) => {
   /* Router */
   /* State */
@@ -43,6 +44,7 @@ const CategoryModal = ({
       category_level: parentId[0].category_level + 1,
     };
     handleRegister(data);
+    setEditOpen(false);
   };
   /* Render */
   return (

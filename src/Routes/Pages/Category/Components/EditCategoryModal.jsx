@@ -16,25 +16,46 @@ const EditCategoryModal = ({
   parentCategory,
   handleUpdate,
   categoryList,
+  dataList,
+  setDataList,
+  setEditOpen,
 }) => {
   /* Router */
   /* State */
   /* Hooks */
   /* Functions */
+  /**
+   * 부모 카테고리 변경
+   * @param {*} e
+   */
   const handleParentChange = (e) => {
     setEditData({ ...editData, parent_category: e.target.value });
   };
+  /**
+   * 카테고리명 변경
+   * @param {*} e
+   */
   const handleCategoryChange = (e) => {
     setEditData({ ...editData, category_nm: e.target.value });
   };
+  /**
+   * 카테고리 설명 변경
+   * @param {*} e
+   */
   const handleCategoryDesc = (e) => {
     setEditData({ ...editData, category_desc: e.target.value });
   };
+  /**
+   * 카테고리 수정 등록
+   * @param {*} e
+   */
   const handleUpdateCategory = (e) => {
     e.preventDefault();
+    // 부모 카테고리명 추출
     const parent = categoryList.filter(
       (i) => i.category_nm === editData.parent_category
     );
+    // 업데이트 내용 반영
     const data = {
       category_id: editData.category_id,
       category_nm: editData.category_nm,
@@ -42,7 +63,24 @@ const EditCategoryModal = ({
       parent_id: parent[0].category_id,
       category_level: parent[0].category_level + 1,
     };
+    // 등록
     handleUpdate(data);
+    // 카테고리 리스트 상태 변경
+    setDataList(
+      dataList.map((item) =>
+        item.category_id === editData.category_id
+          ? {
+              ...item,
+              category_nm: editData.category_nm,
+              category_desc: editData.category_desc,
+              parent_id: parent[0].category_id,
+              category_level: parent[0].category_level + 1,
+            }
+          : item
+      )
+    );
+    // 모달 닫기
+    setEditOpen(false);
   };
   console.log(editData);
   /* Render */
