@@ -30,6 +30,9 @@ const ProfilePresenter = ({ teams, getUserInfo }) => {
     set_set: '전체속성 + 가격',
   };
 
+  console.log('HERE');
+  console.log(teams);
+
   const [userInfo, setUserInfo] = useState(initialState);
 
   const [teamInfo] = useState(initialTeamProfile);
@@ -58,9 +61,9 @@ const ProfilePresenter = ({ teams, getUserInfo }) => {
   /* Render */
 
   return mode === '1' ? (
-    <UserProfile info={userInfo} />
+    <UserProfile userinfo={userInfo} />
   ) : (
-    <TeamProfile info={teamInfo} />
+    <TeamProfile userinfo={teamInfo} />
   );
 };
 

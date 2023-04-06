@@ -11,8 +11,8 @@ import CommonDataManager from 'Hooks/CommonDataManager';
 console.log(`
 --------------------------
 \n
-Release Version: V1.0.0.2
-Last Release: 2023.03.29
+Release Version: V1.0.0.3
+Last Release: 2023.04.06
 \n
 --------------------------`);
 

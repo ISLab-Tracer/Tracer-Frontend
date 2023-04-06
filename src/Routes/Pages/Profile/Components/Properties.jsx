@@ -26,11 +26,11 @@ Properties.Button = ({ fieldTitle }) => {
   );
 };
 
-Properties.Text = ({ fieldTitle, h5style, name }) => {
+Properties.Text = ({ fieldTitle, h5style, value }) => {
   return (
     <div className="field-container">
       <h5 style={h5style}>{fieldTitle}</h5>
-      <div className="property-field">{name}</div>
+      <div className="property-field">{value}</div>
     </div>
   );
 };
@@ -39,6 +39,7 @@ Properties.Input = ({
   fieldTitle = 'title',
   name,
   value,
+  settitle,
   setValue,
   desc = null,
   size = 'small',
@@ -54,8 +55,12 @@ Properties.Input = ({
     if (!setValue) {
       return;
     }
-    setValue(e.target.name, e.target.value);
+    setValue((prevState) => ({
+      ...prevState,
+      settitle: value,
+    }));
   };
+
   return (
     <div className="field-container">
       <h5 style={h5style}>{fieldTitle}</h5>
