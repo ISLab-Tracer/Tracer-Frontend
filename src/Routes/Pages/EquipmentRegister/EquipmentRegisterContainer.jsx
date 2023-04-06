@@ -8,7 +8,8 @@ const EquipmentRegisterContainer = () => {
   /* Router */
   /* State */
   const { handleLoading, handleLoadingTimer } = useLoading();
-  const { categoryList, projectList, userList } = useCommonData();
+  const { projectList, userList, categoryTree, categoryOptions } =
+    useCommonData();
   /* Functions */
   /**
    * 장비 등록
@@ -41,9 +42,10 @@ const EquipmentRegisterContainer = () => {
   /* Render */
   return (
     <EquipmentRegisterPresenter
-      categoryList={categoryList}
       projectList={projectList}
       userList={userList}
+      categoryTree={categoryTree}
+      categoryOptions={categoryOptions}
       handleRegister={handleRegister}
     />
   );

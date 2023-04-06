@@ -34,7 +34,6 @@ const EquipmentContainer = () => {
     const result = await EquipAPI.getEquipList();
     if (result) {
       setEquipList(result);
-      // setEquipList(initial);
       return true;
     }
 

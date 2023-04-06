@@ -85,8 +85,10 @@ const SessionManager = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    handleCheckToken();
-  }, []);
+    if (session) {
+      handleCheckToken();
+    }
+  }, [session]);
 
   /* Render */
   return (

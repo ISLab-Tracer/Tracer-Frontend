@@ -8,6 +8,7 @@ export { default as Profile } from './Profile';
 // Equipment
 export { default as Equipment } from './Equipment';
 export { default as EquipmentRegister } from './EquipmentRegister';
+export { default as EquipmentModify } from './EquipmentModify';
 
 //DataManagement
 export { default as Attributes } from './Attributes';

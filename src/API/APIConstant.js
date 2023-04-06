@@ -70,6 +70,29 @@ const EQUIPMENT_API = {
    * @param { string } equipment_id
    */
   GET_EQUIPMENT: `${BASE_URL}/equipment/:equipment_id`,
+  /**
+   * @method POST
+   * @param
+   */
+  UPDATE_EQUIPMENT: `${BASE_URL}/equipment`,
+};
+
+const COMMON_API = {
+  /**
+   * @method POST
+   * @param
+   */
+  SINGLE_UPLOAD: `${BASE_URL}/upload`,
+  /**
+   * @method POST
+   * @param
+   */
+  MULTI_UPLOAD: `${BASE_URL}/upload/multi`,
+  /**
+   * @method POST
+   * @param
+   */
+  GET_COMMON_DATA: `${BASE_URL}/common`,
 };
 
 const APIConstant = {
@@ -77,11 +100,7 @@ const APIConstant = {
   ...USER_API,
   ...EQUIPMENT_API,
   ...TEAM_API,
-  /**
-   * @method
-   * @param
-   */
-  GET_COMMON_DATA: `${BASE_URL}/common`,
+  ...COMMON_API,
 };
 
 export default APIConstant;

@@ -94,7 +94,8 @@ const AuthAPI = {
       if (status === 200) {
         return data;
       }
-      throw message;
+      console.log(message);
+      return false;
     } catch (e) {
       return false;
     }

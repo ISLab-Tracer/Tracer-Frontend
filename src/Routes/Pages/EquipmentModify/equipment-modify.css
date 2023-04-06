@@ -1,20 +1,21 @@
-.equipment-register-container{
+.equipment-modify-container {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     padding: 20px 40px;
     overflow: auto;
 }
 
-.equipment-register-container .equipment-register-form{
+
+.equipment-modify-container .equipment-modify-form {
     width: 90%;
-    min-height: 500px;
+    min-height: 600px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
 }
 
-.equipment-register-container .equipment-register-form .equipinfo-wrapper{
+.equipment-modify-container .equipment-modify-form .equipinfo-wrapper {
     width: 100%;
     min-height: 275px;
     display: flex;
@@ -22,12 +23,12 @@
     align-items: center;
 }
 
-.equipment-register-container .equipment-register-form .equipinfo-wrapper .left{
+.equipment-modify-container .equipment-modify-form .equipinfo-wrapper .left {
     flex: 1;
     min-height: 275px;
 }
 
-.equipment-register-container .equipment-register-form .equipinfo-wrapper .right{
+.equipment-modify-container .equipment-modify-form .equipinfo-wrapper .right {
     min-width: 250px;
     min-height: 375px;
     display: flex;
@@ -35,7 +36,7 @@
     align-items: flex-start;
 }
 
-.equipment-register-container .equipment-register-form .btn-group{
+.equipment-modify-container .equipment-modify-form .btn-group {
     width: 100%;
     min-height: 100px;
     display: flex;

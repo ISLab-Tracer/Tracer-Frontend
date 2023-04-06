@@ -15,7 +15,7 @@ const MainLayoutPresenter = () => {
       <Header />
       <div className="mainlayout-body-container">
         <SideMenu />
-        {<Outlet />}
+        <Outlet />
       </div>
     </div>
   );
