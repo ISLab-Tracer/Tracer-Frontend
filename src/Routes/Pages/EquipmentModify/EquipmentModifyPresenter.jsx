@@ -1,43 +1,21 @@
-import { Button, MenuItem, Stack } from '@mui/material';
+import React, { useState } from 'react';
+import './equipment-modify.css';
+import { useCommonData } from 'Hooks/CommonDataManager';
 import { EquipInfo, EquipmentThumbnail, PageHeader } from 'Components';
-import React, { useEffect, useState } from 'react';
-import { uncomma } from 'Utils';
-import './equipment-register.css';
+import { Button, MenuItem, Stack } from '@mui/material';
 import { MyListSubheader } from 'Components/Equips/EquipInfo/EquipInfo';
-
-const EquipmentRegisterPresenter = ({
-  categoryOptions,
-  projectList,
-  categoryTree,
-  userList,
-  handleRegister,
-}) => {
+const EquipmentModifyPresenter = ({ equipment, updateEquipment }) => {
   /* Router */
   /* State */
-  const initialState = {
-    category_id: '',
-    project_id: '',
-    equipment_nm: '',
-    equipment_desc: '',
-    equipment_price: null,
-    equipment_qty: null,
-    user_id: '',
-    charger_id: '',
-    files: null,
-  };
-  const [equipInfo, setEquipInfo] = useState(initialState);
-  const [thumbnail, setThumbnail] = useState(null);
+  const { categoryOptions, projectList, userList } = useCommonData();
+  //   const [img, setImg] = useState(null);
+  const [thumbnail, setThumbnail] = useState(equipment.equipment_thumbnail);
+  const [equipInfo, setEquipInfo] = useState(equipment);
+
   /* Functions */
-  /**
-   * 제품 정보 핸들러
-   * --
-   * @param {string} name
-   * @param {string} value
-   */
   const handleEquipinfo = (name, value) => {
     setEquipInfo({ ...equipInfo, [name]: value });
   };
-
   /**
    * Form 핸들러
    * --
@@ -46,21 +24,7 @@ const EquipmentRegisterPresenter = ({
    */
   const onSubmit = async (e) => {
     e.preventDefault();
-
-    const postData = {
-      ...equipInfo,
-      equipment_price: Number(uncomma(equipInfo.equipment_price)),
-      equipment_qty: Number(uncomma(equipInfo.equipment_qty)),
-    };
-
-    const result = await handleRegister(postData);
-    if (result) {
-      setEquipInfo(initialState);
-      setThumbnail(null);
-      return true;
-    }
-
-    return false;
+    await updateEquipment(equipInfo, thumbnail);
   };
 
   const handleImg = (f) => {
@@ -71,18 +35,10 @@ const EquipmentRegisterPresenter = ({
   };
 
   const onReset = () => {
-    setEquipInfo(initialState);
+    setEquipInfo(equipment);
   };
-
   /* Hooks */
-  useEffect(() => {
-    if (thumbnail === null) {
-      return;
-    }
-    setEquipInfo({ ...equipInfo, files: thumbnail });
-    // eslint-disable-next-line
-  }, [thumbnail]);
-
+  /* Render */
   const categoryRender = categoryOptions.map((item) => {
     const { parent_id, category_id, category_nm } = item;
     if (parent_id) {
@@ -98,10 +54,8 @@ const EquipmentRegisterPresenter = ({
       </MyListSubheader>
     );
   });
-
-  /* Render */
   return (
-    <div className="equipment-register-container">
+    <div className="equipment-modify-container">
       <PageHeader
         title="제품 추가"
         subTitle="제품 목록"
@@ -112,7 +66,7 @@ const EquipmentRegisterPresenter = ({
         }
       />
       <form
-        className="equipment-register-form"
+        className="equipment-modify-form"
         onSubmit={onSubmit}
         onKeyPress={(e) => {
           e.key === 'Enter' && e.preventDefault();
@@ -160,10 +114,10 @@ const EquipmentRegisterPresenter = ({
             name="category_id"
             property="category_id"
             value={equipInfo.category_id}
-            items={categoryTree}
             setValue={handleEquipinfo}
-            children={categoryRender}
-          />
+          >
+            {categoryRender}
+          </EquipInfo.Select>
           <EquipInfo.Select
             label="관련 사업"
             name="project_id"
@@ -181,6 +135,7 @@ const EquipmentRegisterPresenter = ({
             label="구매자"
             name="user_id"
             property="user_id"
+            disabled
             setValue={handleEquipinfo}
             value={equipInfo.user_id}
             items={userList}
@@ -192,10 +147,11 @@ const EquipmentRegisterPresenter = ({
           />
           <EquipInfo.Select
             label="담당자"
-            name="charger_id"
-            property="charger_id"
+            name="user_id"
+            property="user_id"
+            disabled
             setValue={handleEquipinfo}
-            value={equipInfo.charger_id}
+            value={equipInfo.user_id}
             items={userList}
             render={(item) => (
               <MenuItem key={item.user_id} value={item.user_id}>
@@ -219,4 +175,4 @@ const EquipmentRegisterPresenter = ({
   );
 };
 
-export default EquipmentRegisterPresenter;
+export default EquipmentModifyPresenter;

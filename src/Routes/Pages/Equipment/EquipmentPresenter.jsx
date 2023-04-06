@@ -7,6 +7,8 @@ import {
   KeyboardArrowDown,
 } from '@mui/icons-material';
 import { BUCKET_URL } from 'Utils';
+import { useNavigate } from 'react-router-dom';
+import { useCommonData } from 'Hooks/CommonDataManager';
 
 const EmptyEquipList = () => {
   return (
@@ -28,11 +30,17 @@ const EquipmentPresenter = ({
   editOn,
 }) => {
   /* Router */
+  const navigate = useNavigate();
   /* State */
+  const { teamList } = useCommonData();
   const [keyword, setKeyword] = useState('');
   const [filterList, setFilterList] = useState(equipList);
-  /* Hooks */
   /* Functions */
+  const handleModify = (id) => {
+    const path = `/equipment/modify/${id}`;
+    navigate(path);
+  };
+  /* Hooks */
   useEffect(() => {
     // console.log(equipList);
     if (keyword === '') {
@@ -66,11 +74,15 @@ const EquipmentPresenter = ({
       equipment_price,
       equipment_thumbnail,
       equipment_qty,
-      team: { team_nm },
       category: { category_nm },
-      user: { user_nm },
       project: { project_title },
+      charge,
     } = item;
+    const [charger] = charge.filter((item) => item.charge_status);
+    const {
+      user: { user_nm, team_id },
+    } = charger;
+    const [{ team_nm }] = teamList.filter((item) => item.team_id === team_id);
     const thumbnail = `${BUCKET_URL}${equipment_thumbnail}`;
     return (
       <Equip.List
@@ -91,6 +103,14 @@ const EquipmentPresenter = ({
 
   const detailItem =
     itemid && equipList.filter((i) => i.equipment_id === itemid)[0];
+
+  const [charger] = detailItem
+    ? detailItem.charge.filter((item) => item.charge_status)
+    : [false];
+
+  const [team] = charger
+    ? teamList.filter((item) => item.team_id === charger.user.team_id)
+    : [false];
 
   return (
     <div className="main-content-container">
@@ -126,7 +146,7 @@ const EquipmentPresenter = ({
                 <FormatListNumbered />
               </div>
             </div>
-            {equipRender}
+            <div className="equipment-list">{equipRender}</div>
           </div>
 
           {itemid ? (
@@ -135,11 +155,13 @@ const EquipmentPresenter = ({
               title={detailItem.equipment_nm}
               price={detailItem.equipment_price}
               qty={detailItem.equipment_qty}
-              charger={detailItem.user.user_nm}
-              team={detailItem.team.team_nm}
+              buyer={detailItem.user.user_nm}
+              charger={charger.user.user_nm}
+              team={team.team_nm}
               project={detailItem.project.project_title}
               thumbnail={`${BUCKET_URL}${detailItem.equipment_thumbnail}`}
-              editOn={() => {}}
+              editOn={handleModify}
+              handeoverOn={console.log}
             />
           ) : (
             <EmptyEquipList />

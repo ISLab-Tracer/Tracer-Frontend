@@ -99,14 +99,23 @@ Equip.Detail = ({
   title,
   price,
   thumbnail,
+  buyer,
   charger,
   project,
   qty,
   team,
+  handeoverOn,
 }) => {
   /* Router */
   /* State */
   /* Functions */
+  const onEdit = () => {
+    editOn(id);
+  };
+
+  const onHandover = () => {
+    handeoverOn(id);
+  };
   /* Hooks */
   /* Render */
   return (
@@ -115,12 +124,15 @@ Equip.Detail = ({
         <div className="equip-page-itembox-clickitembox-titlebox">
           <p className="equip-page-itembox-clickitembox-title">제품 정보</p>
           <div className="equip-page-itembox-clickitembox-buttonbox">
-            <p className="centerflex equip-page-itembox-clickitembox-button">
+            <p
+              className="centerflex equip-page-itembox-clickitembox-button"
+              onClick={onHandover}
+            >
               인수
             </p>
             <p
               className="centerflex equip-page-itembox-clickitembox-button"
-              onClick={editOn}
+              onClick={onEdit}
             >
               수정
             </p>
@@ -151,11 +163,15 @@ Equip.Detail = ({
           <Equip.Text title="가격" value={stringToMoneyFormat(price)} />
           <Equip.Text title="프로젝트" value={project} />
           <Equip.Text title="팀" value={team} />
+          <Equip.Text title="구매자" value={buyer} />
           <Equip.Text title="소유자" value={charger} />
         </div>
 
         <div className="equip-page-itembox-clickitembox-changebox line">
           <Equip.Text title="수량" value={stringToMoneyFormat(qty)} />
+          {qty >= 2 && (
+            <Equip.Text title="총액" value={stringToMoneyFormat(qty * price)} />
+          )}
         </div>
 
         {/* IF 종료 */}
