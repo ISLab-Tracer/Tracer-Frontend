@@ -5,6 +5,7 @@ import {
   Assignment,
   Attributes,
   Barcode,
+  Category,
   Equipment,
   EquipmentData,
   EquipmentModify,
@@ -31,6 +32,7 @@ const index = () => {
         <Route path="equipmentdata" element={<EquipmentData />} />
         <Route path="assignment" element={<Assignment />} />
         <Route path="barcode" element={<Barcode />} />
+        <Route path="category" element={<Category />} />
       </Route>
       <Route element={<LoginLayout />}>
         <Route path="/login" element={<Login />}>

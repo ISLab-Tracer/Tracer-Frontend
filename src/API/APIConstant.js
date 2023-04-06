@@ -95,11 +95,35 @@ const COMMON_API = {
   GET_COMMON_DATA: `${BASE_URL}/common`,
 };
 
+const CATEGORY_API = {
+  /**
+   * @method POST
+   * @param
+   */
+  CREATE_CATEGORY: `${BASE_URL}/category`,
+  /**
+   * @method PUT
+   * @param
+   */
+  UPDATE_CATEGORY: `${BASE_URL}/category`,
+  /**
+   * @method DEL
+   * @param {string} category_id
+   */
+  DELETE_CATEGORY: `${BASE_URL}/category/:category_id`,
+};
+
 const APIConstant = {
   ...AUTH_API,
   ...USER_API,
   ...EQUIPMENT_API,
   ...TEAM_API,
+  ...CATEGORY_API,
+  /**
+   * @method
+   * @param
+   */
+  GET_COMMON_DATA: `${BASE_URL}/common`,
   ...COMMON_API,
 };
 

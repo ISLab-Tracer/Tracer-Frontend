@@ -4,4 +4,5 @@ export { default as DropdownProfile } from './DropdownProfile';
 export { default as PageHeader } from './PageHeader/PageHeader';
 export { default as EquipSubTitle } from './Equips/SubTitle/SubTtitle';
 export { default as EquipInfo } from './Equips/EquipInfo/EquipInfo';
+export { default as ModalLayout } from './ModalLayout';
 export { default as EquipmentThumbnail } from './Equips/EquipThumbnail/EquipThumbnail';

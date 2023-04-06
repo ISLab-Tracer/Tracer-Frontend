@@ -101,6 +101,17 @@ const SideMenu = () => {
                 <ListItemIcon>
                   <StarBorder />
                 </ListItemIcon>
+                <ListItemText primary="속성" />
+              </ListItemButton>
+              <ListItemButton
+                sx={{ pl: 4 }}
+                id="category"
+                selected={selected === 'category'}
+                onClick={(e) => handleListClick(e)}
+              >
+                <ListItemIcon>
+                  <StarBorder />
+                </ListItemIcon>
                 <ListItemText primary="카테고리" />
               </ListItemButton>
               <ListItemButton
