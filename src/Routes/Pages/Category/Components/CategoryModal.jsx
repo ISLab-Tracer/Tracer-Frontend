@@ -16,7 +16,9 @@ const CategoryModal = ({
   parentCategory,
   categoryState,
   setCategoryState,
-  setEditOpen,
+  setOpen,
+  setDataList,
+  dataList,
 }) => {
   /* Router */
   /* State */
@@ -37,14 +39,14 @@ const CategoryModal = ({
     const parentId = categoryList.filter(
       (i) => i.category_nm === categoryState.parent
     );
-    const data = {
+    const d = {
       category_nm: categoryState.category_nm,
       category_desc: categoryState.category_desc,
       parent_id: parentId[0].category_id,
       category_level: parentId[0].category_level + 1,
     };
-    handleRegister(data);
-    setEditOpen(false);
+    setOpen(false);
+    handleRegister(d);
   };
   /* Render */
   return (
