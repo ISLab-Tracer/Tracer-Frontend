@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import './equipment-modify.css';
 import { useCommonData } from 'Hooks/CommonDataManager';
-import { EquipInfo, PageHeader } from 'Components';
+import { EquipInfo, EquipmentThumbnail, PageHeader } from 'Components';
 import { Button, MenuItem, Stack } from '@mui/material';
-import { EquipmentThumbnail } from '../EquipmentRegister/components';
-const EquipmentModifyPresenter = ({ equipment, setEquipment }) => {
+import { MyListSubheader } from 'Components/Equips/EquipInfo/EquipInfo';
+const EquipmentModifyPresenter = ({ equipment, updateEquipment }) => {
   /* Router */
   /* State */
-  const { categoryList, projectList, userList } = useCommonData();
+  const { categoryOptions, projectList, userList } = useCommonData();
   //   const [img, setImg] = useState(null);
   const [thumbnail, setThumbnail] = useState(equipment.equipment_thumbnail);
   const [equipInfo, setEquipInfo] = useState(equipment);
@@ -24,6 +24,7 @@ const EquipmentModifyPresenter = ({ equipment, setEquipment }) => {
    */
   const onSubmit = async (e) => {
     e.preventDefault();
+    await updateEquipment(equipInfo, thumbnail);
   };
 
   const handleImg = (f) => {
@@ -38,6 +39,21 @@ const EquipmentModifyPresenter = ({ equipment, setEquipment }) => {
   };
   /* Hooks */
   /* Render */
+  const categoryRender = categoryOptions.map((item) => {
+    const { parent_id, category_id, category_nm } = item;
+    if (parent_id) {
+      return (
+        <MenuItem key={category_id} value={category_id}>
+          {category_nm}
+        </MenuItem>
+      );
+    }
+    return (
+      <MyListSubheader muiSkipListHighlight key={category_id}>
+        {category_nm}
+      </MyListSubheader>
+    );
+  });
   return (
     <div className="equipment-modify-container">
       <PageHeader
@@ -49,7 +65,13 @@ const EquipmentModifyPresenter = ({ equipment, setEquipment }) => {
           </Button>
         }
       />
-      <form className="equipment-modify-form" onSubmit={onSubmit}>
+      <form
+        className="equipment-modify-form"
+        onSubmit={onSubmit}
+        onKeyPress={(e) => {
+          e.key === 'Enter' && e.preventDefault();
+        }}
+      >
         <div className="equipinfo-wrapper">
           <div className="left">
             <EquipInfo title="제품 정보">
@@ -92,14 +114,10 @@ const EquipmentModifyPresenter = ({ equipment, setEquipment }) => {
             name="category_id"
             property="category_id"
             value={equipInfo.category_id}
-            items={categoryList}
             setValue={handleEquipinfo}
-            render={(item) => (
-              <MenuItem key={item.category_id} value={item.category_id}>
-                {item.category_nm}
-              </MenuItem>
-            )}
-          />
+          >
+            {categoryRender}
+          </EquipInfo.Select>
           <EquipInfo.Select
             label="관련 사업"
             name="project_id"
@@ -110,6 +128,20 @@ const EquipmentModifyPresenter = ({ equipment, setEquipment }) => {
             render={(item) => (
               <MenuItem key={item.project_id} value={item.project_id}>
                 {item.project_title}
+              </MenuItem>
+            )}
+          />
+          <EquipInfo.Select
+            label="구매자"
+            name="user_id"
+            property="user_id"
+            disabled
+            setValue={handleEquipinfo}
+            value={equipInfo.user_id}
+            items={userList}
+            render={(item) => (
+              <MenuItem key={item.user_id} value={item.user_id}>
+                {item.user_nm}
               </MenuItem>
             )}
           />

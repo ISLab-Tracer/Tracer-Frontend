@@ -1,5 +1,11 @@
 import React from 'react';
-import { FormControl, MenuItem, Select, TextField } from '@mui/material';
+import {
+  FormControl,
+  ListSubheader,
+  MenuItem,
+  Select,
+  TextField,
+} from '@mui/material';
 import './equipinfo.css';
 import { stringToMoneyFormat } from '../../../Utils/index';
 
@@ -26,6 +32,7 @@ EqipInfo.Input = ({
   disabled = false,
   multiline = false,
   type = 'text',
+  required = true,
 }) => {
   const handleValue = (e) => {
     if (!setValue) {
@@ -47,19 +54,22 @@ EqipInfo.Input = ({
     <div className="field-container">
       <h5>{label}</h5>
       <div className="property-feild">
-        <TextField
-          disabled={disabled}
-          label={name}
-          name={property}
-          variant={variant}
-          size={size}
-          helperText={desc}
-          style={style}
-          fullWidth={true}
-          value={val}
-          onChange={handleValue}
-          {...textArea}
-        />
+        <FormControl fullWidth required={required}>
+          <TextField
+            required={required}
+            disabled={disabled}
+            label={name}
+            name={property}
+            variant={variant}
+            size={size}
+            helperText={desc}
+            style={style}
+            fullWidth={true}
+            value={val}
+            onChange={handleValue}
+            {...textArea}
+          />
+        </FormControl>
       </div>
     </div>
   );
@@ -75,6 +85,8 @@ EqipInfo.Select = ({
   disabled = false,
   items = [],
   render,
+  children,
+  required = true,
 }) => {
   const handleValue = (e) => {
     if (!setValue) {
@@ -97,7 +109,7 @@ EqipInfo.Select = ({
     <div className="field-container">
       <h5>{label}</h5>
       <div className="property-feild">
-        <FormControl fullWidth>
+        <FormControl fullWidth required={required}>
           <Select
             name={property}
             value={value}
@@ -105,16 +117,20 @@ EqipInfo.Select = ({
             style={style}
             disabled={disabled}
             defaultValue=""
+            children={children}
+            required={required}
           >
-            <MenuItem disabled value="">
-              선택
-            </MenuItem>
-            {render && renderMenus}
+            {children ? children : render && renderMenus}
           </Select>
         </FormControl>
       </div>
     </div>
   );
+};
+
+export const MyListSubheader = (props) => {
+  const { muiSkipListHighlight, ...other } = props;
+  return <ListSubheader {...other} />;
 };
 
 export default EqipInfo;

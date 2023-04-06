@@ -2,6 +2,7 @@ import { LocalSeeOutlined, SystemUpdateAlt } from '@mui/icons-material';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import './equip-thumbnail.css';
+import { BUCKET_URL } from 'Utils';
 
 const EquipThumbnail = ({ img, setImg }) => {
   /* Router */
@@ -25,13 +26,18 @@ const EquipThumbnail = ({ img, setImg }) => {
   /* Hooks */
   useEffect(() => {
     if (img) {
+      if (typeof img === 'object') {
+        setPreview(img.preview);
+        return;
+      }
+      const path = `${BUCKET_URL}${img}`;
+      setPreview(path);
       return;
     }
     setPreview(null);
   }, [img]);
 
   /* Render */
-
   return (
     <div {...getRootProps()} className="equip-thumbnail-wrapper">
       {preview ? (

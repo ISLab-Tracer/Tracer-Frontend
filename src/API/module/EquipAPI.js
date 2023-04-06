@@ -64,7 +64,22 @@ const EquipAPI = {
       throw message;
     } catch (e) {
       console.log(e);
-      throw e;
+      return false;
+    }
+  },
+
+  updateEquipment: async (equipInfo) => {
+    try {
+      const url = APIConstant.UPDATE_EQUIPMENT;
+      const result = await $http.put(url, equipInfo);
+      const { status, message, data } = result;
+      if (status === 200) {
+        return data;
+      }
+      throw message;
+    } catch (e) {
+      console.log(e);
+      return false;
     }
   },
 };

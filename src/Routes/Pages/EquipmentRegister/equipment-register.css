@@ -2,6 +2,7 @@
     width: 100%;
     height: 100%;
     padding: 20px 40px;
+    overflow: auto;
 }
 
 .equipment-register-container .equipment-register-form{
@@ -36,6 +37,7 @@
 
 .equipment-register-container .equipment-register-form .btn-group{
     width: 100%;
+    min-height: 100px;
     display: flex;
     justify-content: flex-start;
     align-items: center;

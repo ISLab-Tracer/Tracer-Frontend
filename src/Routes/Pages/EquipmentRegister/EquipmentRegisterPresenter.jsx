@@ -1,13 +1,14 @@
 import { Button, MenuItem, Stack } from '@mui/material';
-import { EquipInfo, PageHeader } from 'Components';
+import { EquipInfo, EquipmentThumbnail, PageHeader } from 'Components';
 import React, { useEffect, useState } from 'react';
 import { uncomma } from 'Utils';
-import { EquipmentThumbnail } from './components';
 import './equipment-register.css';
+import { MyListSubheader } from 'Components/Equips/EquipInfo/EquipInfo';
 
 const EquipmentRegisterPresenter = ({
-  categoryList,
+  categoryOptions,
   projectList,
+  categoryTree,
   userList,
   handleRegister,
 }) => {
@@ -21,6 +22,7 @@ const EquipmentRegisterPresenter = ({
     equipment_price: null,
     equipment_qty: null,
     user_id: '',
+    charger_id: '',
     files: null,
   };
   const [equipInfo, setEquipInfo] = useState(initialState);
@@ -50,8 +52,6 @@ const EquipmentRegisterPresenter = ({
       equipment_price: Number(uncomma(equipInfo.equipment_price)),
       equipment_qty: Number(uncomma(equipInfo.equipment_qty)),
     };
-
-    console.log(postData);
 
     const result = await handleRegister(postData);
     if (result) {
@@ -83,6 +83,22 @@ const EquipmentRegisterPresenter = ({
     // eslint-disable-next-line
   }, [thumbnail]);
 
+  const categoryRender = categoryOptions.map((item) => {
+    const { parent_id, category_id, category_nm } = item;
+    if (parent_id) {
+      return (
+        <MenuItem key={category_id} value={category_id}>
+          {category_nm}
+        </MenuItem>
+      );
+    }
+    return (
+      <MyListSubheader muiSkipListHighlight key={category_id}>
+        {category_nm}
+      </MyListSubheader>
+    );
+  });
+
   /* Render */
   return (
     <div className="equipment-register-container">
@@ -95,7 +111,13 @@ const EquipmentRegisterPresenter = ({
           </Button>
         }
       />
-      <form className="equipment-register-form" onSubmit={onSubmit}>
+      <form
+        className="equipment-register-form"
+        onSubmit={onSubmit}
+        onKeyPress={(e) => {
+          e.key === 'Enter' && e.preventDefault();
+        }}
+      >
         <div className="equipinfo-wrapper">
           <div className="left">
             <EquipInfo title="제품 정보">
@@ -138,13 +160,9 @@ const EquipmentRegisterPresenter = ({
             name="category_id"
             property="category_id"
             value={equipInfo.category_id}
-            items={categoryList}
+            items={categoryTree}
             setValue={handleEquipinfo}
-            render={(item) => (
-              <MenuItem key={item.category_id} value={item.category_id}>
-                {item.category_nm}
-              </MenuItem>
-            )}
+            children={categoryRender}
           />
           <EquipInfo.Select
             label="관련 사업"
@@ -160,11 +178,24 @@ const EquipmentRegisterPresenter = ({
             )}
           />
           <EquipInfo.Select
-            label="담당자"
+            label="구매자"
             name="user_id"
             property="user_id"
             setValue={handleEquipinfo}
             value={equipInfo.user_id}
+            items={userList}
+            render={(item) => (
+              <MenuItem key={item.user_id} value={item.user_id}>
+                {item.user_nm}
+              </MenuItem>
+            )}
+          />
+          <EquipInfo.Select
+            label="담당자"
+            name="charger_id"
+            property="charger_id"
+            setValue={handleEquipinfo}
+            value={equipInfo.charger_id}
             items={userList}
             render={(item) => (
               <MenuItem key={item.user_id} value={item.user_id}>

@@ -99,6 +99,7 @@ Equip.Detail = ({
   title,
   price,
   thumbnail,
+  buyer,
   charger,
   project,
   qty,
@@ -162,11 +163,15 @@ Equip.Detail = ({
           <Equip.Text title="가격" value={stringToMoneyFormat(price)} />
           <Equip.Text title="프로젝트" value={project} />
           <Equip.Text title="팀" value={team} />
+          <Equip.Text title="구매자" value={buyer} />
           <Equip.Text title="소유자" value={charger} />
         </div>
 
         <div className="equip-page-itembox-clickitembox-changebox line">
           <Equip.Text title="수량" value={stringToMoneyFormat(qty)} />
+          {qty >= 2 && (
+            <Equip.Text title="총액" value={stringToMoneyFormat(qty * price)} />
+          )}
         </div>
 
         {/* IF 종료 */}

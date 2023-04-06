@@ -70,28 +70,24 @@ const LoginContainer = () => {
       return;
     }
 
+    if (session) {
+      return;
+    }
+
     const postData = {
       login_id,
     };
+
     handleLoading(true);
     const result = await AuthAPI.requestSignin(postData);
     if (result) {
+      handleSession(result);
       handleLoadingTimer(1000, () => {
-        handleSession(result);
         navigate('/');
         return true;
       });
       return false;
     }
-
-    if (session) {
-      return;
-    }
-
-    handleLoadingTimer(3000, () => {
-      navigate('/login');
-    });
-    return;
   }, [
     login_id,
     navigate,

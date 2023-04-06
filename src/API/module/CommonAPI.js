@@ -19,6 +19,21 @@ const CommonAPI = {
       throw e;
     }
   },
+  singleUpload: async (postData) => {
+    try {
+      const url = APIConstant.SINGLE_UPLOAD;
+      const result = await $http.multipart(url, postData);
+      const { status, message, data } = result;
+      if (status === 200) {
+        return data;
+      }
+      console.log(message);
+      return false;
+    } catch (e) {
+      console.log(e);
+      return true;
+    }
+  },
 };
 
 export default CommonAPI;
