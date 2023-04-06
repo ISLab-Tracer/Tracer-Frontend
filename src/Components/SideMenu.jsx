@@ -138,6 +138,18 @@ const SideMenu = () => {
             </ListItemIcon>
             <ListItemText primary="바코드 테스트" />
           </ListItemButton>
+
+          <ListItemButton
+            sx={{ width: '100%' }}
+            selected={selected === 'profile'}
+            id="profile"
+            onClick={(e) => handleListClick(e)}
+          >
+            <ListItemIcon>
+              <ImportantDevicesOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="유저 설정" />
+          </ListItemButton>
         </StyledList>
       </nav>
     </div>

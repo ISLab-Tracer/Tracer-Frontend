@@ -15,6 +15,10 @@ const ProfileContainer = () => {
     }
     const { user_id } = session;
     const result = await UserAPI.getUserInfo(user_id);
+
+    console.log('RESULT');
+    console.log(result);
+
     if (result) {
       return result;
     }

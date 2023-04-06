@@ -1,48 +1,86 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Properties from './Properties';
-import { ImgError, ExcelParsing } from 'Utils';
-import * as XLSX from 'xlsx';
+import { ImgError } from 'Utils';
+import { i_team, i_rank } from './Initial';
 
-// 이거 원래 이게 맞나?
-import img from 'Assets/img/logo.png';
+//import ExcelParsing from 'Utils/ExcelParsing';
 
-const UserProfile = () => {
+const UserProfile = ({ userinfo }) => {
   /* Router */
 
   /* State */
-  const [excel, setExcel] = useState();
-  const [excelfield, setExcelfield] = useState();
-  const [check, setCheck] = useState(false);
+
+  // eslint-disable-next-line
+  const init = {
+    user_usage: userinfo.user_usage,
+    user_tel: userinfo.user_tel,
+    user_rank: userinfo.user_rank,
+    user_password: userinfo.user_password,
+    user_nm: userinfo.user_nm,
+    user_id: userinfo.user_id,
+    user_email: userinfo.user_email,
+    user_divide: userinfo.user_divide,
+    team_id: userinfo.user_id,
+    team: {
+      team_desc: userinfo.team.team_desc,
+      team_id: userinfo.team.team_id,
+      team_nm: userinfo.team.team_nm,
+    },
+  };
+
+  // 첫 로딩 시 적용되게 해야 함
+  const [userInfo, setUserInfo] = useState('');
+
+  // useEffect(() => {
+  //   setUserInfo(init);
+
+  //   console.log('UserInfo1');
+  //   console.log(userInfo);
+  //   return;
+  // }, []);
+
+  const imgRef = useRef();
+
+  const [imgSrc, setImgSrc] = useState('');
+
+  const [userTeam, setUserTeam] = useState(userInfo.team_nm);
+  const [userRank, setUserRank] = useState(userInfo.user_rank);
+
+  // Excel Parsing을 위한 State
+  // // Excel Rows
+  // const [excel, setExcel] = useState();
+  // // Excel Header
+  // const [excelfield, setExcelfield] = useState();
 
   /* Functions */
-
-  // 엑셀 파싱 함수
-  const testChange = (e) => {
-    <ExcelParsing
-      setField={setExcelfield}
-      setRow={setExcel}
-      target={e.target}
-    />;
-
-    const file = e.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = (e) => {
-      const data = e.target.result;
-      const workbook = XLSX.read(data, { type: 'binary' });
-
-      // Sheet 구분
-      const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-      // jsonData => 엑셀 파싱 값
-      const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 0 });
-      // 필드값 추출
-      const fieldheader = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-      setExcel(jsonData);
-      setExcelfield(fieldheader[0]);
-      setCheck(true);
-    };
-    reader.readAsBinaryString(file);
+  const ClickUpload = () => {
+    imgRef.current.click();
   };
+
+  const ChangeImg = () => {
+    const file = imgRef.current.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setImgSrc(reader.result);
+    };
+  };
+
+  // 수정 중
+  // const handleState = (e) => {
+  //   const e_title = e.target.settitle;
+  //   const e_value = e.target.value;
+
+  //   // setUserInfo((prevState) => ({
+  //   //   ...prevState,
+  //   //   e_title: e_value,
+  //   // }));
+  // };
+
+  // 엑셀 파싱 함수( 최적화 가능할 것 같음 )
+  // const SelectExcel = (e) => {
+  //   ExcelParsing(setExcelfield, setExcel, e.target.files[0]);
+  // };
 
   /* Hooks */
   /* Render */
@@ -54,24 +92,65 @@ const UserProfile = () => {
         <Properties.Box fieldTitle="유저 정보" style={{ marginTop: '0' }}>
           <div className="profile-page-main-mainbox flexrow">
             <div className="profile-page-main-mainbox-leftbox">
-              <Properties.Input fieldTitle="이름" name="이름" />
-              <Properties.Input fieldTitle="언어" name="언어" />
-              <div className="field-container">
-                <h5>로그인 방식</h5>
-                <div className="property-field">
-                  <div>
-                    <img src={img} alt="img" />
-                  </div>
-                  <div>
-                    <span>ISLAB</span>
-                  </div>
-                </div>
-              </div>
+              <Properties.Input
+                fieldTitle="이름"
+                name="이름"
+                value={userInfo.user_nm}
+                settitle="user_nm"
+                // setvalue={setUserInfo}
+                // onChange={handleState}
+              />
+              <Properties.Input
+                fieldTitle="아이디"
+                name="아이디"
+                value={userInfo.user_id}
+                settitle="user_id"
+                setvalue={setUserInfo}
+              />
+              <Properties.Select
+                fieldTitle="팀"
+                name="팀"
+                render={i_team}
+                value={userTeam}
+                settitle="team.team_nm"
+                setValue={setUserTeam}
+              />
+              <Properties.Input
+                fieldTitle="이메일"
+                name="이메일"
+                value={userInfo.user_email}
+                settitle="user_email"
+                setvalue={setUserInfo}
+              />
+              <Properties.Select
+                fieldTitle="과정"
+                name="과정"
+                render={i_rank}
+                value={userRank}
+                settitle="user_rank"
+                setValue={setUserRank}
+              />
+              <Properties.Input
+                fieldTitle="전화번호"
+                name="전화번호"
+                // value={userInfo.user_tel}
+                settitle="user_tel"
+                setvalue={setUserInfo}
+              />
             </div>
-            <div className="profile-page-main-mainbox-rightbox">
-              <input type="file" accept="image/*" style={{ display: 'none' }} />
+            <div
+              className="profile-page-main-mainbox-rightbox"
+              onClick={ClickUpload}
+            >
+              <input
+                type="file"
+                accept="image/*"
+                style={{ display: 'none' }}
+                ref={imgRef}
+                onChange={ChangeImg}
+              />
               <img
-                src=""
+                src={imgSrc}
                 alt="img"
                 className="profile-page-main-mainbox-rightbox-img"
                 onError={ImgError}
@@ -81,37 +160,31 @@ const UserProfile = () => {
           <Properties.Button fieldTitle="저장" />
         </Properties.Box>
 
-        <Properties.Box fieldTitle="테스트" name="테스트">
-          {/* 엑셀 파싱 */}
-          <div>
-            <input type="file" accept=".xlsx,.xls" onChange={testChange} />
-          </div>
-          <div>
-            <div className="flexrow">
-              {check &&
-                excelfield.map((field, index1) => {
-                  // 필드명 추출 ( 최적화 필요 )
-                  return <div key={index1}>{field}</div>;
-                })}
-            </div>
-            {check &&
-              excel.map((row, index1) => {
-                // 각행 추출
-                return (
-                  <div key={index1} className="flexrow">
-                    {excelfield.map((field, index2) => {
-                      // 하나의 행에서 Field값 추출
-                      return (
-                        <div key={index2} className="flex">
-                          <div className="">{row[field]}</div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                );
-              })}
+        <Properties.Box fieldTitle="계정 정보">
+          <div className="profile-page-main-mainbox flexcolumn">
+            <Properties.Text
+              fieldTitle="계정 생성일"
+              value={userinfo.created_at}
+            />
+            <Properties.Text
+              fieldTitle="마지막 변경일"
+              value={userinfo.modified_at}
+            />
           </div>
         </Properties.Box>
+
+        <Properties.Box fieldTitle="데이터 삭제">
+          <Properties.Delete
+            fieldTitle="팀에서 나갈 수 있으며, 관리자의 초대로 다시 합류할 수 있습니다."
+            name="팀 나가기"
+          />
+          <Properties.Delete
+            fieldTitle="탈퇴 후에는 계정을 복구할 수 없으니 신중하게 선택해 주세요."
+            name="회원 탈퇴"
+            style={{ marginTop: '20px' }}
+          />
+        </Properties.Box>
+
         {/* 이메일 알림 */}
       </div>
     </div>
