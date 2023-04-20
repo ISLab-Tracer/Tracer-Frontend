@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import LoadingManager from './Utils/LoadingManager';
 import SessionManager from 'Hooks/SessionManager';
 import CommonDataManager from 'Hooks/CommonDataManager';
+import 'moment/locale/ko';
 
 console.log(`
 --------------------------

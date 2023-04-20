@@ -8,6 +8,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+import CategoryAPI from 'API/module/CategoryAPI';
 import React, { Fragment } from 'react';
 
 const CategoryModal = ({
@@ -24,6 +25,20 @@ const CategoryModal = ({
   /* State */
   /* Hooks */
   /* Functions */
+  const newCategory = async () => {
+    const cate = await CategoryAPI.getCategory();
+    const data = cate.map((item) => {
+      const { category_id, parent_id } = item;
+      const parentCategory = cate.filter((i) => i.category_id === parent_id);
+      const parent_nm = parentCategory.map((i) => i.category_nm);
+      return {
+        ...item,
+        id: category_id,
+        parent_category: parent_nm[0],
+      };
+    });
+    return data;
+  };
   const handleCategoryChange = (e) => {
     setCategoryState({ ...categoryState, category_nm: e.target.value });
   };
@@ -34,7 +49,7 @@ const CategoryModal = ({
   const handleParentChange = (e) => {
     setCategoryState({ ...categoryState, parent: e.target.value });
   };
-  const handleCategoryRegister = (e) => {
+  const handleCategoryRegister = async (e) => {
     e.preventDefault();
     const parentId = categoryList.filter(
       (i) => i.category_nm === categoryState.parent
@@ -46,8 +61,11 @@ const CategoryModal = ({
       category_level: parentId[0].category_level + 1,
     };
     setOpen(false);
-    handleRegister(d);
+    await handleRegister(d);
+    const newData = await newCategory();
+    setDataList(newData);
   };
+  // setDataList(newData);
   /* Render */
   return (
     <Fragment>

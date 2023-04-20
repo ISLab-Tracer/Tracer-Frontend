@@ -5,6 +5,20 @@ const { default: ApiManager } = require('Utils/APIManager');
 const $http = new ApiManager();
 
 const CategoryAPI = {
+  getCategory: async () => {
+    try {
+      const url = APIConstant.GET_CATEGORY;
+      const result = await $http.get(url);
+      const { status, message, data } = result;
+      if (status === 200) {
+        return data;
+      }
+      throw message;
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+  },
   createCategory: async (categoryInfo) => {
     try {
       const url = APIConstant.CREATE_CATEGORY;

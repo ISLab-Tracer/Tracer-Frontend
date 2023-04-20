@@ -111,6 +111,11 @@ const CATEGORY_API = {
    * @param {string} category_id
    */
   DELETE_CATEGORY: `${BASE_URL}/category/:category_id`,
+  /**
+   * @method GET
+   * @param
+   */
+  GET_CATEGORY: `${BASE_URL}/category`,
 };
 
 const APIConstant = {

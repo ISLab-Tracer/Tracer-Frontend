@@ -52,8 +52,8 @@ const CategoryPresenter = ({ handleRegister, handleDelete, handleUpdate }) => {
   const [open, setOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
   const [editData, setEditData] = useState();
-  const { categoryList } = useCommonData();
-  // console.log(categoryList);
+  const { categoryList, categoryTree } = useCommonData();
+  console.log(categoryTree);
   // 부모 카테고리 항목 추출
   const parentCategory = categoryList.filter((i) => i.category_level === 0);
   // 카테고리 리스트에 DataGrid id, 부모 카테고리명 추가
